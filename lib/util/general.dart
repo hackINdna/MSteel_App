@@ -11,6 +11,21 @@ const themeColors = <Color>[
 
 //info
 const contactNumber = "+91 3333 33 3333";
+const List<String> languageList = [
+  "English",
+  "Hindi",
+  "Tamil",
+  "Telugu",
+  "Kannada",
+  "Malayalam",
+  "Marathi",
+  "Gujarati",
+  "Odiya",
+  "Bengali",
+  "Punjabi",
+  "Assamese"
+];
+const List<String> businessTypeList = ["Retail / Factory", "B2B / B2C"];
 //form field heading TextStyle
 TextStyle formFieldHeadingTextStyle() {
   return const TextStyle(
@@ -73,5 +88,21 @@ InputDecoration formTextFieldInputDecoration({String? hintText}) {
     hintText: (hintText != null) ? hintText : "",
     hintStyle: const TextStyle(color: Colors.grey),
     contentPadding: const EdgeInsets.fromLTRB(15, 0, 0, 0),
+  );
+}
+
+//full blue button style
+ButtonStyle fullBlueButtonStyle() {
+  return ButtonStyle(
+    side: MaterialStateProperty.all(BorderSide(
+      color: themeColors.last,
+    )),
+    minimumSize: MaterialStateProperty.all(const Size(double.maxFinite, 47)),
+    shape: MaterialStateProperty.all(RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(8),
+    )),
+    textStyle: MaterialStateProperty.all(
+      const TextStyle(fontSize: 14),
+    ),
   );
 }

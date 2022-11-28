@@ -2,14 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:m_steel/util/general.dart';
 
 typedef OnSavedCallback = void Function(String?)?;
+typedef ValidatorCallback = String? Function(String?)?;
 
 class PasswordTextFormField extends StatefulWidget {
   final String hintText;
   final OnSavedCallback onSaved;
+  final OnSavedCallback onChanged;
+  final ValidatorCallback validator;
+
   const PasswordTextFormField({
     super.key,
     this.hintText = "",
     this.onSaved,
+    this.onChanged,
+    this.validator,
   });
 
   @override
@@ -79,11 +85,24 @@ class _PasswordTextFormFieldState extends State<PasswordTextFormField> {
         ),
       ),
       onSaved: (newValue) => widget.onSaved!(newValue),
-      validator: (value) {
-        if (value != null && value.length > 5) {
-          return null;
+      onChanged: (value) {
+        //widget.onChanged!(value);
+        if (widget.onChanged != null) {
+          widget.onChanged!(value);
         } else {
-          return "Minimum password length is 6 digits.";
+          return;
+        }
+      },
+      validator: (value) {
+        if (widget.validator != null) {
+          return widget.validator!(value);
+        } else {
+          //our normal min 6 digit validator
+          if (value != null && value.length > 5) {
+            return null;
+          } else {
+            return "Minimum password length is 6 digits.";
+          }
         }
       },
     );

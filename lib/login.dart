@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:m_steel/signup.dart';
 import 'package:m_steel/util/general.dart';
 import 'package:m_steel/widgets/gradient_container.dart';
 import 'package:m_steel/widgets/password_textformfield.dart';
@@ -26,214 +27,200 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: gradientBoxDecoration(),
+    return GradientBgContainer(
       child: Scaffold(
-        body: GradientBgContainer(
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                const Align(
-                  alignment: Alignment(0, 0.45),
-                  heightFactor: 4.7,
-                  child: Text(
-                    "My Steel",
-                    textAlign: TextAlign.center,
-                    textScaleFactor: 2.5,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              const Align(
+                alignment: Alignment(0, 0.45),
+                heightFactor: 4.7,
+                child: Text(
+                  "My Steel",
+                  textAlign: TextAlign.center,
+                  textScaleFactor: 2.5,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
                   ),
                 ),
-                Container(
-                  padding: const EdgeInsets.all(25),
-                  decoration: const BoxDecoration(
-                    color: offWhiteBG,
-                    borderRadius:
-                        BorderRadius.only(topLeft: Radius.circular(80)),
-                  ),
-                  child: Form(
-                    key: _formKey,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Align(
-                          // alignment: Alignment(0, -2),
-                          heightFactor: 2,
-                          child: Text(
-                            "Login",
-                            textScaleFactor: 1.5,
+              ),
+              Container(
+                padding: const EdgeInsets.all(25),
+                decoration: const BoxDecoration(
+                  color: offWhiteBG,
+                  borderRadius: BorderRadius.only(topLeft: Radius.circular(80)),
+                ),
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Align(
+                        // alignment: Alignment(0, -2),
+                        heightFactor: 2,
+                        child: Text(
+                          "Login",
+                          textScaleFactor: 1.5,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 25,
+                      ),
+                      Text(
+                        "Mobile Number",
+                        style: formFieldHeadingTextStyle(),
+                      ),
+                      const SizedBox(height: 10),
+                      TextFormField(
+                        maxLength: 10,
+                        keyboardType: TextInputType.phone,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
+                        decoration: formTextFieldInputDecoration(
+                          hintText: "Enter Mobile Number",
+                        ),
+                        onSaved: (newValue) {
+                          _phoneNumber = newValue;
+                        },
+                        validator: (value) {
+                          if ((value != null && value.isNotEmpty) &&
+                              RegExp(r"^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$")
+                                  .hasMatch(value)) {
+                            return null;
+                          } else {
+                            return "Invalid Phone number.";
+                          }
+                        },
+                      ),
+                      const SizedBox(height: 15),
+                      Text(
+                        "Password",
+                        style: formFieldHeadingTextStyle(),
+                      ),
+                      const SizedBox(height: 10),
+                      PasswordTextFormField(
+                        hintText: "Enter Password here",
+                        onSaved: (String? s) {
+                          _password = s;
+                        },
+                      ),
+                      Align(
+                        alignment: Alignment.bottomRight,
+                        heightFactor: 0.85,
+                        // child: InkWell(
+                        //     onTap: () => _submit(),
+                        //     child: const Text(
+                        //       "Forgot Password?",
+                        //       style: TextStyle(
+                        //         fontWeight: FontWeight.w500,
+                        //       ),
+                        //     )),
+                        child: TextButton(
+                          onPressed: () {},
+                          child: const Text(
+                            "Forgot Password?",
                             style: TextStyle(
-                              fontWeight: FontWeight.w700,
+                              color: Colors.black87,
                             ),
                           ),
                         ),
-                        const SizedBox(
-                          height: 25,
-                        ),
-                        Text(
-                          "Mobile Number",
-                          style: formFieldHeadingTextStyle(),
-                        ),
-                        const SizedBox(height: 10),
-                        TextFormField(
-                          maxLength: 10,
-                          keyboardType: TextInputType.phone,
-                          inputFormatters: [
-                            FilteringTextInputFormatter.digitsOnly
-                          ],
-                          decoration: formTextFieldInputDecoration(
-                            hintText: "Enter Mobile Number",
-                          ),
-                          onSaved: (newValue) {
-                            _phoneNumber = newValue;
-                          },
-                          validator: (value) {
-                            if ((value != null && value.isNotEmpty) &&
-                                RegExp(r"^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$")
-                                    .hasMatch(value)) {
-                              return null;
-                            } else {
-                              return "Invalid Phone number.";
-                            }
-                          },
-                        ),
-                        const SizedBox(height: 15),
-                        Text(
-                          "Password",
-                          style: formFieldHeadingTextStyle(),
-                        ),
-                        const SizedBox(height: 10),
-                        PasswordTextFormField(
-                          hintText: "Enter Password here",
-                          onSaved: (String? s) {
-                            _password = s;
-                          },
-                        ),
-                        Align(
-                          alignment: Alignment.bottomRight,
-                          heightFactor: 0.85,
-                          // child: InkWell(
-                          //     onTap: () => _submit(),
-                          //     child: const Text(
-                          //       "Forgot Password?",
-                          //       style: TextStyle(
-                          //         fontWeight: FontWeight.w500,
-                          //       ),
-                          //     )),
-                          child: TextButton(
-                            onPressed: () {},
-                            child: const Text(
-                              "Forgot Password?",
-                              style: TextStyle(
-                                color: Colors.black87,
-                              ),
+                      ),
+                      ElevatedButton(
+                        onPressed: () => _submit(),
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all(themeColors.last),
+                          textStyle: MaterialStateProperty.all(
+                            const TextStyle(
+                              fontSize: 14,
                             ),
                           ),
-                        ),
-                        ElevatedButton(
-                          onPressed: () => _submit(),
-                          style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStateProperty.all(themeColors.last),
-                            textStyle: MaterialStateProperty.all(
-                              const TextStyle(
-                                fontSize: 14,
-                              ),
-                            ),
-                            minimumSize: MaterialStateProperty.all(
-                              const Size(double.maxFinite, 47),
-                            ),
-                            shape: MaterialStateProperty.all(
-                                RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8))),
+                          minimumSize: MaterialStateProperty.all(
+                            const Size(double.maxFinite, 47),
                           ),
-                          child: const Text("Login"),
+                          shape: MaterialStateProperty.all(
+                              RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8))),
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            Expanded(
-                                child: Padding(
-                              padding: EdgeInsets.only(left: 51),
+                        child: const Text("Login"),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Expanded(
+                              child: Padding(
+                            padding: EdgeInsets.only(left: 51),
+                            child: Divider(
+                              color: Colors.black,
+                              thickness: 1,
+                            ),
+                          )),
+                          Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text(
+                              "Or",
+                              style: TextStyle(fontWeight: FontWeight.w500),
+                            ),
+                          ),
+                          Expanded(
+                            child: Padding(
+                              padding: EdgeInsets.only(right: 51),
                               child: Divider(
                                 color: Colors.black,
                                 thickness: 1,
                               ),
-                            )),
-                            Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                "Or",
-                                style: TextStyle(fontWeight: FontWeight.w500),
-                              ),
-                            ),
-                            Expanded(
-                              child: Padding(
-                                padding: EdgeInsets.only(right: 51),
-                                child: Divider(
-                                  color: Colors.black,
-                                  thickness: 1,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        OutlinedButton(
-                          onPressed: () {},
-                          style: ButtonStyle(
-                            side: MaterialStateProperty.all(BorderSide(
-                              color: themeColors.last,
-                            )),
-                            minimumSize: MaterialStateProperty.all(
-                                const Size(double.maxFinite, 47)),
-                            shape: MaterialStateProperty.all(
-                                RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8),
-                            )),
-                            textStyle: MaterialStateProperty.all(
-                              const TextStyle(fontSize: 14),
                             ),
                           ),
-                          child: Text(
-                            "Login with OTP",
-                            style: TextStyle(color: themeColors.last),
-                          ),
+                        ],
+                      ),
+                      OutlinedButton(
+                        onPressed: () {},
+                        style: fullBlueButtonStyle(),
+                        child: Text(
+                          "Login with OTP",
+                          style: TextStyle(color: themeColors.last),
                         ),
-                        const Align(
-                          heightFactor: 2.3,
-                          alignment: Alignment.bottomCenter,
-                          child: Text(
-                            "Contact us on $contactNumber",
-                            style: TextStyle(fontWeight: FontWeight.w500),
+                      ),
+                      const Align(
+                        heightFactor: 2.3,
+                        alignment: Alignment.bottomCenter,
+                        child: Text(
+                          "Contact us on $contactNumber",
+                          style: TextStyle(fontWeight: FontWeight.w500),
+                        ),
+                      ),
+                      Align(
+                        child: TextButton(
+                          onPressed: () {
+                            Navigator.pushNamed(
+                                context, SignupScreen.routeName);
+                          },
+                          child: const Text.rich(
+                            style: TextStyle(color: Colors.black87),
+                            TextSpan(
+                              text: "Don't have an account? ",
+                              children: [
+                                TextSpan(
+                                  text: "Sign Up",
+                                  style: TextStyle(
+                                    decoration: TextDecoration.underline,
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
                         ),
-                        Align(
-                          child: TextButton(
-                            onPressed: () {},
-                            child: const Text.rich(
-                              style: TextStyle(color: Colors.black87),
-                              TextSpan(
-                                text: "Don't have an account? ",
-                                children: [
-                                  TextSpan(
-                                    text: "Sign Up",
-                                    style: TextStyle(
-                                      decoration: TextDecoration.underline,
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
+                      )
+                    ],
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
