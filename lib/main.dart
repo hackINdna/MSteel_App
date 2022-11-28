@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
-import 'package:m_steel/widgets/login.dart';
-import 'package:m_steel/widgets/splash_screen.dart';
+import 'package:m_steel/login.dart';
+import 'package:m_steel/splash_screen.dart';
 
 void main() {
   runApp(const TheApplication());
