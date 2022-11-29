@@ -94,9 +94,11 @@ InputDecoration formTextFieldInputDecoration({String? hintText}) {
 //full blue button style
 ButtonStyle fullBlueButtonStyle() {
   return ButtonStyle(
-    side: MaterialStateProperty.all(BorderSide(
-      color: themeColors.last,
-    )),
+    side: MaterialStateProperty.all(
+      BorderSide(
+        color: themeColors.last,
+      ),
+    ),
     minimumSize: MaterialStateProperty.all(const Size(double.maxFinite, 47)),
     shape: MaterialStateProperty.all(RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(8),

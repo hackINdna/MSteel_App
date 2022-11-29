@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:m_steel/forgot_password.dart';
 import 'package:m_steel/signup.dart';
 import 'package:m_steel/util/general.dart';
 import 'package:m_steel/widgets/gradient_container.dart';
@@ -121,7 +122,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         //       ),
                         //     )),
                         child: TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushNamed(
+                                context, ForgotPasswordScreen.routeName);
+                          },
                           child: const Text(
                             "Forgot Password?",
                             style: TextStyle(
@@ -179,7 +183,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         ],
                       ),
                       OutlinedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(
+                              context, ForgotPasswordScreen.routeName);
+                        },
                         style: fullBlueButtonStyle(),
                         child: Text(
                           "Login with OTP",
