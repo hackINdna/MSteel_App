@@ -42,6 +42,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
     return GradientBgContainer(
       child: SafeArea(
         child: Scaffold(
+          backgroundColor: Colors.transparent,
           appBar: AppBar(),
           extendBodyBehindAppBar: true,
           body: SingleChildScrollView(

@@ -33,7 +33,9 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_localization: ^0.1.9
+  intl: ^0.17.0
   pin_code_fields: ^7.4.0
+  shared_preferences: ^2.0.15
 
 dev_dependencies:
   flutter_lints: ^2.0.0
@@ -48,6 +50,7 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  generate: true
 
   # To add assets to your application, add an assets section, like this:
   assets:

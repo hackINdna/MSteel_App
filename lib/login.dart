@@ -30,6 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return GradientBgContainer(
       child: Scaffold(
+        backgroundColor: Colors.transparent,
         body: SingleChildScrollView(
           child: Column(
             children: [

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import "package:flutter/material.dart";
 import 'package:flutter/services.dart';
@@ -43,9 +44,24 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
   }
 
   void _otpVerification(String otp) {
-    if (true) {
+    if (Random().nextBool()) {
       Navigator.pushNamed(context, WelcomeScreen.routeName);
       print("all ok nav to welome");
+    } else {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text("Invalid OTP"),
+          content: const Text("Invalid OTP Entered.\nCannot log in."),
+          actions: [
+            TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text("Ok"))
+          ],
+        ),
+      );
     }
   }
 
@@ -84,6 +100,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
     var screenWidth = MediaQuery.of(context).size.width;
     return GradientBgContainer(
       child: Scaffold(
+        backgroundColor: Colors.transparent,
         appBar: AppBar(),
         body: SingleChildScrollView(
           child: Container(

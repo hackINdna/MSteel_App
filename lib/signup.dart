@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:m_steel/forgot_password.dart';
+import 'package:m_steel/otp_verification.dart';
 import 'package:m_steel/util/general.dart';
 import 'package:m_steel/widgets/gradient_container.dart';
 import 'package:m_steel/widgets/password_textformfield.dart';
@@ -34,7 +35,7 @@ class _SignupScreenState extends State<SignupScreen> {
     _formKey.currentState?.save();
     print(
         "name=$_fullName\nemail=$_email\npass=$_password\nconf_pass=$_confirmPassword\nlang=$_language\nzip=$_zipCode\ncity=$_city\nstate=$_state\nbusiinessType=$_businessType");
-    Navigator.pushNamed(context, ForgotPasswordScreen.routeName);
+    Navigator.pushNamed(context, OtpVerificationScreen.routeName);
   }
 
   void languageSelected(String lang) {
@@ -64,6 +65,7 @@ class _SignupScreenState extends State<SignupScreen> {
     return GradientBgContainer(
       child: SafeArea(
         child: Scaffold(
+          backgroundColor: Colors.transparent,
           extendBodyBehindAppBar: true,
           appBar: AppBar(),
           body: SingleChildScrollView(
