@@ -9,7 +9,8 @@ class GradientBgContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: gradientBoxDecoration(),
+      //decoration: gradientBoxDecoration(),
+      color: appBlueBg,
       padding: padding,
       child: child,
     );

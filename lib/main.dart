@@ -2,7 +2,9 @@ import 'dart:math';
 
 import "package:flutter/material.dart";
 import 'package:m_steel/forgot_password.dart';
+import 'package:m_steel/home.dart';
 import 'package:m_steel/login.dart';
+import 'package:m_steel/my_orders.dart';
 import 'package:m_steel/otp_verification.dart';
 import 'package:m_steel/signup.dart';
 import 'package:m_steel/splash_screen.dart';
@@ -33,7 +35,7 @@ class TheApplication extends StatelessWidget {
         fontFamily: "DMSans",
       ),
       routes: {
-        "/": (context) => const WelcomeScreen(), //const SplashScreen(),
+        "/": (context) => const HomeScreen(), //const SplashScreen(), //
         SplashScreen.routeName: (context) => const SplashScreen(),
         LoginScreen.routeName: (context) => const LoginScreen(),
         SignupScreen.routeName: (context) => const SignupScreen(),
@@ -42,6 +44,8 @@ class TheApplication extends StatelessWidget {
         OtpVerificationScreen.routeName: (context) =>
             const OtpVerificationScreen(),
         WelcomeScreen.routeName: (context) => const WelcomeScreen(),
+        HomeScreen.routeName: (context) => const HomeScreen(),
+        MyOrdersScreen.routeName: (context) => const MyOrdersScreen(),
       },
     );
   }

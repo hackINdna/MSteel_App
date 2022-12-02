@@ -8,9 +8,10 @@ class GradientBgScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: gradientBoxDecoration(),
+      //decoration: gradientBoxDecoration(),//comments due to gradient changed to solid
       child: Scaffold(
-        backgroundColor: Colors.transparent,
+        // backgroundColor: Colors.transparent,
+        backgroundColor: appBlueBg,
         body: body,
       ),
     );

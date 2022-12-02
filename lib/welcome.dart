@@ -38,13 +38,15 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           //welcome box
           Container(
             decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: themeColors,
-                //tileMode: TileMode.clamp,
-                begin: Alignment.topRight,
-                end: Alignment.bottomLeft,
-                stops: [0, 0.45, 1.0],
-              ),
+              color: appBlueBg,
+              //due to gradient removal
+              // gradient: LinearGradient(
+              //   colors: themeColors,
+              //   //tileMode: TileMode.clamp,
+              //   begin: Alignment.topRight,
+              //   end: Alignment.bottomLeft,
+              //   stops: [0, 0.45, 1.0],
+              // ),
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(15),
                 bottomRight: Radius.circular(15),

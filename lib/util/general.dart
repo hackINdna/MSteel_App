@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 //colors
 const headingColor = Color(0xff005C77);
 const offWhiteBG = Color(0xffEFEFEF);
+const appBlueBg = Color(0xff0F9EE8);
 const themeColors = <Color>[
   Color(0xff76C0B6),
   Color(0xff34A2B4),
-  Color(0xff1894B8)
+  Color(0xff1894B8),
 ];
 
 //info
@@ -34,12 +35,19 @@ TextStyle formFieldHeadingTextStyle() {
   );
 }
 
+//appbar title text
+Text appBarTitle() {
+  return const Text(
+    "MSteel",
+    style: TextStyle(fontWeight: FontWeight.w500),
+  );
+}
+
 //Gradient Box Decoration
 BoxDecoration gradientBoxDecoration() {
   return const BoxDecoration(
     gradient: LinearGradient(
       colors: themeColors,
-      //tileMode: TileMode.clamp,
       begin: Alignment.topRight,
       end: Alignment.bottomLeft,
       stops: [0, 0.45, 1.0],
