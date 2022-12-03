@@ -1,5 +1,7 @@
 import "package:flutter/material.dart";
+import 'package:m_steel/main.dart';
 import 'package:m_steel/util/general.dart';
+import 'package:m_steel/util/language_constants.dart';
 
 class LanguageChangeDialogContainer extends StatefulWidget {
   const LanguageChangeDialogContainer({
@@ -14,7 +16,6 @@ class LanguageChangeDialogContainer extends StatefulWidget {
 class _LanguageChangeDialogContainerState
     extends State<LanguageChangeDialogContainer> {
   late int _groupValue;
-
   _changeLanguage() {
     //pop dialog and drawer
     int count = 0;
@@ -22,7 +23,9 @@ class _LanguageChangeDialogContainerState
       (route) => count++ >= 2,
     );
     //changed lang below
-    print("changing to ${languageList[_groupValue]}");
+    saveLocale(_groupValue);
+    TheApplication.setLocale(context, languageLocales[_groupValue]);
+    currentLocaleIndex = _groupValue;
   }
 
   void _updateValue(int? value) {
@@ -37,7 +40,7 @@ class _LanguageChangeDialogContainerState
   void initState() {
     super.initState();
     //get saved value from shared prefs
-    _groupValue = 0;
+    _groupValue = currentLocaleIndex;
   }
 
   @override

@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:m_steel/my_orders.dart';
+import 'package:m_steel/util/language_constants.dart';
+import 'package:m_steel/widgets/drawer_list_tile.dart';
+import 'package:m_steel/widgets/language_changer_container.dart';
 
 //colors
 const headingColor = Color(0xff005C77);
@@ -21,10 +25,23 @@ const List<String> languageList = [
   "Malayalam",
   "Marathi",
   "Gujarati",
-  "Odiya",
+  // "Odiya",
   "Bengali",
   "Punjabi",
   "Assamese"
+];
+const List<Locale> languageLocales = [
+  Locale(ENGLISH, INDIA),
+  Locale(HINDI, INDIA),
+  Locale(TAMIL, INDIA),
+  Locale(TELUGU, INDIA),
+  Locale(KANNADA, INDIA),
+  Locale(MALAYALAM, INDIA),
+  Locale(MARATHI, INDIA),
+  Locale(GUJRATI, INDIA),
+  Locale(BENGALI, INDIA),
+  Locale(PUNJABI, INDIA),
+  Locale(ASSAMESE, INDIA),
 ];
 const List<String> businessTypeList = ["Retail / Factory", "B2B / B2C"];
 //form field heading TextStyle
@@ -105,6 +122,7 @@ ButtonStyle fullBlueButtonStyle() {
     side: MaterialStateProperty.all(
       BorderSide(
         color: themeColors.last,
+        width: 0,
       ),
     ),
     minimumSize: MaterialStateProperty.all(const Size(double.maxFinite, 47)),
@@ -115,4 +133,31 @@ ButtonStyle fullBlueButtonStyle() {
       const TextStyle(fontSize: 14),
     ),
   );
+}
+
+//general appbar
+AppBar generalAppbar() {
+  return AppBar(
+    backgroundColor: appBlueBg,
+    elevation: 3,
+    title: appBarTitle(),
+    centerTitle: true,
+  );
+}
+
+//heading Text
+Text headingText(String heading) {
+  return Text(heading,
+      textAlign: TextAlign.center,
+      style: const TextStyle(
+        fontWeight: FontWeight.w600,
+        fontSize: 15.2,
+      ));
+}
+
+//alert ok button
+TextButton alertOkTextButton(BuildContext context) {
+  return TextButton(
+      onPressed: () => Navigator.pop(context),
+      child: Text(transText(context).ok));
 }

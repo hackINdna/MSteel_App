@@ -1,7 +1,20 @@
 {
-  "helloWorld": "GeeksforGeeks",
-  "displayText":"This is a sample App",
-  "@helloWorld": {
-    "description": "SampleApp for GeeksforGeeks"
+  "send": "Send",
+  "ok":"Ok",
+  "cancel": "Cancel",
+  "uploadPhoto": "Upload Photo",
+
+  
+  "enquire":"Enquire",
+  "enquireFieldHint": "Write something here...",
+  "enquireSubmittedSuccessfullyTitle": "Enquiry Submitted!",
+  "enquireSubmittedSuccessfullyDescription": "You will be responded as soon as possible over registered Mobile Number.",
+  "enquireSubmittedFailedTitle": "Enquire Submission Failed!",
+  "enquireSubmittedFailedDescription": "Unable to submit Enquiry. {error}",
+  "@enquireSubmittedFailedDescription": {
+    "placeholders": {
+      "error":{}
+    }
   }
+  
 }

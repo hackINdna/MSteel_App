@@ -1,0 +1,40 @@
+import 'package:flutter/material.dart';
+import 'package:m_steel/util/general.dart';
+import "package:flutter_gen/gen_l10n/app_localizations.dart";
+import 'package:shared_preferences/shared_preferences.dart';
+
+//making a static var set during startup by didChangeDependencies() for quickly accessing index next time
+int currentLocaleIndex = 0;
+//preference name
+const String LANGUAGE_CODE = 'languageCode';
+
+const String ENGLISH = 'en';
+const String HINDI = 'hi';
+const String TAMIL = 'ta';
+const String TELUGU = 'te';
+const String KANNADA = 'kn';
+const String MALAYALAM = 'ml';
+const String MARATHI = 'mr';
+const String GUJRATI = 'gu';
+const String BENGALI = 'bn';
+const String PUNJABI = 'pa';
+const String ASSAMESE = 'as';
+
+//country code
+const String INDIA = 'IN';
+
+Future<Locale> saveLocale(int? languageIndex) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  await prefs.setInt(LANGUAGE_CODE, languageIndex ?? 0);
+  return languageLocales[languageIndex ?? 0];
+}
+
+Future<int> getSavedLocaleIndex() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  int index = prefs.getInt(LANGUAGE_CODE) ?? 0;
+  return index;
+}
+
+AppLocalizations transText(BuildContext context) {
+  return AppLocalizations.of(context)!;
+}

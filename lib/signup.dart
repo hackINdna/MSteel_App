@@ -15,9 +15,9 @@ class SignupScreen extends StatefulWidget {
 
 class _SignupScreenState extends State<SignupScreen> {
   final _formKey = GlobalKey<FormState>();
-  var _cityController = TextEditingController();
-  var _stateController = TextEditingController();
-  var _isLoading = false;
+  final _cityController = TextEditingController();
+  final _stateController = TextEditingController();
+  //var _isLoading = false;
   String? _fullName,
       _phoneNumber,
       _email,
@@ -34,7 +34,7 @@ class _SignupScreenState extends State<SignupScreen> {
     if (isValid != true) return;
     _formKey.currentState?.save();
     print(
-        "name=$_fullName\nemail=$_email\npass=$_password\nconf_pass=$_confirmPassword\nlang=$_language\nzip=$_zipCode\ncity=$_city\nstate=$_state\nbusiinessType=$_businessType");
+        "name=$_fullName\nphone=$_phoneNumber\nemail=$_email\npass=$_password\nconf_pass=$_confirmPassword\nlang=$_language\nzip=$_zipCode\ncity=$_city\nstate=$_state\nbusiinessType=$_businessType");
     Navigator.pushNamed(context, OtpVerificationScreen.routeName);
   }
 

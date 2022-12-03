@@ -14,12 +14,7 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: appBlueBg,
-        elevation: 3,
-        title: appBarTitle(),
-        centerTitle: true,
-      ),
+      appBar: generalAppbar(),
       body: const Center(child: Text("My Orders")),
     );
   }
