@@ -28,26 +28,31 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height;
     return GradientBgContainer(
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: SingleChildScrollView(
           child: Column(
             children: [
-              const Align(
-                alignment: Alignment(0, 0.45),
-                heightFactor: 4.7,
-                child: Text(
-                  "My Steel",
-                  textAlign: TextAlign.center,
-                  textScaleFactor: 2.5,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
+              SizedBox(
+                height: height * 0.3,
+                child: const Align(
+                  alignment: Alignment(0, 0.45),
+                  child: Text(
+                    "My Steel",
+                    textAlign: TextAlign.center,
+                    textScaleFactor: 2.5,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),
               Container(
+                constraints: BoxConstraints(minHeight: height * 0.7),
                 padding: const EdgeInsets.all(25),
                 decoration: const BoxDecoration(
                   color: offWhiteBG,
