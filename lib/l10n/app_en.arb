@@ -1,8 +1,21 @@
 {
   "send": "Send",
-  "ok":"Ok",
-  "cancel": "Cancel",
+  "ok":"OK",
+  "cancel": "CANCEL",
   "uploadPhoto": "Upload Photo",
+  "myOrders": "My Orders",
+  "myBills": "My Bills",
+  "myTransactions": "My Transactions",
+  "myReceipts": "My Receipts",
+  "changeLanguage": "Change language",
+  "stockStatements": "Stock Statements",
+  "contactAdmin": "Contact Admin",
+  "logout": "Logout",
+
+  "logoutMessage": "Are you sure want to logout from application?",
+
+  "emptyFieldError": "Field cannot be Empty.",
+  "elaborationRequiredError": "A little more elaboration required.",
 
   
   "enquire":"Enquire",
@@ -15,6 +28,8 @@
     "placeholders": {
       "error":{}
     }
-  }
+  },
+
+  "orderStatements": "Order Statements"
   
 }

@@ -93,6 +93,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                     controller: _phoneController,
                     inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                     decoration: InputDecoration(
+                      counterText: "",
                       filled: true,
                       enabledBorder: const OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.white, width: 0),
@@ -137,7 +138,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                       contentPadding: const EdgeInsets.fromLTRB(15, 0, 0, 0),
                     ),
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 30),
                   ElevatedButton(
                     onPressed: () {
                       setState(() {

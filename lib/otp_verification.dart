@@ -44,7 +44,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
   }
 
   void _otpVerification(String otp) {
-    if (Random().nextBool()) {
+    if (otp != "0000") {
       Navigator.pushNamed(context, WelcomeScreen.routeName);
       print("all ok nav to welome");
     } else {
@@ -55,10 +55,11 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
           content: const Text("Invalid OTP Entered.\nCannot log in."),
           actions: [
             TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Text("Ok"))
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text("Ok"),
+            )
           ],
         ),
       );
@@ -171,7 +172,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                   ),
                 ),
                 Align(
-                  alignment: Alignment.topRight,
+                  alignment: Alignment.center,
                   child: TextButton(
                     onPressed: () => _enableResend ? _resendOtp() : null,
                     style: ButtonStyle(

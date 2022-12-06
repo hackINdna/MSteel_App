@@ -1,7 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:m_steel/util/general.dart';
 import 'package:m_steel/util/language_constants.dart';
+import 'package:m_steel/widgets/bottom_sheet_icon_button.dart';
+import "package:path/path.dart" as p;
 
 class EnquireScreen extends StatefulWidget {
   const EnquireScreen({super.key});
@@ -13,22 +18,24 @@ class EnquireScreen extends StatefulWidget {
 }
 
 class _EnquireScreenState extends State<EnquireScreen> {
+  File? image;
   final _enquireTextController = TextEditingController();
+  bool _imageSelected = false;
   String? _enquireFieldError = null;
   void _onSubmit() {
     setState(() {
       var len = _enquireTextController.text.trim().length;
       if (len <= 0) {
-        _enquireFieldError = "Field cannot be Empty.";
+        _enquireFieldError = transText(context).emptyFieldError;
         return;
       } else if (len < 20) {
-        _enquireFieldError = "A little more elaboration required.";
+        _enquireFieldError = transText(context).elaborationRequiredError;
         return;
       } else {
         _enquireFieldError = null;
       }
       //submitting
-      bool submittedSuccessfully = false;
+      bool submittedSuccessfully = true;
 
       //on submitted:
       if (submittedSuccessfully) {
@@ -39,7 +46,17 @@ class _EnquireScreenState extends State<EnquireScreen> {
                       transText(context).enquireSubmittedSuccessfullyTitle),
                   content: Text(transText(context)
                       .enquireSubmittedSuccessfullyDescription),
-                  actions: [alertOkTextButton(context)],
+                  actions: [
+                    TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                          setState(() {
+                            _enquireTextController.clear();
+                            _imageSelected = false;
+                          });
+                        },
+                        child: Text(transText(context).ok))
+                  ],
                 ));
       } else {
         showDialog(
@@ -47,11 +64,32 @@ class _EnquireScreenState extends State<EnquireScreen> {
             builder: (context) => AlertDialog(
                   title: Text(transText(context).enquireSubmittedFailedTitle),
                   content: Text(transText(context)
-                      .enquireSubmittedFailedDescription("err")),
+                      .enquireSubmittedFailedDescription("-error here-")),
                   actions: [alertOkTextButton(context)],
                 ));
       }
     });
+  }
+
+  void _deleteSelectedImage() {
+    print("on delete pressed");
+  }
+
+  void getAndSetImage(ImageSource src) async {
+    Navigator.pop(context);
+    var image = await pickImage(src);
+    if (image != null) {
+      setState(() {
+        _imageSelected = true;
+        this.image = File(image.path);
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _enquireTextController.dispose();
   }
 
   @override
@@ -92,9 +130,18 @@ class _EnquireScreenState extends State<EnquireScreen> {
               ),
               const SizedBox(height: 20),
               OutlinedButton.icon(
-                onPressed: () => _onSubmit(),
+                onPressed: () async {
+                  openModalBottomSheet(
+                    context,
+                    _deleteSelectedImage,
+                    getAndSetImage,
+                  );
+                },
                 icon: const Icon(Icons.upload),
-                label: Text(transText(context).uploadPhoto),
+                label: _imageSelected
+                    ? Text(p.basename(image!.path).replaceRange(0,
+                        p.basename(image!.path).lastIndexOf("picker") + 6, ""))
+                    : Text(transText(context).uploadPhoto),
                 style: ButtonStyle(
                   side: MaterialStateProperty.all(
                     BorderSide(
@@ -116,7 +163,8 @@ class _EnquireScreenState extends State<EnquireScreen> {
                 onPressed: () => _onSubmit(),
                 style: fullBlueButtonStyle(),
                 child: Text(transText(context).send),
-              )
+              ),
+              const SizedBox(width: 8),
             ],
           ),
         ),

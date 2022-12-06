@@ -64,7 +64,7 @@ class _TheApplicationState extends State<TheApplication> {
         fontFamily: "DMSans",
       ),
       routes: {
-        "/": (context) => const HomeScreen(), //const SplashScreen(),
+        "/": (context) => const HomeScreen(), //const SplashScreen()
         SplashScreen.routeName: (context) => const SplashScreen(),
         LoginScreen.routeName: (context) => const LoginScreen(),
         SignupScreen.routeName: (context) => const SignupScreen(),

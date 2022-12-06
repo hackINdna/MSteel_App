@@ -149,6 +149,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             }
                           },
                         ),
+                        const SizedBox(height: 20),
                         //email
                         Text(
                           "Email Id",
@@ -279,9 +280,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           ),
                         ),
                         //zip
-                        const SizedBox(
-                          height: 25,
-                        ),
+                        const SizedBox(height: 25),
                         Text(
                           "Zip Code",
                           style: formFieldHeadingTextStyle(),
@@ -318,6 +317,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             }
                           },
                         ),
+                        const SizedBox(height: 20),
                         //city
                         Text(
                           "City",

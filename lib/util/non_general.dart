@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:m_steel/login.dart';
 import 'package:m_steel/my_orders.dart';
 import 'package:m_steel/util/general.dart';
+import 'package:m_steel/util/language_constants.dart';
 import 'package:m_steel/widgets/drawer_list_tile.dart';
 import 'package:m_steel/widgets/language_changer_container.dart';
 
@@ -83,32 +85,32 @@ Drawer homeDrawer(MediaQueryData mediaQuery, BuildContext context) {
           height: 0,
         ),
         DrawerListTile(
-          title: "My Orders",
+          title: transText(context).myOrders,
           onTap: () {
             Navigator.pop(context);
             Navigator.pushNamed(context, MyOrdersScreen.routeName);
           },
         ),
         DrawerListTile(
-          title: "My Bills",
+          title: transText(context).myBills,
           onTap: () {
             print("My bills");
           },
         ),
         DrawerListTile(
-          title: "My Transactions",
+          title: transText(context).myTransactions,
           onTap: () {
             print("My Transactions");
           },
         ),
         DrawerListTile(
-          title: "My Receipts",
+          title: transText(context).myReceipts,
           onTap: () {
-            print("My Transactions");
+            print("My Receipt");
           },
         ),
         DrawerListTile(
-          title: "Change language",
+          title: transText(context).changeLanguage,
           onTap: () {
             //Navigator.pop(context);
             showDialog(
@@ -124,15 +126,50 @@ Drawer homeDrawer(MediaQueryData mediaQuery, BuildContext context) {
           },
         ),
         DrawerListTile(
-          title: "Stock Statements",
+          title: transText(context).stockStatements,
           onTap: () {
             print("Stock statements");
           },
         ),
         DrawerListTile(
-          title: "Contact Admin",
+          title: transText(context).contactAdmin,
           onTap: () {
             print("Contact admin");
+          },
+        ),
+        const Expanded(
+          child: SizedBox(),
+        ),
+        const Divider(
+          thickness: 1,
+          height: 0,
+        ),
+        DrawerListTile(
+          title: transText(context).logout,
+          onTap: () {
+            Navigator.pop(context);
+            showDialog(
+              context: context,
+              builder: (context) => AlertDialog(
+                shape: alertBoxShape(),
+                title: Text(
+                  transText(context).logout,
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
+                content: Text(transText(context).logoutMessage),
+                actions: [
+                  alertOkTextButton(context, text: transText(context).cancel),
+                  TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                        //log user out
+                        Navigator.pushNamedAndRemoveUntil(
+                            context, LoginScreen.routeName, (route) => false);
+                      },
+                      child: Text(transText(context).ok)),
+                ],
+              ),
+            );
           },
         ),
       ],

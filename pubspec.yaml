@@ -33,6 +33,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_localization: ^0.1.9
+  image_picker: ^0.8.6
   intl: ^0.17.0
   marquee: ^2.2.3
   pin_code_fields: ^7.4.0

@@ -1,3 +1,17 @@
 {
-  "enquire":"पूछ-ताछ"
+  "send": "भेजें",
+  "ok": "ओके",
+  "cancel": "रद्द",
+  "uploadPhoto": "फोटो अपलोड करें",
+  "enquire": "पूछताछ",
+  "enquireFieldHint": "यहां लिखें...",
+  "enquireSubmittedSuccessfullyTitle": "पूछताछ सबमिट की गई!",
+  "enquireSubmittedSuccessfullyDescription": "पंजीकृत मोबाइल नंबर पर आपको जल्द से जल्द जवाब दिया जाएगा।",
+  "enquireSubmittedFailedTitle": "पूछताछ सबमिशन विफल!",
+  "enquireSubmittedFailedDescription": "पूछताछ प्रस्तुत करने में असमर्थ। {error}}",
+  "@enquireSubmittedFailedDescription": {
+    "placeholders": {
+      "error": {}
+    }
+  }
 }

@@ -56,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: const Center(child: Text("Space for ad.")),
             ),
             //marquee
-            Container(
+            SizedBox(
               // color: Colors.amber,
               height: mediaQuery.size.height * 0.035,
               child: Marquee(

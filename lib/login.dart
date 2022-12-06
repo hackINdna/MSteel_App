@@ -84,7 +84,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           FilteringTextInputFormatter.digitsOnly
                         ],
                         decoration: formTextFieldInputDecoration(
-                          hintText: "Enter Mobile Number",
+                          hintText: "Enter your Mobile Number",
                         ),
                         onSaved: (newValue) {
                           _phoneNumber = newValue;
@@ -99,6 +99,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           }
                         },
                       ),
+                      const SizedBox(height: 10),
                       const SizedBox(height: 15),
                       Text(
                         "Password",
@@ -106,7 +107,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       const SizedBox(height: 10),
                       PasswordTextFormField(
-                        hintText: "Enter Password here",
+                        hintText: "Enter your Password",
                         onSaved: (String? s) {
                           _password = s;
                         },
