@@ -40,7 +40,7 @@ class OrderStatement extends StatelessWidget {
             topLeft: Radius.circular(3.5), topRight: Radius.circular(3.5)),
         color: Colors.white,
         child: InkWell(
-          onTap: () => onTap,
+          onTap: () => onTap?.call(),
           child: Padding(
             padding:
                 const EdgeInsets.only(top: 8, left: 8, right: 8, bottom: 6),
