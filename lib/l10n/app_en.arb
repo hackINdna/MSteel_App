@@ -30,6 +30,18 @@
     }
   },
 
-  "orderStatements": "Order Statements"
+  "pending": "Pending",
+  "completed": "Completed",
+  "incompleted": "Incompleted",
+  "approved": "Approved",
+  "declined": "Declined",
+  "shippingInProcess": "Shipping in Process",
+  "quantity": "Quantity",
+  "bookingRate": "Booking Rate",
+  "order": "Order",
+
+  "orderStatements": "Order Statements",
+  "newOrders": "New Orders",
+  "previousOrders": "Previous Orders"
   
 }

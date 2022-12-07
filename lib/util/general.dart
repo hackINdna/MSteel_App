@@ -13,15 +13,87 @@ const headingColor = Color(0xff005C77);
 const offWhiteBG = Color(0xffEFEFEF);
 const appBlueBg = Color(0xff0F9EE8);
 const boxBorderColor = Color(0xffCDCDCD);
-const Map<String, Color> statusColors = {
-  "completed": Color(0xff009A19),
-  "incompleted": Color(0xffE11212),
-  "pending": Color(0xffD9C749),
-  "approved": Color(0xff009A19),
-  "shippingInProcess": Color(0xff53BAF7),
-  "grayText": Color(0xFF7E7E7E),
-  "sectionDivider": Color(0xffCDCDCD),
-};
+
+class BoxColors {
+  BoxColors._();
+  static const completed = Color(0xff009A19);
+  static const incompleted = Color(0xffE11212);
+  static const pending = Color(0xffD9C749);
+  static const approved = Color(0xff009A19);
+  static const shippingInProcess = Color(0xff53BAF7);
+  static const grayText = Color(0xFF7E7E7E);
+  static const border = Color(0xffCDCDCD);
+}
+
+class StatusContent {
+  final Text textWidget;
+  final Color color;
+  StatusContent({required this.textWidget, required this.color});
+}
+
+class OrderStatus {
+  final BuildContext context;
+  late StatusContent completed,
+      incompleted,
+      pending,
+      approved,
+      shippingInProcess,
+      declined;
+  OrderStatus.of(this.context) {
+    completed = StatusContent(
+      textWidget:
+          _text(transText(context).completed, _style(BoxColors.completed)),
+      color: BoxColors.completed,
+    );
+    incompleted = StatusContent(
+      textWidget:
+          _text(transText(context).incompleted, _style(BoxColors.incompleted)),
+      color: BoxColors.incompleted,
+    );
+    pending = StatusContent(
+      textWidget: _text(
+        transText(context).pending,
+        _style(BoxColors.pending),
+      ),
+      color: BoxColors.pending,
+    );
+    approved = StatusContent(
+      textWidget: _text(
+        transText(context).approved,
+        _style(BoxColors.approved),
+      ),
+      color: BoxColors.approved,
+    );
+    shippingInProcess = StatusContent(
+      textWidget: _text(
+        transText(context).shippingInProcess,
+        _style(BoxColors.shippingInProcess),
+      ),
+      color: BoxColors.shippingInProcess,
+    );
+    declined = StatusContent(
+      textWidget: _text(
+        transText(context).declined,
+        _style(BoxColors.incompleted),
+      ),
+      color: BoxColors.incompleted,
+    );
+  }
+  TextStyle _style(Color color) => TextStyle(
+        fontWeight: FontWeight.bold,
+        fontSize: 12,
+        color: color,
+      );
+  Text _text(String text, TextStyle style) {
+    return Text(
+      text,
+      style: style,
+      textAlign: TextAlign.right,
+    );
+  }
+}
+
+var s = Colors;
 const themeColors = <Color>[
   Color(0xff76C0B6),
   Color(0xff34A2B4),
@@ -271,4 +343,28 @@ Future<XFile?> pickImage(ImageSource source) async {
     print("image pick exception: $e");
     return null;
   }
+}
+
+//divider heading
+Row dividerHeading(String text) {
+  return Row(
+    crossAxisAlignment: CrossAxisAlignment.end,
+    children: [
+      Padding(
+        padding: const EdgeInsets.only(right: 9),
+        child: Text(
+          text,
+          style: const TextStyle(
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+      ),
+      const Expanded(
+        child: Divider(
+          thickness: 1,
+          height: 0,
+        ),
+      )
+    ],
+  );
 }
