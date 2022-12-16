@@ -13,9 +13,9 @@ class ForgotPasswordScreen extends StatefulWidget {
 
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   String? _phoneNumber;
-  var _phoneController = TextEditingController();
+  final _phoneController = TextEditingController();
   bool _valid = false;
-  String? _error = null;
+  String? _error;
   void _validate() {
     var value = _phoneController.text;
     if (value.isEmpty) {
@@ -39,6 +39,8 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
+    bool fromForgotPassword =
+        (ModalRoute.of(context)?.settings.arguments ?? false) as bool;
     return GradientBgContainer(
       child: SafeArea(
         child: Scaffold(
@@ -52,23 +54,27 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.only(
+                  Padding(
+                    padding: const EdgeInsets.only(
                       top: 42,
                       bottom: 12,
                     ),
                     child: Text(
-                      "Phone Number Verification",
-                      style: TextStyle(
+                      (fromForgotPassword)
+                          ? "Forgot Password"
+                          : "Phone Number Verification",
+                      style: const TextStyle(
                         fontSize: 29,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),
                     ),
                   ),
-                  const Text(
-                    "Enter your Phone Number to receive an OTP to Sign into your Account.",
-                    style: TextStyle(
+                  Text(
+                    (fromForgotPassword)
+                        ? "Enter your mobile number to reset your password."
+                        : "Enter your Phone Number to receive an OTP to Sign into your Account.",
+                    style: const TextStyle(
                       fontSize: 16,
                       color: Colors.white,
                       fontWeight: FontWeight.w500,
@@ -147,7 +153,8 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                       if (_valid) {
                         //send OtP
                         Navigator.pushNamed(
-                            context, OtpVerificationScreen.routeName);
+                            context, OtpVerificationScreen.routeName,
+                            arguments: (fromForgotPassword) ? 1234 : null);
                       }
                     },
                     style: ButtonStyle(
@@ -165,7 +172,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                         const TextStyle(fontSize: 14),
                       ),
                     ),
-                    child: const Text("Verify"),
+                    child: const Text("Get OTP"),
                   )
                 ],
               ),

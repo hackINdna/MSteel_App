@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:m_steel/forgot_password.dart';
+import 'package:m_steel/home.dart';
 import 'package:m_steel/signup.dart';
 import 'package:m_steel/util/general.dart';
 import 'package:m_steel/widgets/gradient_container.dart';
@@ -24,6 +25,8 @@ class _LoginScreenState extends State<LoginScreen> {
     if (isValid != true) return;
     _formKey.currentState?.save();
     print("phone = $_phoneNumber\npass = $_password");
+    Navigator.pushNamedAndRemoveUntil(
+        context, HomeScreen.routeName, (route) => false);
   }
 
   @override
@@ -131,7 +134,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: TextButton(
                           onPressed: () {
                             Navigator.pushNamed(
-                                context, ForgotPasswordScreen.routeName);
+                                context, ForgotPasswordScreen.routeName,
+                                arguments: true);
                           },
                           child: const Text(
                             "Forgot Password?",

@@ -158,7 +158,7 @@ class _EnquireScreenState extends State<EnquireScreen> {
                   ),
                 ),
               ),
-              const SizedBox(height: 26),
+              const SizedBox(height: 56),
               ElevatedButton(
                 onPressed: () => _onSubmit(),
                 style: fullBlueButtonStyle(),

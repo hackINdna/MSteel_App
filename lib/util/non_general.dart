@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:m_steel/login.dart';
+import 'package:m_steel/my_balance.dart';
+import 'package:m_steel/my_bills.dart';
 import 'package:m_steel/my_orders.dart';
+import 'package:m_steel/my_receipts.dart';
+import 'package:m_steel/my_tranactions.dart';
+import 'package:m_steel/stock_statements.dart';
+import 'package:m_steel/subscription_plans.dart';
 import 'package:m_steel/util/general.dart';
 import 'package:m_steel/util/language_constants.dart';
+import 'package:m_steel/widgets/contact_admin_dialog.dart';
 import 'package:m_steel/widgets/drawer_list_tile.dart';
 import 'package:m_steel/widgets/language_changer_container.dart';
 
@@ -45,15 +52,18 @@ Drawer homeDrawer(MediaQueryData mediaQuery, BuildContext context) {
                         ),
                       ),
                       //phone number
-                      const Text("4545 45 4545"),
+                      const Text(
+                        "932-383-3053",
+                        style: TextStyle(fontWeight: FontWeight.w400),
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           const Text(
-                            "₹ 0",
+                            "0 INR",
                             style: TextStyle(
                               fontSize: 14.3,
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.w400,
                             ),
                           ),
                           SizedBox(
@@ -72,7 +82,7 @@ Drawer homeDrawer(MediaQueryData mediaQuery, BuildContext context) {
                                 )),
                           )
                         ],
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -94,19 +104,22 @@ Drawer homeDrawer(MediaQueryData mediaQuery, BuildContext context) {
         DrawerListTile(
           title: transText(context).myBills,
           onTap: () {
-            print("My bills");
+            Navigator.pop(context);
+            Navigator.pushNamed(context, MyBillsScreen.routeName);
           },
         ),
         DrawerListTile(
           title: transText(context).myTransactions,
           onTap: () {
-            print("My Transactions");
+            Navigator.pop(context);
+            Navigator.pushNamed(context, MyTransactionsScreen.routeName);
           },
         ),
         DrawerListTile(
           title: transText(context).myReceipts,
           onTap: () {
-            print("My Receipt");
+            Navigator.pop(context);
+            Navigator.pushNamed(context, MyReceiptsScreen.routeName);
           },
         ),
         DrawerListTile(
@@ -116,10 +129,11 @@ Drawer homeDrawer(MediaQueryData mediaQuery, BuildContext context) {
             showDialog(
               context: context,
               builder: (context) {
-                return Dialog(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12)),
-                  child: const LanguageChangeDialogContainer(),
+                return const Center(
+                  child: Material(
+                    color: Colors.transparent,
+                    child: LanguageChangeDialogContainer(),
+                  ),
                 );
               },
             );
@@ -128,14 +142,29 @@ Drawer homeDrawer(MediaQueryData mediaQuery, BuildContext context) {
         DrawerListTile(
           title: transText(context).stockStatements,
           onTap: () {
-            print("Stock statements");
+            Navigator.pop(context);
+            Navigator.pushNamed(context, StockStatementScreen.routeName);
+          },
+        ),
+        DrawerListTile(
+          title: transText(context).myBalance,
+          onTap: () {
+            Navigator.pop(context);
+            Navigator.pushNamed(context, MyBalanceScreen.routeName);
+          },
+        ),
+        DrawerListTile(
+          title: transText(context).subscriptionPlans,
+          onTap: () {
+            Navigator.pop(context);
+            Navigator.pushNamed(context, SubscriptionScreen.routeName);
           },
         ),
         DrawerListTile(
           title: transText(context).contactAdmin,
-          onTap: () {
-            print("Contact admin");
-          },
+          onTap: () => showDialog(
+              context: context,
+              builder: (context) => const ContactAdminDialog()),
         ),
         const Expanded(
           child: SizedBox(),
@@ -154,11 +183,22 @@ Drawer homeDrawer(MediaQueryData mediaQuery, BuildContext context) {
                 shape: alertBoxShape(),
                 title: Text(
                   transText(context).logout,
-                  style: const TextStyle(fontWeight: FontWeight.bold),
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 22.2),
                 ),
-                content: Text(transText(context).logoutMessage),
+                content: Text(
+                  transText(context).logoutMessage,
+                  style: const TextStyle(
+                      fontWeight: FontWeight.w400, fontSize: 17),
+                ),
                 actions: [
-                  alertOkTextButton(context, text: transText(context).cancel),
+                  alertOkTextButton(
+                    context,
+                    text: transText(context).cancel,
+                    foregroundColor: const Color(0xffBABCBC),
+                    textStyle: const TextStyle(
+                        fontSize: 17, fontWeight: FontWeight.w500),
+                  ),
                   TextButton(
                       onPressed: () {
                         Navigator.pop(context);
@@ -166,7 +206,12 @@ Drawer homeDrawer(MediaQueryData mediaQuery, BuildContext context) {
                         Navigator.pushNamedAndRemoveUntil(
                             context, LoginScreen.routeName, (route) => false);
                       },
-                      child: Text(transText(context).ok)),
+                      style: TextButton.styleFrom(
+                          textStyle: const TextStyle(
+                              fontSize: 17, fontWeight: FontWeight.w500)),
+                      child: Text(
+                        transText(context).ok,
+                      )),
                 ],
               ),
             );

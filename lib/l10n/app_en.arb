@@ -2,15 +2,19 @@
   "send": "Send",
   "ok":"OK",
   "cancel": "CANCEL",
+  "contnue": "Continue",
   "uploadPhoto": "Upload Photo",
-  "myOrders": "My Orders",
-  "myBills": "My Bills",
-  "myTransactions": "My Transactions",
-  "myReceipts": "My Receipts",
+  "myOrders": "My orders",
+  "myBills": "My bills",
+  "myTransactions": "My transactions",
+  "myReceipts": "My receipts",
   "changeLanguage": "Change language",
-  "stockStatements": "Stock Statements",
-  "contactAdmin": "Contact Admin",
+  "stockStatements": "Stock statements",
+  "myBalance":"My balance",
+  "subscriptionPlans":"Subscription plans",
+  "contactAdmin": "Contact admin",
   "logout": "Logout",
+
 
   "logoutMessage": "Are you sure want to logout from application?",
 
@@ -29,6 +33,8 @@
       "error":{}
     }
   },
+  "sendMessage":"Send Message",
+  "sendEmail":"Send Email",
 
   "pending": "Pending",
   "completed": "Completed",
@@ -42,6 +48,43 @@
 
   "orderStatements": "Order Statements",
   "newOrders": "New Orders",
-  "previousOrders": "Previous Orders"
+  "previousOrders": "Previous Orders",
+  "noOrdersToShow":"No Orders to show",
+  "noTransactionsToShow":"No Transactions to show",
+  "noReceiptsToShow":"No Receipts to show",
+
+  "bill":"Bill",
+  "balance":"Balance",
+  "noBillsToShow": "No Bills to show",
+  "factoryRate":"Factory Rate",
+  "orderNow":"Order Now",
+  "placeOrder": "Place Order",
+
+  "netPrice": "Net Price",
+  "orderQuantity":"Order Quantity",
+  "orderAmount": "Order Amount",
+  "enterQuantityinMT": "Enter quantity in MT",
+  "congratulations": "Congratulations",
+  "congratulationsSuccessfullMessage":"Your order has been placed successfully please wait until approval or contact us.",
   
+  "subscriptions": "Subscriptions",
+  "platinum":"PLATINUM",
+  "getPlatinum":"Get Platinum",
+  "gold":"GOLD",
+  "getGold": "Get Gold",
+  "days": "days",
+  "months": "months",
+  "years": "years",
+
+  "checkBalance":"Check Balance",
+
+  "date":"Date",
+  "sectionPipe":"Section Pipe",
+  "roundPipe":"Round Pipe",
+  "squarePipe":"Square Pipe",
+  "swipeLeft":"Swipe left",
+  "thickness":"Thickness",
+  "weightPerPes":"Weight Per Pes.",
+  "total":"Total",
+  "searchHere":"Search here"
 }

@@ -1,18 +1,28 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:m_steel/my_orders.dart';
+import 'package:intl/intl.dart';
 import 'package:m_steel/util/language_constants.dart';
 import 'package:m_steel/widgets/bottom_sheet_icon_button.dart';
-import 'package:m_steel/widgets/drawer_list_tile.dart';
-import 'package:m_steel/widgets/language_changer_container.dart';
 
 //colors
 const headingColor = Color(0xff005C77);
 const offWhiteBG = Color(0xffEFEFEF);
 const appBlueBg = Color(0xff0F9EE8);
+const appBlueBg2 = Color(0xff1894B8);
 const boxBorderColor = Color(0xffCDCDCD);
+const subscriptionGray = Color(0xff767676);
+DateFormat dateDisplayFormat = DateFormat("dd MMM yyyy");
+String dateToFormattedString(DateTime dt) {
+  return dateDisplayFormat.format(dt);
+}
+
+String stringDateToFormattedString(String date) {
+  DateTime dt = DateTime.parse(date);
+  return dateToFormattedString(dt);
+}
+
+DateTime stringToDate(String date) => DateTime.parse(date);
 
 class BoxColors {
   BoxColors._();
@@ -26,9 +36,11 @@ class BoxColors {
 }
 
 class StatusContent {
+  final String text;
   final Text textWidget;
   final Color color;
-  StatusContent({required this.textWidget, required this.color});
+  StatusContent(
+      {required this.textWidget, required this.color, required this.text});
 }
 
 class OrderStatus {
@@ -41,16 +53,19 @@ class OrderStatus {
       declined;
   OrderStatus.of(this.context) {
     completed = StatusContent(
+      text: "completed",
       textWidget:
           _text(transText(context).completed, _style(BoxColors.completed)),
       color: BoxColors.completed,
     );
     incompleted = StatusContent(
+      text: "incompleted",
       textWidget:
           _text(transText(context).incompleted, _style(BoxColors.incompleted)),
       color: BoxColors.incompleted,
     );
     pending = StatusContent(
+      text: "pending",
       textWidget: _text(
         transText(context).pending,
         _style(BoxColors.pending),
@@ -58,6 +73,7 @@ class OrderStatus {
       color: BoxColors.pending,
     );
     approved = StatusContent(
+      text: "approved",
       textWidget: _text(
         transText(context).approved,
         _style(BoxColors.approved),
@@ -65,6 +81,7 @@ class OrderStatus {
       color: BoxColors.approved,
     );
     shippingInProcess = StatusContent(
+      text: "shippingInProcess",
       textWidget: _text(
         transText(context).shippingInProcess,
         _style(BoxColors.shippingInProcess),
@@ -72,6 +89,7 @@ class OrderStatus {
       color: BoxColors.shippingInProcess,
     );
     declined = StatusContent(
+      text: "declined",
       textWidget: _text(
         transText(context).declined,
         _style(BoxColors.incompleted),
@@ -93,6 +111,24 @@ class OrderStatus {
   }
 }
 
+StatusContent getStatusFromString(String str, BuildContext context) {
+  switch (str) {
+    case "completed":
+      return OrderStatus.of(context).completed;
+    case "pending":
+      return OrderStatus.of(context).pending;
+    case "approved":
+      return OrderStatus.of(context).approved;
+    case "shippingInProcess":
+      return OrderStatus.of(context).shippingInProcess;
+    case "declined":
+      return OrderStatus.of(context).declined;
+    case "incompleted":
+    default:
+      return OrderStatus.of(context).incompleted;
+  }
+}
+
 var s = Colors;
 const themeColors = <Color>[
   Color(0xff76C0B6),
@@ -102,33 +138,7 @@ const themeColors = <Color>[
 
 //info
 const contactNumber = "+91 0000 00 0000";
-const List<String> languageList = [
-  "English",
-  "Hindi",
-  "Tamil",
-  "Telugu",
-  "Kannada",
-  "Malayalam",
-  "Marathi",
-  "Gujarati",
-  // "Odiya",
-  "Bengali",
-  "Punjabi",
-  "Assamese"
-];
-const List<Locale> languageLocales = [
-  Locale(ENGLISH, INDIA),
-  Locale(HINDI, INDIA),
-  Locale(TAMIL, INDIA),
-  Locale(TELUGU, INDIA),
-  Locale(KANNADA, INDIA),
-  Locale(MALAYALAM, INDIA),
-  Locale(MARATHI, INDIA),
-  Locale(GUJRATI, INDIA),
-  Locale(BENGALI, INDIA),
-  Locale(PUNJABI, INDIA),
-  Locale(ASSAMESE, INDIA),
-];
+
 const List<String> businessTypeList = ["Retail / Factory", "B2B / B2C"];
 //form field heading TextStyle
 TextStyle formFieldHeadingTextStyle() {
@@ -243,10 +253,15 @@ Text headingText(String heading) {
 }
 
 //alert ok button
-TextButton alertOkTextButton(BuildContext context, {String? text}) {
+TextButton alertOkTextButton(BuildContext context,
+    {String? text, Color? foregroundColor, TextStyle? textStyle}) {
   text ??= transText(context).ok;
   return TextButton(
     onPressed: () => Navigator.pop(context),
+    style: TextButton.styleFrom(
+      foregroundColor: foregroundColor,
+      textStyle: textStyle,
+    ),
     child: Text(text),
   );
 }
@@ -367,4 +382,19 @@ Row dividerHeading(String text) {
       )
     ],
   );
+}
+
+void showSnackBar(BuildContext context, String text) {
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: Text(text),
+    ),
+  );
+}
+
+//capitalize first letter function
+extension StringExtension on String {
+  String capitalize() {
+    return "${this[0].toUpperCase()}${substring(1).toLowerCase()}";
+  }
 }

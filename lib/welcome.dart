@@ -56,7 +56,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               child: Padding(
                 padding: EdgeInsets.symmetric(
                   vertical: 44,
-                  horizontal: screenSize.width * 0.15,
+                  horizontal: screenSize.width * 0.17,
                 ),
                 child: Image.asset(
                   "assets/images/welcome_img.png",
@@ -71,7 +71,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
-                    width: screenSize.width * 0.4,
+                    width: screenSize.width * 0.51,
                     child: Image.asset("assets/images/hi_img.png"),
                   ),
                   const Padding(
@@ -85,7 +85,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               ),
             ),
           ),
-          const Divider(),
+          //const Divider(),
           Padding(
             padding:
                 const EdgeInsets.only(left: 8, right: 15, top: 11, bottom: 11),
@@ -110,27 +110,39 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   child: RichText(
                     text: TextSpan(
                         style: const TextStyle(
-                            fontSize: 12.3, color: Colors.black),
+                          fontSize: 12.3,
+                          color: Color(0xff5B5B5B),
+                          fontWeight: FontWeight.w400,
+                        ),
                         children: [
                           const TextSpan(
                               text:
                                   "By proceeding to pay, I understand and agree with the "),
                           TextSpan(
                             text: "User Agreement, ",
-                            style: const TextStyle(color: Colors.blue),
+                            style: const TextStyle(
+                              color: Colors.blue,
+                              fontWeight: FontWeight.w400,
+                            ),
                             //TODO: what is .. below
                             recognizer: TapGestureRecognizer()
                               ..onTap = () => _userAgreementClicked(),
                           ),
                           TextSpan(
                               text: "Terms of Services ",
-                              style: const TextStyle(color: Colors.blue),
+                              style: const TextStyle(
+                                color: Colors.blue,
+                                fontWeight: FontWeight.w400,
+                              ),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () => _termsofServiceClicked()),
                           const TextSpan(text: "and "),
                           TextSpan(
                               text: "Privacy Policy ",
-                              style: const TextStyle(color: Colors.blue),
+                              style: const TextStyle(
+                                color: Colors.blue,
+                                fontWeight: FontWeight.w400,
+                              ),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () => _privacyPolicyClicked()),
                           const TextSpan(text: "of MSteel.")

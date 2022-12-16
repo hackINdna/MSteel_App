@@ -20,6 +20,35 @@ const String BENGALI = 'bn';
 const String PUNJABI = 'pa';
 const String ASSAMESE = 'as';
 
+//list of languages
+const List<String> languageList = [
+  "English",
+  "Hindi",
+  "Tamil",
+  "Telugu",
+  "Kannada",
+  "Malayalam",
+  "Marathi",
+  "Gujarati",
+  // "Odiya",
+  "Bengali",
+  "Punjabi",
+  "Assamese"
+];
+//list of locales in same order as languageList
+const List<Locale> languageLocales = [
+  Locale(ENGLISH, INDIA),
+  Locale(HINDI, INDIA),
+  Locale(TAMIL, INDIA),
+  Locale(TELUGU, INDIA),
+  Locale(KANNADA, INDIA),
+  Locale(MALAYALAM, INDIA),
+  Locale(MARATHI, INDIA),
+  Locale(GUJRATI, INDIA),
+  Locale(BENGALI, INDIA),
+  Locale(PUNJABI, INDIA),
+  Locale(ASSAMESE, INDIA),
+];
 //country code
 const String INDIA = 'IN';
 

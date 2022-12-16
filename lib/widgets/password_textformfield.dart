@@ -9,6 +9,8 @@ class PasswordTextFormField extends StatefulWidget {
   final OnSavedCallback onSaved;
   final OnSavedCallback onChanged;
   final ValidatorCallback validator;
+  final TextEditingController? controller;
+  final bool darkBg;
 
   const PasswordTextFormField({
     super.key,
@@ -16,6 +18,8 @@ class PasswordTextFormField extends StatefulWidget {
     this.onSaved,
     this.onChanged,
     this.validator,
+    this.controller,
+    this.darkBg = false,
   });
 
   @override
@@ -37,6 +41,7 @@ class _PasswordTextFormFieldState extends State<PasswordTextFormField> {
       obscureText: _passwordVisible,
       enableSuggestions: false,
       autocorrect: false,
+      controller: widget.controller,
       decoration: InputDecoration(
         filled: true,
         enabledBorder: const OutlineInputBorder(
@@ -54,6 +59,11 @@ class _PasswordTextFormFieldState extends State<PasswordTextFormField> {
             color: Color(0xff34A2B4),
           ),
         ),
+        errorStyle: (widget.darkBg)
+            ? const TextStyle(
+                color: Colors.white60,
+              )
+            : null,
         errorBorder: const OutlineInputBorder(
           borderRadius: BorderRadius.all(
             Radius.circular(5),

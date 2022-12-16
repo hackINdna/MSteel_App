@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:m_steel/forgot_password.dart';
 import 'package:m_steel/otp_verification.dart';
 import 'package:m_steel/util/general.dart';
+import 'package:m_steel/util/language_constants.dart';
 import 'package:m_steel/widgets/gradient_container.dart';
 import 'package:m_steel/widgets/password_textformfield.dart';
 
@@ -17,21 +17,31 @@ class _SignupScreenState extends State<SignupScreen> {
   final _formKey = GlobalKey<FormState>();
   final _cityController = TextEditingController();
   final _stateController = TextEditingController();
-  //var _isLoading = false;
+  bool _businessTypeError = false; //changes when register is pressed
+
   String? _fullName,
       _phoneNumber,
       _email,
       _password,
       _confirmPassword,
-      _language = languageList[0],
+      _language,
       _zipCode,
       _city,
       _state,
-      _businessType = businessTypeList[0];
+      _businessType;
 
   void _submit() {
     final isValid = _formKey.currentState?.validate();
-    if (isValid != true) return;
+    if (isValid != true || _businessType == null) {
+      setState(() {
+        if (_businessType == null) {
+          _businessTypeError = true;
+        } else {
+          _businessTypeError = false;
+        }
+      });
+      return;
+    }
     _formKey.currentState?.save();
     print(
         "name=$_fullName\nphone=$_phoneNumber\nemail=$_email\npass=$_password\nconf_pass=$_confirmPassword\nlang=$_language\nzip=$_zipCode\ncity=$_city\nstate=$_state\nbusiinessType=$_businessType");
@@ -46,6 +56,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
   void businessSelected(String business) {
     setState(() {
+      _businessTypeError = false;
       _businessType = business;
     });
   }
@@ -236,6 +247,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           child: DropdownButtonHideUnderline(
                             child: DropdownButton(
                               isExpanded: true,
+                              hint: const Text("Language"),
                               value: _language,
                               items: languageList
                                   .map((language) => DropdownMenuItem(
@@ -260,13 +272,15 @@ class _SignupScreenState extends State<SignupScreen> {
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(5),
+                            border: (_businessTypeError)
+                                ? Border.all(width: 2, color: Colors.red)
+                                : null,
                           ),
                           child: DropdownButtonHideUnderline(
                             child: DropdownButton(
                               isExpanded: true,
-                              value: (_businessType == null)
-                                  ? businessTypeList[0]
-                                  : _businessType,
+                              hint: const Text("Business"),
+                              value: _businessType,
                               items: businessTypeList
                                   .map((business) => DropdownMenuItem(
                                         value: business,
@@ -279,8 +293,17 @@ class _SignupScreenState extends State<SignupScreen> {
                             ),
                           ),
                         ),
+                        const SizedBox(height: 5),
+                        (_businessTypeError)
+                            ? const Text(
+                                "\t\t\t\tPlease select a Business type.",
+                                style: TextStyle(
+                                    color: Colors.red,
+                                    fontSize: 12.5,
+                                    fontWeight: FontWeight.w400))
+                            : const SizedBox(height: 0),
                         //zip
-                        const SizedBox(height: 25),
+                        const SizedBox(height: 20),
                         Text(
                           "Zip Code",
                           style: formFieldHeadingTextStyle(),

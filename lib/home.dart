@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:m_steel/enquire.dart';
+import 'package:m_steel/factory_rate.dart';
 import 'package:m_steel/util/general.dart';
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
 import 'package:m_steel/util/language_constants.dart';
@@ -33,15 +34,24 @@ class _HomeScreenState extends State<HomeScreen> {
           title: appBarTitle(),
           actionsIconTheme: IconThemeData(size: mediaQuery.size.width * 0.15),
           actions: [
-            IconButton(
+            TextButton(
               onPressed: () {
                 Navigator.pushNamed(context, EnquireScreen.routeName);
               },
-              icon: Text(
+              child: Text(
                 transText(context).enquire,
-                style: const TextStyle(fontSize: 13),
+                style: const TextStyle(fontSize: 13, color: Colors.white),
               ),
-            )
+            ),
+            // IconButton(
+            //   onPressed: () {
+            //     Navigator.pushNamed(context, EnquireScreen.routeName);
+            //   },
+            //   icon: Text(
+            //     transText(context).enquire,
+            //     style: const TextStyle(fontSize: 13),
+            //   ),
+            // )
           ],
           // flexibleSpace: Container(
           //   decoration: gradientBoxDecoration(),
@@ -58,18 +68,19 @@ class _HomeScreenState extends State<HomeScreen> {
             //marquee
             SizedBox(
               // color: Colors.amber,
-              height: mediaQuery.size.height * 0.035,
+              height: mediaQuery.size.height * 0.044,
               child: Marquee(
                 text:
                     "ure 30000 close    Mspipe 47000(close)      UK Rolling mile raipu",
                 crossAxisAlignment: CrossAxisAlignment.end,
                 style: const TextStyle(
-                    fontSize: 14.3, fontWeight: FontWeight.w500),
+                    fontSize: 13.4, fontWeight: FontWeight.bold),
               ),
             ),
             Expanded(
                 child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+              padding: const EdgeInsets.only(
+                  left: 12, right: 12, top: 12, bottom: 6),
               child: GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
@@ -81,14 +92,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   elevation: 3,
                   child: InkWell(
                     onTap: () {
-                      print("clicked index = $index");
+                      Navigator.of(context)
+                          .pushNamed(FactoryRateScreen.routeName);
                     },
                     child: Center(
                       child: Text(
-                        (index == 0) ? "Ex- Depot Rates" : "Ex- Plant Rates",
+                        (index == 0) ? "Ex- Plant Rates" : "Ex- Depot Rates",
                         style: const TextStyle(
                           fontSize: 20,
-                          fontWeight: FontWeight.w500,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),

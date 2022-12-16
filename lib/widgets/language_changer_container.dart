@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import 'package:m_steel/main.dart';
 import 'package:m_steel/util/general.dart';
 import 'package:m_steel/util/language_constants.dart';
+import 'package:m_steel/widgets/search_box.dart';
 
 class LanguageChangeDialogContainer extends StatefulWidget {
   const LanguageChangeDialogContainer({
@@ -16,6 +17,7 @@ class LanguageChangeDialogContainer extends StatefulWidget {
 class _LanguageChangeDialogContainerState
     extends State<LanguageChangeDialogContainer> {
   late int _groupValue;
+  final searchController = TextEditingController();
   _changeLanguage() {
     //pop dialog and drawer
     int count = 0;
@@ -36,6 +38,10 @@ class _LanguageChangeDialogContainerState
     }
   }
 
+  // void _valueChanged(String value) {
+  //   setState(() {});
+  // }
+
   @override
   void initState() {
     super.initState();
@@ -44,9 +50,21 @@ class _LanguageChangeDialogContainerState
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    searchController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    var screenSize = MediaQuery.of(context).size;
     return Container(
-      padding: const EdgeInsets.all(12),
+      margin: EdgeInsets.symmetric(horizontal: screenSize.width * 0.06),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+        color: Colors.white,
+      ),
+      padding: const EdgeInsets.symmetric(horizontal: 17, vertical: 21),
       child: SingleChildScrollView(
         physics: const ScrollPhysics(),
         child: Column(
@@ -54,6 +72,16 @@ class _LanguageChangeDialogContainerState
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            Container(
+              height: 44,
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: SearchTextField(
+                controller: searchController,
+                onChanged: (value) {
+                  print("chnaged to $value");
+                },
+              ),
+            ),
             ListView.builder(
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,

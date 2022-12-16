@@ -4,12 +4,12 @@ import 'package:m_steel/widgets/box_text_widgets.dart';
 
 import '../util/general.dart';
 
-class OrderStatement extends StatelessWidget {
+class OrderStatementWidget extends StatelessWidget {
   final String orderNumber, bookingRate, quantity;
   //use OrderStatus class to provide StatusContent
   final StatusContent status;
   final void Function()? onTap;
-  const OrderStatement({
+  const OrderStatementWidget({
     super.key,
     required this.orderNumber,
     required this.quantity,
@@ -47,14 +47,14 @@ class OrderStatement extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                BoxHeadingText("${transText(context).order} #$orderNumber"),
+                BoxHeadingText("${transText(context).order}: #$orderNumber"),
                 const SizedBox(height: 7),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    BoxGrayText("${transText(context).quantity} $quantity"),
+                    BoxGrayText("${transText(context).quantity}: $quantity"),
                     BoxGrayText(
-                        "${transText(context).bookingRate} $bookingRate"),
+                        "${transText(context).bookingRate}: $bookingRate"),
                   ],
                 ),
                 const SizedBox(height: 11),

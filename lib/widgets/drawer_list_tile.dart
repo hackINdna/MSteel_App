@@ -22,7 +22,7 @@ class DrawerListTile extends StatelessWidget {
       title: Text(
         title,
         style: const TextStyle(
-          fontWeight: FontWeight.w500,
+          fontWeight: FontWeight.bold,
           fontSize: 15,
         ),
       ),

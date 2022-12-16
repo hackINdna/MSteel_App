@@ -1,8 +1,8 @@
 import 'dart:async';
-import 'dart:math';
-
 import "package:flutter/material.dart";
 import 'package:flutter/services.dart';
+import 'package:m_steel/reset_password.dart';
+import 'package:m_steel/util/general.dart';
 import 'package:m_steel/welcome.dart';
 import 'package:m_steel/widgets/gradient_container.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -23,6 +23,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
   late int _remainingSeconds;
   bool _enableResend = false;
   late Timer _timer;
+  int? infoFromForgotPassword;
 
   String displayedSeconds() {
     return ((_remainingSeconds + 1).toString().length == 1)
@@ -36,8 +37,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
       //resend otp
       _timer = _getTimer();
       if (_resending) {
-        //TODO : snackbar not showing.
-        const SnackBar(content: Text("OTP sent again"));
+        showSnackBar(context, "OTP sent again.");
       }
       _resending = true;
     }
@@ -45,14 +45,17 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
 
   void _otpVerification(String otp) {
     if (otp != "0000") {
-      Navigator.pushNamed(context, WelcomeScreen.routeName);
-      print("all ok nav to welome");
+      if (infoFromForgotPassword != null) {
+        Navigator.pushNamed(context, ResetPasswordScreen.routeName);
+      } else {
+        Navigator.pushNamed(context, WelcomeScreen.routeName);
+      }
     } else {
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
           title: const Text("Invalid OTP"),
-          content: const Text("Invalid OTP Entered.\nCannot log in."),
+          content: const Text("Invalid OTP Entered.\nCannot continue."),
           actions: [
             TextButton(
               onPressed: () {
@@ -98,6 +101,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
 
   @override
   Widget build(BuildContext context) {
+    infoFromForgotPassword = ModalRoute.of(context)?.settings.arguments as int?;
     var screenWidth = MediaQuery.of(context).size.width;
     return GradientBgContainer(
       child: Scaffold(
@@ -172,7 +176,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                   ),
                 ),
                 Align(
-                  alignment: Alignment.center,
+                  alignment: Alignment.bottomCenter,
                   child: TextButton(
                     onPressed: () => _enableResend ? _resendOtp() : null,
                     style: ButtonStyle(
@@ -184,11 +188,11 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                       _enableResend
                           ? "Resend OTP"
                           : "Resend OTP in: ${displayedSeconds()}",
-                      style: TextStyle(
-                        decoration:
-                            _enableResend ? TextDecoration.underline : null,
-                        color: Colors.white70,
-                      ),
+                      style: const TextStyle(
+                          // decoration:
+                          //     _enableResend ? TextDecoration.underline : null,
+                          color: Colors.white70,
+                          fontWeight: FontWeight.w500),
                     ),
                   ),
                 ),

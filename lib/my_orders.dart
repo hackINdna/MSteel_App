@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:m_steel/data_models/models.dart';
 import 'package:m_steel/data_models/sample_data.dart';
+import 'package:m_steel/order_details.dart';
 import 'package:m_steel/util/general.dart';
 import 'package:m_steel/util/language_constants.dart';
-import 'package:m_steel/widgets/box_text_widgets.dart';
 import 'package:m_steel/widgets/order_statement_box.dart';
 
 class MyOrdersScreen extends StatefulWidget {
@@ -16,11 +16,11 @@ class MyOrdersScreen extends StatefulWidget {
 }
 
 class _MyOrdersScreenState extends State<MyOrdersScreen> {
-  late final List<OrderStatementData> sampleNewStatements, sampleOldStatements;
+  final List<OrderDetailsData> sampleNewStatements =
+          getSampleOrderStatementsNEW(),
+      sampleOldStatements = getSampleOrderStatementsOLD();
   @override
   Widget build(BuildContext context) {
-    sampleNewStatements = getSampleOrderStatementsNEW(context);
-    sampleOldStatements = getSampleOrderStatementsOLD(context);
     return Scaffold(
       appBar: generalAppbar(),
       body: SingleChildScrollView(
@@ -30,9 +30,12 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              const SizedBox(height: 3),
               headingText(transText(context).orderStatements),
-              const SizedBox(height: 26),
-              dividerHeading(transText(context).newOrders),
+              const SizedBox(height: 24),
+              dividerHeading((sampleNewStatements.isNotEmpty
+                  ? transText(context).newOrders
+                  : "No New Orders")),
               const SizedBox(height: 20),
               ListView.separated(
                 physics: const NeverScrollableScrollPhysics(),
@@ -44,7 +47,9 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
                 itemCount: sampleNewStatements.length,
               ),
               const SizedBox(height: 26),
-              dividerHeading(transText(context).previousOrders),
+              dividerHeading((sampleOldStatements.isNotEmpty)
+                  ? transText(context).previousOrders
+                  : "No Previous Orders"),
               const SizedBox(height: 20),
               ListView.separated(
                 physics: const NeverScrollableScrollPhysics(),
@@ -62,15 +67,16 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
     );
   }
 
-  OrderStatement statementBoxMaker(
-      List<OrderStatementData> statementList, int index) {
-    return OrderStatement(
+  OrderStatementWidget statementBoxMaker(
+      List<OrderDetailsData> statementList, int index) {
+    return OrderStatementWidget(
       orderNumber: statementList[index].orderNumber,
       quantity: statementList[index].quantity,
       bookingRate: statementList[index].bookingRate,
-      status: statementList[index].status,
+      status: getStatusFromString(statementList[index].status, context),
       onTap: () {
-        print("tapped");
+        Navigator.pushNamed(context, OrderDetailsScreen.routeName,
+            arguments: statementList[index]);
       },
     );
   }

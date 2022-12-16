@@ -1,12 +1,23 @@
 import "package:flutter/material.dart";
 import 'package:m_steel/enquire.dart';
+import 'package:m_steel/factory_rate.dart';
 import 'package:m_steel/forgot_password.dart';
 import 'package:m_steel/home.dart';
 import 'package:m_steel/login.dart';
+import 'package:m_steel/my_balance.dart';
+import 'package:m_steel/my_bills.dart';
 import 'package:m_steel/my_orders.dart';
+import 'package:m_steel/my_receipts.dart';
+import 'package:m_steel/my_tranactions.dart';
+import 'package:m_steel/order_details.dart';
 import 'package:m_steel/otp_verification.dart';
+import 'package:m_steel/place_order.dart';
+import 'package:m_steel/reset_password.dart';
 import 'package:m_steel/signup.dart';
 import 'package:m_steel/splash_screen.dart';
+import 'package:m_steel/state_rates.dart';
+import 'package:m_steel/stock_statements.dart';
+import 'package:m_steel/subscription_plans.dart';
 import 'package:m_steel/util/general.dart';
 import 'package:m_steel/util/language_constants.dart';
 import 'package:m_steel/welcome.dart';
@@ -64,18 +75,31 @@ class _TheApplicationState extends State<TheApplication> {
         fontFamily: "DMSans",
       ),
       routes: {
-        "/": (context) => const MyOrdersScreen(), //const SplashScreen()
+        "/": (context) => const HomeScreen(),
         SplashScreen.routeName: (context) => const SplashScreen(),
         LoginScreen.routeName: (context) => const LoginScreen(),
         SignupScreen.routeName: (context) => const SignupScreen(),
         ForgotPasswordScreen.routeName: (context) =>
             const ForgotPasswordScreen(),
+        ResetPasswordScreen.routeName: (context) => const ResetPasswordScreen(),
         OtpVerificationScreen.routeName: (context) =>
             const OtpVerificationScreen(),
         WelcomeScreen.routeName: (context) => const WelcomeScreen(),
         HomeScreen.routeName: (context) => const HomeScreen(),
         MyOrdersScreen.routeName: (context) => const MyOrdersScreen(),
         EnquireScreen.routeName: (context) => const EnquireScreen(),
+        MyBillsScreen.routeName: (context) => const MyBillsScreen(),
+        OrderDetailsScreen.routeName: (context) => const OrderDetailsScreen(),
+        MyTransactionsScreen.routeName: (context) =>
+            const MyTransactionsScreen(),
+        MyReceiptsScreen.routeName: (context) => const MyReceiptsScreen(),
+        FactoryRateScreen.routeName: (context) => const FactoryRateScreen(),
+        StateRatesScreen.routeName: (context) => const StateRatesScreen(),
+        //PlaceOrderScreen.routeName: (context) => const PlaceOrderScreen(),
+        MyBalanceScreen.routeName: (context) => const MyBalanceScreen(),
+        SubscriptionScreen.routeName: (context) => const SubscriptionScreen(),
+        StockStatementScreen.routeName: (context) =>
+            const StockStatementScreen(),
       },
     );
   }
