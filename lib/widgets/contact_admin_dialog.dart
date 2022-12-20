@@ -24,8 +24,9 @@ class ContactAdminDialog extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisSize: MainAxisSize.min,
               children: [
+                const SizedBox(height: 8),
                 ListTile(
-                  visualDensity: VisualDensity.compact,
+                  visualDensity: const VisualDensity(vertical: -4),
                   iconColor: appBlueBg2,
                   textColor: appBlueBg2,
                   onTap: () {},
@@ -42,9 +43,9 @@ class ContactAdminDialog extends StatelessWidget {
                   height: 0,
                   color: BoxColors.grayText,
                 ),
-                const SizedBox(height: 6),
+                const SizedBox(height: 12),
                 ListTile(
-                  visualDensity: VisualDensity.compact,
+                  visualDensity: const VisualDensity(vertical: -4),
                   iconColor: appBlueBg2,
                   textColor: appBlueBg2,
                   onTap: () {},

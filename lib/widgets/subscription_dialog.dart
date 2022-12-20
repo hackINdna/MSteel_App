@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-
 import 'package:m_steel/data_models/models.dart';
+import 'package:m_steel/make_payment.dart';
 import 'package:m_steel/util/general.dart';
 import 'package:m_steel/util/language_constants.dart';
 import 'package:m_steel/widgets/subscription_plan_container.dart';
@@ -123,9 +123,15 @@ class _SubscriptionDialogState extends State<SubscriptionDialog> {
                 alignment: Alignment.center,
                 child: ElevatedButton(
                   onPressed: () {
+                    if (selectedPlan == null) {
+                      return;
+                    }
                     print(
                         "months = ${selectedPlan!.months}, price=${selectedPlan!.price}, title=${widget.subscriptionData.title}");
-                    Navigator.pop(context);
+                    var nav = Navigator.of(context);
+                    nav.pop();
+                    nav.pushNamed(MakePaymentScreen.routeName,
+                        arguments: selectedPlan?.price);
                   },
                   style: ElevatedButton.styleFrom(
                     foregroundColor:

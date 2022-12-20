@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:m_steel/biometric_auth.dart';
 import 'package:m_steel/enquire.dart';
 import 'package:m_steel/factory_rate.dart';
 import 'package:m_steel/util/general.dart';
@@ -108,6 +109,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             )),
+            // TextButton(
+            //     onPressed: () =>
+            //         Navigator.pushNamed(context, BiometricAuthScreen.routeName),
+            //     child: const Text("Biometric screen")),
             Container(
               color: Colors.black26,
               height: 102,

@@ -5,6 +5,9 @@ import 'package:intl/intl.dart';
 import 'package:m_steel/util/language_constants.dart';
 import 'package:m_steel/widgets/bottom_sheet_icon_button.dart';
 
+//pref keys
+const BIOMETRIC_SUPPORT = "biometricSupport";
+const LOGGED_IN = "loggedIn";
 //colors
 const headingColor = Color(0xff005C77);
 const offWhiteBG = Color(0xffEFEFEF);

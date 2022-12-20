@@ -21,7 +21,10 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
       appBar: AppBar(
         backgroundColor: offWhiteBG,
         foregroundColor: appBlueBg,
-        title: Text(transText(context).subscriptions),
+        title: Text(
+          transText(context).subscriptions,
+          style: const TextStyle(fontWeight: FontWeight.w600),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 29),
@@ -85,7 +88,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                           subscriptionData[index].subtitle,
                           textAlign: TextAlign.center,
                           style: const TextStyle(
-                              fontSize: 12, fontWeight: FontWeight.w700),
+                              fontSize: 11.4, fontWeight: FontWeight.w700),
                         ),
                       ],
                     ),

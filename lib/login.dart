@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:m_steel/biometric_auth.dart';
 import 'package:m_steel/forgot_password.dart';
 import 'package:m_steel/home.dart';
 import 'package:m_steel/signup.dart';
 import 'package:m_steel/util/general.dart';
 import 'package:m_steel/widgets/gradient_container.dart';
 import 'package:m_steel/widgets/password_textformfield.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 //Login
 class LoginScreen extends StatefulWidget {
@@ -20,13 +22,35 @@ class _LoginScreenState extends State<LoginScreen> {
   var _isLoading = false;
   String? _phoneNumber;
   String? _password;
+  bool _loggedIn = false;
+  late SharedPreferences prefs;
+  @override
+  void initState() {
+    super.initState();
+    initPrefs().then((value) {
+      if (value) {
+        Navigator.pushReplacementNamed(context, BiometricAuthScreen.routeName);
+      }
+    });
+  }
+
+  Future<bool> initPrefs() async {
+    prefs = await SharedPreferences.getInstance();
+    if (prefs.getBool(LOGGED_IN) == null) {
+      await prefs.setBool(LOGGED_IN, false);
+    }
+    _loggedIn = prefs.getBool(LOGGED_IN) ?? false;
+    return _loggedIn;
+  }
+
   void _submit() {
     final isValid = _formKey.currentState?.validate();
     if (isValid != true) return;
     _formKey.currentState?.save();
     print("phone = $_phoneNumber\npass = $_password");
-    Navigator.pushNamedAndRemoveUntil(
-        context, HomeScreen.routeName, (route) => false);
+    prefs.setBool(LOGGED_IN, true).then((value) =>
+        Navigator.pushNamedAndRemoveUntil(
+            context, HomeScreen.routeName, (route) => false));
   }
 
   @override

@@ -51,6 +51,8 @@
 	<string>To take user picture</string>
 	<key>NSCameraUsageDescription</key>
 	<string>To take images for profile picture</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Authentication for MSteel application using face ID</string>
 	<!-- <key>NSMicrophoneUsageDescription</key>
 	<string>To get audio access for recording videos</string> -->
 </dict>

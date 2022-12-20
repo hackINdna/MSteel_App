@@ -44,9 +44,11 @@ class StateRateWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 BiggerBoxHeadingText(text: categoryName),
-                BiggerGrayText(
-                    text:
-                        "$categorySubtitle-${stringDateToFormattedString(date)}"),
+                // BiggerGrayText(
+                //     text:
+                //         "$categorySubtitle-${stringDateToFormattedString(date)}"),
+                BoxGrayText(
+                    "$categorySubtitle-${stringDateToFormattedString(date)}"),
               ],
             ),
           ),

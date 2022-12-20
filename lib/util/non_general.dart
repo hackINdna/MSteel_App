@@ -12,6 +12,7 @@ import 'package:m_steel/util/language_constants.dart';
 import 'package:m_steel/widgets/contact_admin_dialog.dart';
 import 'package:m_steel/widgets/drawer_list_tile.dart';
 import 'package:m_steel/widgets/language_changer_container.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 //home drawer
 Drawer homeDrawer(MediaQueryData mediaQuery, BuildContext context) {
@@ -200,11 +201,12 @@ Drawer homeDrawer(MediaQueryData mediaQuery, BuildContext context) {
                         fontSize: 17, fontWeight: FontWeight.w500),
                   ),
                   TextButton(
-                      onPressed: () {
+                      onPressed: () async {
                         Navigator.pop(context);
-                        //log user out
-                        Navigator.pushNamedAndRemoveUntil(
-                            context, LoginScreen.routeName, (route) => false);
+                        var prefs = await SharedPreferences.getInstance();
+                        prefs.setBool(LOGGED_IN, false).then((value) =>
+                            Navigator.pushNamedAndRemoveUntil(context,
+                                LoginScreen.routeName, (route) => false));
                       },
                       style: TextButton.styleFrom(
                           textStyle: const TextStyle(

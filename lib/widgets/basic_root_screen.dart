@@ -5,9 +5,11 @@ class RootColumn extends StatelessWidget {
   final List<Widget> children;
   final String? heading;
   late List<Widget> finalChildren;
+  final EdgeInsetsGeometry? screenPadding;
   RootColumn({
     super.key,
     this.heading,
+    this.screenPadding,
     required this.children,
   }) {
     finalChildren = [
@@ -26,7 +28,8 @@ class RootColumn extends StatelessWidget {
       body: SingleChildScrollView(
         physics: const ScrollPhysics(),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 17, vertical: 20),
+          padding: screenPadding ??
+              const EdgeInsets.symmetric(horizontal: 17, vertical: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: finalChildren,

@@ -1,9 +1,12 @@
 import "package:flutter/material.dart";
+import 'package:m_steel/add_card.dart';
+import 'package:m_steel/biometric_auth.dart';
 import 'package:m_steel/enquire.dart';
 import 'package:m_steel/factory_rate.dart';
 import 'package:m_steel/forgot_password.dart';
 import 'package:m_steel/home.dart';
 import 'package:m_steel/login.dart';
+import 'package:m_steel/make_payment.dart';
 import 'package:m_steel/my_balance.dart';
 import 'package:m_steel/my_bills.dart';
 import 'package:m_steel/my_orders.dart';
@@ -84,6 +87,7 @@ class _TheApplicationState extends State<TheApplication> {
         ResetPasswordScreen.routeName: (context) => const ResetPasswordScreen(),
         OtpVerificationScreen.routeName: (context) =>
             const OtpVerificationScreen(),
+        BiometricAuthScreen.routeName: (context) => const BiometricAuthScreen(),
         WelcomeScreen.routeName: (context) => const WelcomeScreen(),
         HomeScreen.routeName: (context) => const HomeScreen(),
         MyOrdersScreen.routeName: (context) => const MyOrdersScreen(),
@@ -100,6 +104,9 @@ class _TheApplicationState extends State<TheApplication> {
         SubscriptionScreen.routeName: (context) => const SubscriptionScreen(),
         StockStatementScreen.routeName: (context) =>
             const StockStatementScreen(),
+
+        AddCardScreen.routeName: (context) => const AddCardScreen(),
+        MakePaymentScreen.routeName: (context) => const MakePaymentScreen(),
       },
     );
   }

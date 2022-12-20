@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:m_steel/util/general.dart';
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -28,10 +27,10 @@ const List<String> languageList = [
   "Telugu",
   "Kannada",
   "Malayalam",
+  "Bengali",
   "Marathi",
   "Gujarati",
   // "Odiya",
-  "Bengali",
   "Punjabi",
   "Assamese"
 ];
@@ -43,9 +42,9 @@ const List<Locale> languageLocales = [
   Locale(TELUGU, INDIA),
   Locale(KANNADA, INDIA),
   Locale(MALAYALAM, INDIA),
+  Locale(BENGALI, INDIA),
   Locale(MARATHI, INDIA),
   Locale(GUJRATI, INDIA),
-  Locale(BENGALI, INDIA),
   Locale(PUNJABI, INDIA),
   Locale(ASSAMESE, INDIA),
 ];
