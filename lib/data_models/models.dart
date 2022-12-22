@@ -1,6 +1,6 @@
 import 'dart:convert';
-
 import 'package:flutter/foundation.dart';
+import 'package:flutter/painting.dart';
 
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 // class OrderStatementData {
@@ -303,4 +303,15 @@ class PipeDetails {
 
   @override
   int get hashCode => pipeSize.hashCode ^ pipeName.hashCode ^ specs.hashCode;
+}
+
+class MapModel {
+  String name;
+  String disp;
+  Color? color;
+  MapModel({
+    required this.name,
+    required this.disp,
+    this.color,
+  });
 }

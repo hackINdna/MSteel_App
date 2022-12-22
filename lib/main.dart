@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import 'package:flutter_windowmanager/flutter_windowmanager.dart';
 import 'package:m_steel/add_card.dart';
 import 'package:m_steel/biometric_auth.dart';
 import 'package:m_steel/enquire.dart';
@@ -52,6 +53,9 @@ class _TheApplicationState extends State<TheApplication> {
     });
   }
 
+  void disbaleScreenShots() =>
+      FlutterWindowManager.addFlags(FlutterWindowManager.FLAG_SECURE);
+
   @override
   void didChangeDependencies() {
     getSavedLocaleIndex().then((localeIndex) {
@@ -59,6 +63,12 @@ class _TheApplicationState extends State<TheApplication> {
       currentLocaleIndex = localeIndex;
     });
     super.didChangeDependencies();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    disbaleScreenShots();
   }
 
   @override

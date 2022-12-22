@@ -17,17 +17,19 @@ class PipeDataWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var _scrollController = ScrollController();
     var screenSize = MediaQuery.of(context).size;
     Widget _cell(
       String content, {
       bool header = false,
       bool footer = false,
+      TextAlign align = TextAlign.center,
     }) {
       return Padding(
-        padding: const EdgeInsets.all(12.0),
+        padding: const EdgeInsets.symmetric(vertical: 8),
         child: Text(
           content,
-          textAlign: TextAlign.center,
+          textAlign: align,
           style: TextStyle(
               fontWeight:
                   (header || footer) ? FontWeight.w700 : FontWeight.w500,
@@ -36,7 +38,7 @@ class PipeDataWidget extends StatelessWidget {
       );
     }
 
-    List<TableRow> _tableRows(List<PipeSpecs> pipeSpecList) {
+    List<TableRow> tableRows(List<PipeSpecs> pipeSpecList) {
       double qty1Sum = 0, qty2Sum = 0;
       //list with header row added in first place
       List<TableRow> rows = [
@@ -60,12 +62,17 @@ class PipeDataWidget extends StatelessWidget {
         qty2Sum += pipeSpecs.qty2 ?? 0;
       }
       //adding footer row
-      rows.add(TableRow(children: [
-        _cell(transText(context).total, footer: true),
-        _cell(""),
-        _cell(qty1Sum.toString(), footer: true),
-        _cell(qty2Sum.toString(), footer: true),
-      ]));
+      rows.add(TableRow(
+        children: [
+          _cell(
+            transText(context).total,
+            footer: true,
+          ),
+          _cell(""),
+          _cell(qty1Sum.toString(), footer: true),
+          _cell(qty2Sum.toString(), footer: true),
+        ],
+      ));
       return rows;
     }
 
@@ -74,7 +81,7 @@ class PipeDataWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Container(
-          padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 17),
+          padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 17),
           decoration: const BoxDecoration(
             color: appBlueBg,
             boxShadow: [
@@ -96,23 +103,34 @@ class PipeDataWidget extends StatelessWidget {
                     fontSize: 15,
                     color: Colors.white),
               ),
-              TextButton(
-                  onPressed: () {
-                    print("swipe left");
-                  },
-                  child: const Text(
-                    "swipe left",
-                    style: TextStyle(fontSize: 9.3, color: Colors.white),
-                  ))
+              //swipe left button
+              // TextButton(
+              //   onPressed: () {
+              //     _scrollController.animateTo(
+              //       _scrollController.position.maxScrollExtent,
+              //       duration: const Duration(milliseconds: 500),
+              //       curve: Curves.decelerate,
+              //     );
+              //   },
+              //   child: const Text(
+              //     "swipe left",
+              //     style: TextStyle(fontSize: 9.3, color: Colors.white),
+              //   ),
+              // )
             ],
           ),
         ),
-        const SizedBox(height: 17),
-        Table(
-          defaultColumnWidth: FixedColumnWidth(screenSize.width * 0.24),
-          children: _tableRows(pipeSpecs),
+        const SizedBox(height: 12),
+        SingleChildScrollView(
+          controller: _scrollController,
+          scrollDirection: Axis.horizontal,
+          physics: const BouncingScrollPhysics(),
+          child: Table(
+            defaultColumnWidth: FixedColumnWidth(screenSize.width * 0.25),
+            children: tableRows(pipeSpecs),
+          ),
         ),
-        const SizedBox(height: 30),
+        const SizedBox(height: 15),
       ],
     );
   }

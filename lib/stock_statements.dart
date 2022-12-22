@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:m_steel/data_models/sample_data.dart';
+import 'package:m_steel/util/general.dart';
 import 'package:m_steel/util/language_constants.dart';
 import 'package:m_steel/widgets/basic_root_screen.dart';
+import 'package:m_steel/widgets/box_text_widgets.dart';
 import 'package:m_steel/widgets/pipe_data_box.dart';
 import 'package:m_steel/widgets/search_box.dart';
 
@@ -23,8 +25,25 @@ class _StockStatementScreenState extends State<StockStatementScreen> {
       screenPadding: const EdgeInsets.symmetric(vertical: 20),
       heading: transText(context).stockStatements,
       children: [
-        SearchTextField(onChanged: (p0) {}, controller: searchController),
-        const SizedBox(height: 60),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 21),
+          child: SearchTextField(
+              onChanged: (val) {
+                print("typed: $val");
+              },
+              controller: searchController),
+        ),
+        const SizedBox(height: 26),
+        const Center(
+            child:
+                BiggerBoxHeadingText(text: "Trimurti Re-Rollers Pipe Stock")),
+        Padding(
+          padding: const EdgeInsets.only(left: 21, top: 15),
+          child: BiggerBoxHeadingText(
+              text:
+                  "Date: ${stringDateToFormattedString(DateTime.now().toString())}"),
+        ),
+        const SizedBox(height: 26),
         ListView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
