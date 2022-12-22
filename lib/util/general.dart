@@ -172,8 +172,10 @@ BoxDecoration gradientBoxDecoration() {
 }
 
 //form TextField decoration
-InputDecoration formTextFieldInputDecoration({String? hintText}) {
+InputDecoration formTextFieldInputDecoration(
+    {String? hintText, String? errorText}) {
   return InputDecoration(
+    errorText: errorText,
     filled: true,
     counterText: "",
     enabledBorder: const OutlineInputBorder(

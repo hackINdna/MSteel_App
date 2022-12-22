@@ -30,7 +30,7 @@ const List<String> languageList = [
   "Bengali",
   "Marathi",
   "Gujarati",
-  // "Odiya",
+  "Odiya", //saved as UK variant of english
   "Punjabi",
   "Assamese"
 ];
@@ -45,6 +45,7 @@ const List<Locale> languageLocales = [
   Locale(BENGALI, INDIA),
   Locale(MARATHI, INDIA),
   Locale(GUJRATI, INDIA),
+  Locale(ENGLISH, 'UK'),
   Locale(PUNJABI, INDIA),
   Locale(ASSAMESE, INDIA),
 ];

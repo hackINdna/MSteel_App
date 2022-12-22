@@ -2,8 +2,8 @@
   "send": "Send",
   "ok":"OK",
   "cancel": "CANCEL",
-  "contnue": "Continue",
   "uploadPhoto": "Upload Photo",
+  "contnue": "Continue",
   "myOrders": "My orders",
   "myBills": "My bills",
   "myTransactions": "My transactions",
@@ -22,7 +22,7 @@
   "elaborationRequiredError": "A little more elaboration required.",
 
   
-  "enquire":"Enquire",
+  "enquire":"Enquiry",
   "enquireFieldHint": "Write something here...",
   "enquireSubmittedSuccessfullyTitle": "Enquiry Submitted!",
   "enquireSubmittedSuccessfullyDescription": "You will be responded as soon as possible over registered Mobile Number.",

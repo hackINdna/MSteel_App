@@ -53,7 +53,7 @@ class _TheApplicationState extends State<TheApplication> {
     });
   }
 
-  void disbaleScreenShots() =>
+  void disableScreenShots() =>
       FlutterWindowManager.addFlags(FlutterWindowManager.FLAG_SECURE);
 
   @override
@@ -68,7 +68,7 @@ class _TheApplicationState extends State<TheApplication> {
   @override
   void initState() {
     super.initState();
-    disbaleScreenShots();
+    disableScreenShots();
   }
 
   @override
@@ -76,8 +76,8 @@ class _TheApplicationState extends State<TheApplication> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
-      //supportedLocales: AppLocalizations.supportedLocales,
-      supportedLocales: languageLocales,
+      supportedLocales: AppLocalizations.supportedLocales,
+      // supportedLocales: languageLocales,
       locale: _locale,
       theme: ThemeData(
         scaffoldBackgroundColor: offWhiteBG,
@@ -88,7 +88,7 @@ class _TheApplicationState extends State<TheApplication> {
         fontFamily: "DMSans",
       ),
       routes: {
-        "/": (context) => const HomeScreen(),
+        "/": (context) => const SplashScreen(),
         SplashScreen.routeName: (context) => const SplashScreen(),
         LoginScreen.routeName: (context) => const LoginScreen(),
         SignupScreen.routeName: (context) => const SignupScreen(),
@@ -114,7 +114,6 @@ class _TheApplicationState extends State<TheApplication> {
         SubscriptionScreen.routeName: (context) => const SubscriptionScreen(),
         StockStatementScreen.routeName: (context) =>
             const StockStatementScreen(),
-
         AddCardScreen.routeName: (context) => const AddCardScreen(),
         MakePaymentScreen.routeName: (context) => const MakePaymentScreen(),
       },

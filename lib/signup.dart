@@ -1,10 +1,13 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:m_steel/main.dart';
 import 'package:m_steel/otp_verification.dart';
 import 'package:m_steel/util/general.dart';
 import 'package:m_steel/util/language_constants.dart';
 import 'package:m_steel/widgets/gradient_container.dart';
 import 'package:m_steel/widgets/password_textformfield.dart';
+import 'package:http/http.dart' as http;
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -14,9 +17,11 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
+  // bool _loading = false;
   final _formKey = GlobalKey<FormState>();
   final _cityController = TextEditingController();
   final _stateController = TextEditingController();
+  String? _zipCodeErrorText;
   bool _businessTypeError = false; //changes when register is pressed
 
   String? _fullName,
@@ -42,7 +47,14 @@ class _SignupScreenState extends State<SignupScreen> {
       });
       return;
     }
+    if (_zipCodeErrorText != null) return;
     _formKey.currentState?.save();
+    //setting language
+    var langIndex = languageList.indexOf(_language ?? "English");
+    saveLocale(langIndex);
+    TheApplication.setLocale(context, languageLocales[langIndex]);
+    currentLocaleIndex = langIndex;
+
     print(
         "name=$_fullName\nphone=$_phoneNumber\nemail=$_email\npass=$_password\nconf_pass=$_confirmPassword\nlang=$_language\nzip=$_zipCode\ncity=$_city\nstate=$_state\nbusiinessType=$_businessType");
     Navigator.pushNamed(context, OtpVerificationScreen.routeName);
@@ -61,14 +73,35 @@ class _SignupScreenState extends State<SignupScreen> {
     });
   }
 
-  void zipEntered(String zip) {
-    var code = int.parse(zip);
-    setState(() {
-      if (code == 302015) {
-        _cityController.text = "jaipur";
-        _stateController.text = "Rajasthan";
+  Future<void> zipEntered(String zip) async {
+    try {
+      http.Response resp = await http
+          .get(Uri.parse("https://api.postalpincode.in/pincode/$zip"));
+      var postOffices = jsonDecode(resp.body)[0]["PostOffice"];
+      if (postOffices == null) {
+        setState(() {
+          _zipCodeErrorText = "No Data found for entered ZIP code.";
+          // _loading = false;
+        });
+        return;
       }
-    });
+      setState(() {
+        // _loading = false;
+        _zipCodeErrorText = null;
+        _cityController.text = postOffices.first["District"];
+        _stateController.text = postOffices.first["State"];
+      });
+    } on Exception catch (e) {
+      // _loading = false;
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text("Error loading ZIP data."),
+          content: Text("Make sure you are connected to internet.\nError: $e"),
+          actions: [alertOkTextButton(context)],
+        ),
+      );
+    }
   }
 
   @override
@@ -317,13 +350,37 @@ class _SignupScreenState extends State<SignupScreen> {
                           ],
                           decoration: formTextFieldInputDecoration(
                             hintText: "Enter Zip Code",
+                            errorText: _zipCodeErrorText,
                           ),
                           onSaved: (newValue) {
                             _zipCode = newValue;
                           },
-                          onChanged: (value) {
+                          onChanged: (value) async {
                             if (value.length == 6) {
-                              zipEntered(value);
+                              navigatePop() => Navigator.pop(context);
+                              showDialog(
+                                barrierDismissible: false,
+                                context: context,
+                                builder: (context) {
+                                  return Center(
+                                    child: Material(
+                                      borderRadius: BorderRadius.circular(5),
+                                      clipBehavior: Clip.antiAlias,
+                                      elevation: 5,
+                                      child: Container(
+                                        padding: const EdgeInsets.all(12),
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(5)),
+                                        child:
+                                            const CircularProgressIndicator(),
+                                      ),
+                                    ),
+                                  );
+                                },
+                              );
+                              await zipEntered(value);
+                              navigatePop();
                             } else {
                               setState(() {
                                 _cityController.text = "";
