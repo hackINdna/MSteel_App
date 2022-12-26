@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:m_steel/data_models/models.dart';
 import 'package:m_steel/state_rates.dart';
+import 'package:m_steel/util/general.dart';
 import 'package:m_steel/util/language_constants.dart';
 import 'package:m_steel/widgets/basic_root_screen.dart';
 import 'package:syncfusion_flutter_maps/maps.dart';
@@ -70,10 +71,53 @@ class _FactoryRateScreenState extends State<FactoryRateScreen> {
     print("sending index = $stateIndex");
   }
 
+  // var textBG = Paint()
+  //   ..color = Colors.blue
+  //   ..strokeWidth = 11
+  //   ..strokeJoin = StrokeJoin.round
+  //   ..strokeCap = StrokeCap.round
+  //   ..style = PaintingStyle.fill;
+  var markersList = [
+    const MapMarker(
+      latitude: 27.0238,
+      longitude: 74.2179,
+      child: Icon(
+        Icons.location_on,
+        color: appBlueBg,
+      ),
+    ),
+    const MapMarker(
+        latitude: 22.9734,
+        longitude: 78.6569,
+        child: Icon(
+          Icons.location_on,
+          color: appBlueBg,
+        )),
+    const MapMarker(
+        latitude: 15.3173,
+        longitude: 75.7139,
+        child: Icon(
+          Icons.location_on,
+          color: appBlueBg,
+        )),
+    const MapMarker(
+        latitude: 20.2376,
+        longitude: 84.2700,
+        child: Icon(
+          Icons.location_on,
+          color: appBlueBg,
+        )),
+  ];
+  var tooltipList = [
+    "Rajasthan\nEx-Rajasthan",
+    "Madhya Pradesh\n Ex-MP",
+    "Karnataka\n Ex-Karnataka",
+    "Odisha\nEx- Odisha"
+  ];
+  var _mapShapeLayerCont = MapShapeLayerController();
   @override
   void initState() {
     super.initState();
-
     _shapeSource = MapShapeSource.asset(
       "assets/map_data/IND_1.json",
       shapeDataField: "NAME_1",
@@ -82,11 +126,10 @@ class _FactoryRateScreenState extends State<FactoryRateScreen> {
         // print("got=${_stateData[index].name}, index = $index");
         return _stateData[index].name;
       },
-      shapeColorValueMapper: (index) => Colors.amber[300],
-      dataLabelMapper: (index) {
-        // print("setting: ${_stateData[index].disp}");
-        return _stateData[index].disp;
-      },
+      shapeColorValueMapper: (index) => Colors.yellow[100],
+      // dataLabelMapper: (index) {
+      //   return _stateData[index].disp;
+      // },
     );
   }
 
@@ -104,7 +147,7 @@ class _FactoryRateScreenState extends State<FactoryRateScreen> {
                 MapShapeLayer(
                   loadingBuilder: (context) =>
                       const CircularProgressIndicator(),
-                  showDataLabels: true,
+                  // showDataLabels: true,
                   onWillZoom: (zoomDetails) {
                     var zoom = zoomDetails.newZoomLevel ?? 0;
                     setState(() {
@@ -120,13 +163,19 @@ class _FactoryRateScreenState extends State<FactoryRateScreen> {
                     _selectState(value);
                     waitAndNavigate(context, value);
                   },
-                  initialMarkersCount: 1,
-                  markerBuilder: (context, index) =>
-                      const MapMarker(latitude: 22.9734, longitude: 78.6569),
-                  markerTooltipBuilder: (context, index) => const Text(
-                    "Some marker text",
-                    style: TextStyle(color: Colors.white),
+                  initialMarkersCount: markersList.length,
+                  controller: _mapShapeLayerCont,
+                  markerBuilder: (context, index) => markersList[index],
+                  markerTooltipBuilder: (context, index) => Padding(
+                    padding: const EdgeInsets.all(3.0),
+                    child: Text(
+                      tooltipList[index],
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(color: Colors.white, fontSize: 12),
+                    ),
                   ),
+                  tooltipSettings:
+                      MapTooltipSettings(color: Colors.blue[300], hideDelay: 5),
                   dataLabelSettings: MapDataLabelSettings(
                       textStyle: TextStyle(
                     color: Colors.black,

@@ -7,6 +7,7 @@ import 'package:m_steel/my_receipts.dart';
 import 'package:m_steel/my_tranactions.dart';
 import 'package:m_steel/stock_statements.dart';
 import 'package:m_steel/subscription_plans.dart';
+import 'package:m_steel/update_profile.dart';
 import 'package:m_steel/util/general.dart';
 import 'package:m_steel/util/language_constants.dart';
 import 'package:m_steel/widgets/contact_admin_dialog.dart';
@@ -33,9 +34,14 @@ Drawer homeDrawer(MediaQueryData mediaQuery, BuildContext context) {
           child: Row(
             children: [
               //image
-              CircleAvatar(
-                radius: mediaQuery.size.width * 0.095,
-                backgroundImage: const AssetImage("assets/images/disp_dp.jpg"),
+              InkWell(
+                onTap: () => Navigator.popAndPushNamed(
+                    context, UpdateProfileScreen.routeName),
+                child: CircleAvatar(
+                  radius: mediaQuery.size.width * 0.095,
+                  backgroundImage:
+                      const AssetImage("assets/images/disp_dp.jpg"),
+                ),
               ),
               //user details
               Expanded(

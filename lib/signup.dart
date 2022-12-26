@@ -74,10 +74,31 @@ class _SignupScreenState extends State<SignupScreen> {
   }
 
   Future<void> zipEntered(String zip) async {
+    navigatePop() => Navigator.pop(context);
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (context) {
+        return Center(
+          child: Material(
+            borderRadius: BorderRadius.circular(5),
+            clipBehavior: Clip.antiAlias,
+            elevation: 5,
+            child: Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(5)),
+              child: const CircularProgressIndicator(),
+            ),
+          ),
+        );
+      },
+    );
     try {
       http.Response resp = await http
           .get(Uri.parse("https://api.postalpincode.in/pincode/$zip"));
       var postOffices = jsonDecode(resp.body)[0]["PostOffice"];
+      navigatePop();
+
       if (postOffices == null) {
         setState(() {
           _zipCodeErrorText = "No Data found for entered ZIP code.";
@@ -93,14 +114,12 @@ class _SignupScreenState extends State<SignupScreen> {
       });
     } on Exception catch (e) {
       // _loading = false;
-      showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: const Text("Error loading ZIP data."),
-          content: Text("Make sure you are connected to internet.\nError: $e"),
-          actions: [alertOkTextButton(context)],
-        ),
-      );
+      navigatePop();
+      showSnackBar(context,
+          "Error loading ZIP data.\nMake sure you are connected to internet.");
+      setState(() {
+        _zipCodeErrorText = "Unable to verify ZIP";
+      });
     }
   }
 
@@ -357,30 +376,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           },
                           onChanged: (value) async {
                             if (value.length == 6) {
-                              navigatePop() => Navigator.pop(context);
-                              showDialog(
-                                barrierDismissible: false,
-                                context: context,
-                                builder: (context) {
-                                  return Center(
-                                    child: Material(
-                                      borderRadius: BorderRadius.circular(5),
-                                      clipBehavior: Clip.antiAlias,
-                                      elevation: 5,
-                                      child: Container(
-                                        padding: const EdgeInsets.all(12),
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(5)),
-                                        child:
-                                            const CircularProgressIndicator(),
-                                      ),
-                                    ),
-                                  );
-                                },
-                              );
-                              await zipEntered(value);
-                              navigatePop();
+                              zipEntered(value);
                             } else {
                               setState(() {
                                 _cityController.text = "";

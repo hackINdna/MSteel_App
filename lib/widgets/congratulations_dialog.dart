@@ -46,6 +46,14 @@ class CongratulationsDialog extends StatelessWidget {
                       color: BoxColors.grayText, fontSize: 12.9),
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(17, 0, 17, 12),
+                child: ElevatedButton(
+                    style:
+                        ElevatedButton.styleFrom(backgroundColor: appBlueBg2),
+                    onPressed: () => Navigator.of(context).pop(),
+                    child: Text(transText(context).ok)),
+              )
             ],
           ),
         ),

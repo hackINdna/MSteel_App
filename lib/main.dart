@@ -22,6 +22,7 @@ import 'package:m_steel/splash_screen.dart';
 import 'package:m_steel/state_rates.dart';
 import 'package:m_steel/stock_statements.dart';
 import 'package:m_steel/subscription_plans.dart';
+import 'package:m_steel/update_profile.dart';
 import 'package:m_steel/util/general.dart';
 import 'package:m_steel/util/language_constants.dart';
 import 'package:m_steel/welcome.dart';
@@ -100,6 +101,7 @@ class _TheApplicationState extends State<TheApplication> {
         BiometricAuthScreen.routeName: (context) => const BiometricAuthScreen(),
         WelcomeScreen.routeName: (context) => const WelcomeScreen(),
         HomeScreen.routeName: (context) => const HomeScreen(),
+        UpdateProfileScreen.routeName: (context) => const UpdateProfileScreen(),
         MyOrdersScreen.routeName: (context) => const MyOrdersScreen(),
         EnquireScreen.routeName: (context) => const EnquireScreen(),
         MyBillsScreen.routeName: (context) => const MyBillsScreen(),

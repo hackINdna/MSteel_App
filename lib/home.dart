@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:m_steel/biometric_auth.dart';
 import 'package:m_steel/enquire.dart';
 import 'package:m_steel/factory_rate.dart';
+import 'package:m_steel/state_rates.dart';
 import 'package:m_steel/util/general.dart';
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
 import 'package:m_steel/util/language_constants.dart';
@@ -93,8 +94,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   elevation: 3,
                   child: InkWell(
                     onTap: () {
-                      Navigator.of(context)
-                          .pushNamed(FactoryRateScreen.routeName);
+                      Navigator.of(context).pushNamed(index == 0
+                          ? FactoryRateScreen.routeName
+                          : StateRatesScreen.routeName);
                     },
                     child: Center(
                       child: Text(

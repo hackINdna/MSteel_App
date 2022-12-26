@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:m_steel/data_models/models.dart';
+import 'package:m_steel/make_payment.dart';
 import 'package:m_steel/util/general.dart';
 import 'package:m_steel/util/language_constants.dart';
 import 'package:m_steel/widgets/congratulations_dialog.dart';
@@ -37,11 +38,14 @@ class _PlaceOrderDialogState extends State<PlaceOrderDialog> {
     var quant = int.tryParse(quantityController.text);
     if (quant != null && quant > 0 && quantityError == null) {
       Navigator.of(context).pop();
-      //perform order process
+      //this will be shown when MakePayment screen will set payment true..
       showDialog(
         context: context,
         builder: (context) => const CongratulationsDialog(),
       );
+
+      //perform order process
+      Navigator.of(context).pushNamed(MakePaymentScreen.routeName);
     } else {
       setState(() {
         quantityError = "Enter a valid quantity.";

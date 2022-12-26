@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/painting.dart';
 
@@ -176,11 +177,13 @@ class PipeSpecs {
   final String wpp;
   final double? qty1;
   final double? qty2;
+  final double? qty3;
   PipeSpecs({
     required this.thickness,
     required this.wpp,
     this.qty1,
     this.qty2,
+    this.qty3,
   });
 
   PipeSpecs copyWith({
@@ -188,12 +191,14 @@ class PipeSpecs {
     String? wpp,
     double? qty1,
     double? qty2,
+    double? qty3,
   }) {
     return PipeSpecs(
       thickness: thickness ?? this.thickness,
       wpp: wpp ?? this.wpp,
       qty1: qty1 ?? this.qty1,
       qty2: qty2 ?? this.qty2,
+      qty3: qty3 ?? this.qty3,
     );
   }
 
@@ -203,6 +208,7 @@ class PipeSpecs {
       'wpp': wpp,
       'qty1': qty1,
       'qty2': qty2,
+      'qty3': qty3,
     };
   }
 
@@ -212,6 +218,7 @@ class PipeSpecs {
       wpp: map['wpp'] as String,
       qty1: map['qty1'] != null ? map['qty1'] as double : null,
       qty2: map['qty2'] != null ? map['qty2'] as double : null,
+      qty3: map['qty3'] != null ? map['qty3'] as double : null,
     );
   }
 
@@ -222,7 +229,7 @@ class PipeSpecs {
 
   @override
   String toString() {
-    return 'PipeSpecs(thickness: $thickness, wpp: $wpp, qty1: $qty1, qty2: $qty2)';
+    return 'PipeSpecs(thickness: $thickness, wpp: $wpp, qty1: $qty1, qty2: $qty2, qty3: $qty3)';
   }
 
   @override
@@ -232,12 +239,17 @@ class PipeSpecs {
     return other.thickness == thickness &&
         other.wpp == wpp &&
         other.qty1 == qty1 &&
-        other.qty2 == qty2;
+        other.qty2 == qty2 &&
+        other.qty3 == qty3;
   }
 
   @override
   int get hashCode {
-    return thickness.hashCode ^ wpp.hashCode ^ qty1.hashCode ^ qty2.hashCode;
+    return thickness.hashCode ^
+        wpp.hashCode ^
+        qty1.hashCode ^
+        qty2.hashCode ^
+        qty3.hashCode;
   }
 }
 

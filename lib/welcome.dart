@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:m_steel/home.dart';
 import 'package:m_steel/util/general.dart';
 import 'package:m_steel/widgets/gradient_container.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
@@ -14,6 +15,7 @@ class WelcomeScreen extends StatefulWidget {
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
   bool _nextEnabled = false;
+  late SharedPreferences prefs;
   void _userAgreementClicked() {
     print("user agreemnt");
   }
@@ -24,6 +26,16 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 
   void _privacyPolicyClicked() {
     print("Prv Pol clicked");
+  }
+
+  void initPrefs() async {
+    prefs = await SharedPreferences.getInstance();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    initPrefs();
   }
 
   @override
@@ -161,7 +173,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             child: ElevatedButton(
               onPressed: _nextEnabled
                   ? () {
-                      Navigator.pushNamed(context, HomeScreen.routeName);
+                      prefs.setBool(LOGGED_IN, true).then((value) =>
+                          Navigator.pushNamedAndRemoveUntil(
+                              context, HomeScreen.routeName, (route) => false));
                     }
                   : null,
               style:

@@ -4,6 +4,7 @@
   "cancel": "CANCEL",
   "uploadPhoto": "Upload Photo",
   "contnue": "Continue",
+  "update":"Update",
   "myOrders": "My orders",
   "myBills": "My bills",
   "myTransactions": "My transactions",
@@ -86,5 +87,7 @@
   "thickness":"Thickness",
   "weightPerPes":"Weight Per Pes.",
   "total":"Total",
-  "searchHere":"Search here"
+  "searchHere":"Search here",
+
+  "profile":"Profile"
 }

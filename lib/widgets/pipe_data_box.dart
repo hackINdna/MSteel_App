@@ -39,7 +39,7 @@ class PipeDataWidget extends StatelessWidget {
     }
 
     List<TableRow> tableRows(List<PipeSpecs> pipeSpecList) {
-      double qty1Sum = 0, qty2Sum = 0;
+      double qty1Sum = 0, qty2Sum = 0, qty3Sum = 0;
       //list with header row added in first place
       List<TableRow> rows = [
         TableRow(children: [
@@ -47,6 +47,7 @@ class PipeDataWidget extends StatelessWidget {
           _cell(transText(context).weightPerPes, header: true),
           _cell("32 OD Qty.\n(${transText(context).roundPipe})", header: true),
           _cell("25x25 Qty.\n(${transText(context).squarePipe})", header: true),
+          _cell("20x40 Qty.\n(Rect-Angle)")
         ]),
       ];
       //populating rows list with data at provided index
@@ -56,10 +57,12 @@ class PipeDataWidget extends StatelessWidget {
           _cell(pipeSpecs.wpp),
           _cell(pipeSpecs.qty1 == null ? "" : pipeSpecs.qty1.toString()),
           _cell(pipeSpecs.qty2 == null ? "" : pipeSpecs.qty2.toString()),
+          _cell(pipeSpecs.qty3 == null ? "" : pipeSpecs.qty3.toString()),
         ];
         rows.add(TableRow(children: rowCells));
         qty1Sum += pipeSpecs.qty1 ?? 0;
         qty2Sum += pipeSpecs.qty2 ?? 0;
+        qty3Sum += pipeSpecs.qty3 ?? 0;
       }
       //adding footer row
       rows.add(TableRow(
@@ -71,6 +74,7 @@ class PipeDataWidget extends StatelessWidget {
           _cell(""),
           _cell(qty1Sum.toString(), footer: true),
           _cell(qty2Sum.toString(), footer: true),
+          _cell(qty3Sum.toString(), footer: true),
         ],
       ));
       return rows;

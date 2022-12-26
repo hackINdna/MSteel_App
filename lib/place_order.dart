@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:m_steel/data_models/models.dart';
 import 'package:m_steel/widgets/basic_root_screen.dart';
+import 'package:m_steel/widgets/congratulations_dialog.dart';
 import 'package:m_steel/widgets/item_box.dart';
 import 'package:m_steel/widgets/place_order_dialog.dart';
 
@@ -44,9 +45,9 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
         amount: price);
   }
 
-  void onClick(int index) {
+  void onClick(int index) async {
     var item = itemDetails.items;
-    showDialog(
+    await showDialog(
         barrierDismissible: false,
         context: context,
         builder: (context) {

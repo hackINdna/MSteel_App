@@ -4,10 +4,14 @@ import 'package:m_steel/util/general.dart';
 class BottomSheetIconButton extends StatelessWidget {
   final void Function() onTap;
   final IconData icon;
+  final double? size;
+  final Color? bgColor;
   const BottomSheetIconButton({
     super.key,
     required this.onTap,
     required this.icon,
+    this.size,
+    this.bgColor,
   });
 
   @override
@@ -17,12 +21,16 @@ class BottomSheetIconButton extends StatelessWidget {
       height: 53,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(53),
-        color: appBlueBg,
+        color: bgColor ?? appBlueBg,
       ),
       child: Center(
           child: IconButton(
         onPressed: onTap,
-        icon: Icon(icon, color: Colors.white),
+        icon: Icon(
+          icon,
+          color: Colors.white,
+          size: size,
+        ),
       )),
     );
   }

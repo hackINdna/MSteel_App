@@ -14,7 +14,7 @@ class BankListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      contentPadding: const EdgeInsets.all(12),
+      contentPadding: const EdgeInsets.fromLTRB(12, 12, 6, 12),
       dense: true,
       visualDensity: VisualDensity.comfortable,
       leading: CircleAvatar(backgroundImage: AssetImage(image), radius: 25.1),

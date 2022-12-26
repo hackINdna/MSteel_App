@@ -72,7 +72,13 @@ class _EnquireScreenState extends State<EnquireScreen> {
   }
 
   void _deleteSelectedImage() {
-    print("on delete pressed");
+    if (_imageSelected) {
+      setState(() {
+        _imageSelected = false;
+        image!.delete();
+      });
+    }
+    Navigator.pop(context);
   }
 
   void getAndSetImage(ImageSource src) async {

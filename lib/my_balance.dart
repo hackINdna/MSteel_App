@@ -19,24 +19,24 @@ class _MyBalanceScreenState extends State<MyBalanceScreen> {
   @override
   Widget build(BuildContext context) {
     return RootColumn(
-        heading: transText(context).myBalance,
-        screenPadding:
-            const EdgeInsets.symmetric(vertical: 20, horizontal: 0.8),
-        children: [
-          ListView.separated(
-            physics: const NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            itemBuilder: (context, index) => BankListItem(
-                image: bankList[index][0],
-                title: bankList[index][1],
-                url: bankList[index][2]),
-            itemCount: bankList.length,
-            separatorBuilder: (context, index) => const Divider(
-              height: 0,
-              color: Colors.black,
-            ),
+      heading: transText(context).myBalance,
+      screenPadding: const EdgeInsets.symmetric(vertical: 20, horizontal: 0.8),
+      children: [
+        ListView.separated(
+          physics: const NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
+          itemBuilder: (context, index) => BankListItem(
+              image: bankList[index][0],
+              title: bankList[index][1],
+              url: bankList[index][2]),
+          itemCount: bankList.length,
+          separatorBuilder: (context, index) => const Divider(
+            height: 0,
+            color: Colors.black,
           ),
-          const Divider(height: 0, color: Colors.black),
-        ]);
+        ),
+        const Divider(height: 0, color: Colors.black),
+      ],
+    );
   }
 }
