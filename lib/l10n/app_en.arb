@@ -1,0 +1,93 @@
+{
+  "send": "Send",
+  "ok":"OK",
+  "cancel": "CANCEL",
+  "uploadPhoto": "Upload Photo",
+  "contnue": "Continue",
+  "update":"Update",
+  "myOrders": "My orders",
+  "myBills": "My bills",
+  "myTransactions": "My transactions",
+  "myReceipts": "My receipts",
+  "changeLanguage": "Change language",
+  "stockStatements": "Stock statements",
+  "myBalance":"My balance",
+  "subscriptionPlans":"Subscription plans",
+  "contactAdmin": "Contact admin",
+  "logout": "Logout",
+
+
+  "logoutMessage": "Are you sure want to logout from application?",
+
+  "emptyFieldError": "Field cannot be Empty.",
+  "elaborationRequiredError": "A little more elaboration required.",
+
+  
+  "enquire":"Enquiry",
+  "enquireFieldHint": "Write something here...",
+  "enquireSubmittedSuccessfullyTitle": "Enquiry Submitted!",
+  "enquireSubmittedSuccessfullyDescription": "You will be responded as soon as possible over registered Mobile Number.",
+  "enquireSubmittedFailedTitle": "Enquire Submission Failed!",
+  "enquireSubmittedFailedDescription": "Unable to submit Enquiry. {error}",
+  "@enquireSubmittedFailedDescription": {
+    "placeholders": {
+      "error":{}
+    }
+  },
+  "sendMessage":"Send Message",
+  "sendEmail":"Send Email",
+
+  "pending": "Pending",
+  "completed": "Completed",
+  "incompleted": "Incompleted",
+  "approved": "Approved",
+  "declined": "Declined",
+  "shippingInProcess": "Shipping in Process",
+  "quantity": "Quantity",
+  "bookingRate": "Booking Rate",
+  "order": "Order",
+
+  "orderStatements": "Order Statements",
+  "newOrders": "New Orders",
+  "previousOrders": "Previous Orders",
+  "noOrdersToShow":"No Orders to show",
+  "noTransactionsToShow":"No Transactions to show",
+  "noReceiptsToShow":"No Receipts to show",
+
+  "bill":"Bill",
+  "balance":"Balance",
+  "noBillsToShow": "No Bills to show",
+  "factoryRate":"Factory Rate",
+  "orderNow":"Order Now",
+  "placeOrder": "Place Order",
+
+  "netPrice": "Net Price",
+  "orderQuantity":"Order Quantity",
+  "orderAmount": "Order Amount",
+  "enterQuantityinMT": "Enter quantity in MT",
+  "congratulations": "Congratulations",
+  "congratulationsSuccessfullMessage":"Your order has been placed successfully please wait until approval or contact us.",
+  
+  "subscriptions": "Subscriptions",
+  "platinum":"PLATINUM",
+  "getPlatinum":"Get Platinum",
+  "gold":"GOLD",
+  "getGold": "Get Gold",
+  "days": "days",
+  "months": "months",
+  "years": "years",
+
+  "checkBalance":"Check Balance",
+
+  "date":"Date",
+  "sectionPipe":"Section Pipe",
+  "roundPipe":"Round Pipe",
+  "squarePipe":"Square Pipe",
+  "swipeLeft":"Swipe left",
+  "thickness":"Thickness",
+  "weightPerPes":"Weight Per Pes.",
+  "total":"Total",
+  "searchHere":"Search here",
+
+  "profile":"Profile"
+}
