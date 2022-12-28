@@ -146,6 +146,7 @@ List<SubscriptionData> getSubscriptionData() => [
 
 // stock statements pipe table data
 List<PipeDetails> getpipeDetails() => [
+<<<<<<< HEAD
       PipeDetails(pipeSize: "1\"", pipeName: "Section Pipe", fields: [
         {
           "Thickness": "1.0",
@@ -376,4 +377,63 @@ List<PipeDetails> getpipeDetails() => [
           "80x40 Qty.(Rectangle)": 29.600,
         },
       ])
+=======
+      PipeDetails(pipeSize: "1\"", pipeName: "Section Pipe", specs: [
+        PipeSpecs(
+          thickness: "1.00",
+          wpp: "5",
+          qty1: null,
+          qty2: null,
+        ),
+        PipeSpecs(thickness: "1.20", wpp: "6", qty1: 11.630, qty2: null),
+        PipeSpecs(thickness: "1.60", wpp: "7", qty1: 0.440, qty2: null),
+        PipeSpecs(thickness: "2.00", wpp: "9", qty1: null, qty2: null),
+        PipeSpecs(thickness: "2.20", wpp: "11", qty1: null, qty2: null),
+        PipeSpecs(thickness: "2.50", wpp: "12", qty1: null, qty2: null),
+      ]),
+      PipeDetails(pipeSize: "1.25\"", pipeName: "Section Pipe", specs: [
+        PipeSpecs(thickness: "1.00", wpp: "5", qty1: null, qty2: 5),
+        PipeSpecs(
+            thickness: "1.20", wpp: "6", qty1: 11.630, qty2: 6, qty3: 4.610),
+        PipeSpecs(
+            thickness: "1.60", wpp: "7", qty1: 0.440, qty2: 7, qty3: 4.990),
+        PipeSpecs(thickness: "2.00", wpp: "9", qty1: null, qty2: 9),
+        PipeSpecs(thickness: "2.20", wpp: "11", qty1: null, qty2: 11),
+        PipeSpecs(thickness: "2.50", wpp: "12", qty1: null, qty2: 12),
+      ]),
+      PipeDetails(pipeSize: "2.0\"", pipeName: "Section Pipe", specs: [
+        PipeSpecs(thickness: "1.00", wpp: "5", qty1: null, qty2: 5),
+        PipeSpecs(thickness: "1.20", wpp: "6", qty1: 11.630, qty2: 6),
+        PipeSpecs(thickness: "1.60", wpp: "7", qty1: 0.440, qty2: 7),
+        PipeSpecs(thickness: "2.00", wpp: "9", qty1: null, qty2: 9),
+        PipeSpecs(thickness: "2.20", wpp: "11", qty1: null, qty2: 11),
+        PipeSpecs(thickness: "2.50", wpp: "12", qty1: null, qty2: 12),
+      ]),
+      PipeDetails(pipeSize: "0.75\"", pipeName: "Section Pipe", specs: [
+        PipeSpecs(thickness: "1.00", wpp: "5", qty1: null, qty2: 5),
+        PipeSpecs(thickness: "1.20", wpp: "6", qty1: 11.630, qty2: 6),
+        PipeSpecs(thickness: "1.60", wpp: "7", qty1: 0.440, qty2: 7),
+        PipeSpecs(thickness: "2.00", wpp: "9", qty1: null, qty2: 9),
+        PipeSpecs(thickness: "2.20", wpp: "11", qty1: null, qty2: 11),
+        PipeSpecs(thickness: "2.50", wpp: "12", qty1: null, qty2: 12),
+      ]),
+      PipeDetails(pipeSize: "2.5\"", pipeName: "Section Pipe", specs: [
+        PipeSpecs(
+            thickness: "1.00", wpp: "5", qty1: null, qty2: 5, qty3: 11.860),
+        PipeSpecs(thickness: "1.20", wpp: "6", qty1: 11.630, qty2: 6),
+        PipeSpecs(thickness: "1.60", wpp: "7", qty1: 0.440, qty2: 7),
+        PipeSpecs(thickness: "2.00", wpp: "9", qty1: null, qty2: 9),
+        PipeSpecs(
+            thickness: "2.20", wpp: "11", qty1: null, qty2: 11, qty3: 29.600),
+        PipeSpecs(thickness: "2.50", wpp: "12", qty1: null, qty2: 12),
+      ]),
+      PipeDetails(pipeSize: "", pipeName: "Random Pipe", specs: [
+        PipeSpecs(thickness: "1.00", wpp: "5", qty1: null, qty2: 5),
+        PipeSpecs(thickness: "1.20", wpp: "6", qty1: 11.630, qty2: 6),
+        PipeSpecs(thickness: "1.60", wpp: "7", qty1: 0.440, qty2: 7),
+        PipeSpecs(thickness: "2.00", wpp: "9", qty1: null, qty2: 9),
+        PipeSpecs(thickness: "2.20", wpp: "11", qty1: null, qty2: 11),
+        PipeSpecs(thickness: "2.50", wpp: "12", qty1: null, qty2: 12),
+      ]),
+>>>>>>> f32cecb01b09dc52e3f51f98d0d090d0e66f8114
     ];

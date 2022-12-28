@@ -116,7 +116,11 @@ class _SignupScreenState extends State<SignupScreen> {
       // _loading = false;
       navigatePop();
       showSnackBar(context,
+<<<<<<< HEAD
           "Error loading ZIP data.\nMake sure you are connected to internet");
+=======
+          "Error loading ZIP data.\nMake sure you are connected to internet.");
+>>>>>>> f32cecb01b09dc52e3f51f98d0d090d0e66f8114
       setState(() {
         _zipCodeErrorText = "Unable to verify ZIP";
       });
