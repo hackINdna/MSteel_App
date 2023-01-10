@@ -141,6 +141,7 @@ const themeColors = <Color>[
 
 //info
 const contactNumber = "+91 0000 00 0000";
+String phoneNumber() => contactNumber.trim().replaceAll(" ", "").substring(3);
 
 const List<String> businessTypeList = ["Retail / Factory", "B2B / B2C"];
 //form field heading TextStyle

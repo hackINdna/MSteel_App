@@ -1,24 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:m_steel/data_models/models.dart';
-import 'package:m_steel/make_payment.dart';
+import 'package:m_steel/order_whatsapp.dart';
 import 'package:m_steel/util/general.dart';
 import 'package:m_steel/util/language_constants.dart';
-import 'package:m_steel/widgets/congratulations_dialog.dart';
 import 'box_text_widgets.dart';
 
 class PlaceOrderDialog extends StatefulWidget {
   const PlaceOrderDialog({
     Key? key,
     required this.itemDetails,
+    required this.size,
   }) : super(key: key);
   final ItemData itemDetails;
+  final String size;
 
   @override
   State<PlaceOrderDialog> createState() => _PlaceOrderDialogState();
 }
 
 class _PlaceOrderDialogState extends State<PlaceOrderDialog> {
+  @override
+  void dispose() {
+    super.dispose();
+    quantityController.dispose();
+  }
+
   int? buyQuantity;
   String? quantityError;
   TextEditingController quantityController = TextEditingController();
@@ -34,18 +41,26 @@ class _PlaceOrderDialogState extends State<PlaceOrderDialog> {
     });
   }
 
-  void placeOrder() {
+  Future<void> placeOrder() async {
     var quant = int.tryParse(quantityController.text);
     if (quant != null && quant > 0 && quantityError == null) {
-      Navigator.of(context).pop();
+      var item = widget.itemDetails;
+      var size = widget.size;
+      Navigator.of(context)
+          .popAndPushNamed(PlaceOrderWhatsappScreen.routeName, arguments: {
+        "itemData": item,
+        "size": size,
+        "quantity": quantityController.text.toString(),
+      });
       //this will be shown when MakePayment screen will set payment true..
-      showDialog(
-        context: context,
-        builder: (context) => const CongratulationsDialog(),
-      );
+      // showDialog(
+      //   context: context,
+      //   builder: (context) => const CongratulationsDialog(),
+      // );
 
       //perform order process
-      Navigator.of(context).pushNamed(MakePaymentScreen.routeName);
+      // Navigator.of(context).pushNamed(MakePaymentScreen.routeName);
+
     } else {
       setState(() {
         quantityError = "Enter a valid quantity.";

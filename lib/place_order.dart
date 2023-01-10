@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:m_steel/data_models/models.dart';
 import 'package:m_steel/widgets/basic_root_screen.dart';
@@ -39,10 +41,13 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
     var price = item.values.elementAt(index);
     var size = item.keys.elementAt(index);
     return ItemWidget(
-        item: size,
-        suffix: itemDetails.itemSuffix,
-        onItemPressed: () => onClick(index),
-        amount: price);
+      item: size,
+      suffix: itemDetails.itemSuffix,
+      onItemPressed: () => onClick(
+        index,
+      ),
+      amount: price,
+    );
   }
 
   void onClick(int index) async {
@@ -51,7 +56,10 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
         barrierDismissible: false,
         context: context,
         builder: (context) {
-          return PlaceOrderDialog(itemDetails: itemDetails);
+          return PlaceOrderDialog(
+            itemDetails: itemDetails,
+            size: item.keys.elementAt(index),
+          );
         });
   }
 }

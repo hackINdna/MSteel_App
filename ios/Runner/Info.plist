@@ -53,6 +53,11 @@
 	<string>To take images for profile picture</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>Authentication for MSteel application using face ID</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+ 	 <string>http</string>
+ 	 <string>https</string>
+	</array>
 	<!-- <key>NSMicrophoneUsageDescription</key>
 	<string>To get audio access for recording videos</string> -->
 </dict>

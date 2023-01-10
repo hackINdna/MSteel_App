@@ -14,6 +14,7 @@ import 'package:m_steel/my_orders.dart';
 import 'package:m_steel/my_receipts.dart';
 import 'package:m_steel/my_tranactions.dart';
 import 'package:m_steel/order_details.dart';
+import 'package:m_steel/order_whatsapp.dart';
 import 'package:m_steel/otp_verification.dart';
 import 'package:m_steel/place_order.dart';
 import 'package:m_steel/reset_password.dart';
@@ -118,6 +119,8 @@ class _TheApplicationState extends State<TheApplication> {
             const StockStatementScreen(),
         AddCardScreen.routeName: (context) => const AddCardScreen(),
         MakePaymentScreen.routeName: (context) => const MakePaymentScreen(),
+        PlaceOrderWhatsappScreen.routeName: (context) =>
+            const PlaceOrderWhatsappScreen(),
       },
     );
   }

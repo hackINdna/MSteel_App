@@ -43,6 +43,8 @@ dependencies:
   pin_code_fields: ^7.4.0
   shared_preferences: ^2.0.15
   syncfusion_flutter_maps: ^20.3.61
+  url_launcher: ^6.1.7
+  whatsapp_unilink: ^2.1.0
 
 dev_dependencies:
   flutter_lints: ^2.0.0
