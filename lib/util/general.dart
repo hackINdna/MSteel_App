@@ -143,7 +143,7 @@ const themeColors = <Color>[
 const contactNumber = "+91 0000 00 0000";
 String phoneNumber() => contactNumber.trim().replaceAll(" ", "").substring(3);
 
-const List<String> businessTypeList = ["Retail / Factory", "B2B / B2C"];
+const List<String> businessTypeList = ["B2B", "B2C"];
 //form field heading TextStyle
 TextStyle formFieldHeadingTextStyle() {
   return const TextStyle(

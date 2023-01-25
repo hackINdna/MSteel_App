@@ -250,6 +250,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 TextSpan(
                                   text: "Sign Up",
                                   style: TextStyle(
+                                    fontSize: 16,
                                     decoration: TextDecoration.underline,
                                     color: appBlueBg,
                                     fontWeight: FontWeight.w600,

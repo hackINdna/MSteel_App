@@ -3,7 +3,8 @@ import 'package:m_steel/util/general.dart';
 import 'package:m_steel/util/language_constants.dart';
 
 class BankListItem extends StatelessWidget {
-  final String image, title, url;
+  final String title, url;
+  final String image;
   const BankListItem({
     super.key,
     required this.image,

@@ -65,29 +65,29 @@ Drawer homeDrawer(MediaQueryData mediaQuery, BuildContext context) {
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
+                        children: const [
+                          Text(
                             "0 INR",
                             style: TextStyle(
                               fontSize: 14.3,
                               fontWeight: FontWeight.w400,
                             ),
                           ),
-                          SizedBox(
-                            height: 21,
-                            //parent was container earlier for padding
-                            //padding: const EdgeInsets.only(right: 12),
-                            child: ElevatedButton(
-                                onPressed: () => updateProfileButton(),
-                                style: ElevatedButton.styleFrom(
-                                    backgroundColor: themeColors.last),
-                                child: const Text(
-                                  "Update",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                  ),
-                                )),
-                          )
+                          // SizedBox(
+                          //   height: 21,
+                          //   //parent was container earlier for padding
+                          //   //padding: const EdgeInsets.only(right: 12),
+                          //   child: ElevatedButton(
+                          //       onPressed: () => updateProfileButton(),
+                          //       style: ElevatedButton.styleFrom(
+                          //           backgroundColor: themeColors.last),
+                          //       child: const Text(
+                          //         "Update",
+                          //         style: TextStyle(
+                          //           fontSize: 12,
+                          //         ),
+                          //       )),
+                          // )
                         ],
                       ),
                     ],
