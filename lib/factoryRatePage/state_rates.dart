@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:m_steel/data_models/sample_data.dart';
-import 'package:m_steel/place_order.dart';
+import 'package:m_steel/orderAndBillPage/place_order.dart';
 import 'package:m_steel/widgets/basic_root_screen.dart';
 import 'package:m_steel/widgets/state_rate_box.dart';
 

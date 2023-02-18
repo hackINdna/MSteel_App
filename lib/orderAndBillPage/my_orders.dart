@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:m_steel/data_models/models.dart';
 import 'package:m_steel/data_models/sample_data.dart';
-import 'package:m_steel/order_details.dart';
+import 'package:m_steel/orderAndBillPage/order_details.dart';
 import 'package:m_steel/util/general.dart';
 import 'package:m_steel/util/language_constants.dart';
 import 'package:m_steel/widgets/order_statement_box.dart';

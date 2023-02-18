@@ -1,9 +1,11 @@
 import 'dart:async';
 import "package:flutter/material.dart";
 import 'package:flutter/services.dart';
-import 'package:m_steel/reset_password.dart';
+import 'package:m_steel/auth/auth_service.dart';
+import 'package:m_steel/authScreen/reset_password.dart';
+import 'package:m_steel/common/showCircularProgressIndicator.dart';
 import 'package:m_steel/util/general.dart';
-import 'package:m_steel/welcome.dart';
+import 'package:m_steel/authScreen/welcome.dart';
 import 'package:m_steel/widgets/gradient_container.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
@@ -25,48 +27,56 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
   late Timer _timer;
   int? infoFromForgotPassword;
 
-  String displayedSeconds() {
-    return ((_remainingSeconds + 1).toString().length == 1)
-        ? "00:0${_remainingSeconds + 1}"
-        : "00:${_remainingSeconds + 1}";
+  AuthService authService = AuthService();
+
+  // String displayedSeconds() {
+  //   return ((_remainingSeconds + 1).toString().length == 1)
+  //       ? "00:0${_remainingSeconds + 1}"
+  //       : "00:${_remainingSeconds + 1}";
+  // }
+
+  // void _resendOtp() {
+  //   //otp resending
+  //   if (_enableResend) {
+  //     //resend otp
+  //     _timer = _getTimer();
+  //     if (_resending) {
+  //       showSnackBar(context, "OTP sent again.");
+  //     }
+  //     _resending = true;
+  //   }
+  // }
+
+  Future<void> resendOTP() async {
+    await authService.resendOTP(context: context);
   }
 
-  void _resendOtp() {
-    //otp resending
-    if (_enableResend) {
-      //resend otp
-      _timer = _getTimer();
-      if (_resending) {
-        showSnackBar(context, "OTP sent again.");
-      }
-      _resending = true;
-    }
-  }
+  Future<void> _otpVerification(String otp) async {
+    await authService.otpVerification(context: context, otp: otp);
 
-  void _otpVerification(String otp) {
-    if (otp != "0000") {
-      if (infoFromForgotPassword != null) {
-        Navigator.pushNamed(context, ResetPasswordScreen.routeName);
-      } else {
-        Navigator.pushNamed(context, WelcomeScreen.routeName);
-      }
-    } else {
-      showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: const Text("Invalid OTP"),
-          content: const Text("Invalid OTP Entered.\nCannot continue."),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text("Ok"),
-            )
-          ],
-        ),
-      );
-    }
+    // if (otp != "0000") {
+    //   if (infoFromForgotPassword != null) {
+    //     Navigator.pushNamed(context, ResetPasswordScreen.routeName);
+    //   } else {
+    //     Navigator.pushNamed(context, WelcomeScreen.routeName);
+    //   }
+    // } else {
+    //   showDialog(
+    //     context: context,
+    //     builder: (context) => AlertDialog(
+    //       title: const Text("Invalid OTP"),
+    //       content: const Text("Invalid OTP Entered.\nCannot continue."),
+    //       actions: [
+    //         TextButton(
+    //           onPressed: () {
+    //             Navigator.of(context).pop();
+    //           },
+    //           child: const Text("Ok"),
+    //         )
+    //       ],
+    //     ),
+    //   );
+    // }
   }
 
   Timer _getTimer() {
@@ -103,6 +113,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
   Widget build(BuildContext context) {
     infoFromForgotPassword = ModalRoute.of(context)?.settings.arguments as int?;
     var screenWidth = MediaQuery.of(context).size.width;
+    var screenHeight = MediaQuery.of(context).size.height;
     return GradientBgContainer(
       child: Scaffold(
         backgroundColor: Colors.transparent,
@@ -145,7 +156,10 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                       ),
                       cursorColor: Colors.black,
                       enableActiveFill: true,
-                      onCompleted: (value) => _otpVerification(value),
+                      onCompleted: (value) async {
+                        showCircularProgressIndicator(context: context);
+                        await _otpVerification(value);
+                      },
                       onChanged: (value) {
                         //no realtine updating of values needed
                       },
@@ -175,31 +189,48 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                     ),
                   ),
                 ),
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: TextButton(
-                    onPressed: () => _enableResend ? _resendOtp() : null,
-                    style: ButtonStyle(
-                      overlayColor: MaterialStateProperty.all(
-                        Colors.black12,
+                Padding(
+                  padding: EdgeInsets.only(top: screenHeight * 0.03),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      InkWell(
+                        onTap: () async {
+                          showCircularProgressIndicator(context: context);
+                          await resendOTP();
+                        },
+                        child: Text(
+                          "Resend OTP",
+                          style: TextStyle(
+                              color: Colors.blue.shade800, fontSize: 16),
+                        ),
                       ),
-                    ),
-                    child: Text(
-                      _enableResend
-                          ? "Resend OTP"
-                          : "Resend OTP in: ${displayedSeconds()}",
-                      style: const TextStyle(
-                          // decoration:
-                          //     _enableResend ? TextDecoration.underline : null,
-                          color: Colors.white70,
-                          fontWeight: FontWeight.w500),
-                    ),
+                    ],
                   ),
                 ),
               ],
             ),
           ),
         ),
+        // floatingActionButton: Container(
+        //   width: screenWidth * 0.80,
+        //   height: screenHeight * 0.07,
+        //   margin: EdgeInsets.only(bottom: screenHeight * 0.02),
+        //   alignment: Alignment.center,
+        //   decoration: BoxDecoration(
+        //     borderRadius: BorderRadius.circular(10),
+        //     color: Colors.white,
+        //   ),
+        //   child: const Text(
+        //     "Verify",
+        //     style: TextStyle(
+        //       color: Colors.blue,
+        //       fontSize: 20,
+        //       fontWeight: FontWeight.bold,
+        //     ),
+        //   ),
+        // ),
+        // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       ),
     );
   }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:m_steel/data_models/models.dart';
-import 'package:m_steel/state_rates.dart';
+import 'package:m_steel/factoryRatePage/state_rates.dart';
 import 'package:m_steel/util/general.dart';
 import 'package:m_steel/util/language_constants.dart';
 import 'package:m_steel/widgets/basic_root_screen.dart';

@@ -1,8 +1,10 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:m_steel/auth/auth_service.dart';
+import 'package:m_steel/common/showCircularProgressIndicator.dart';
 import 'package:m_steel/main.dart';
-import 'package:m_steel/otp_verification.dart';
+import 'package:m_steel/authScreen/otp_verification.dart';
 import 'package:m_steel/util/general.dart';
 import 'package:m_steel/util/language_constants.dart';
 import 'package:m_steel/widgets/gradient_container.dart';
@@ -17,6 +19,7 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
+  AuthService authService = AuthService();
   // bool _loading = false;
   final _formKey = GlobalKey<FormState>();
   final _cityController = TextEditingController();
@@ -35,7 +38,7 @@ class _SignupScreenState extends State<SignupScreen> {
       _state,
       _businessType;
 
-  void _submit() {
+  void _submit() async {
     final isValid = _formKey.currentState?.validate();
     if (isValid != true || _businessType == null) {
       setState(() {
@@ -49,15 +52,24 @@ class _SignupScreenState extends State<SignupScreen> {
     }
     if (_zipCodeErrorText != null) return;
     _formKey.currentState?.save();
+
     //setting language
     var langIndex = languageList.indexOf(_language ?? "English");
     saveLocale(langIndex);
     TheApplication.setLocale(context, languageLocales[langIndex]);
     currentLocaleIndex = langIndex;
-
-    print(
-        "name=$_fullName\nphone=$_phoneNumber\nemail=$_email\npass=$_password\nconf_pass=$_confirmPassword\nlang=$_language\nzip=$_zipCode\ncity=$_city\nstate=$_state\nbusiinessType=$_businessType");
-    Navigator.pushNamed(context, OtpVerificationScreen.routeName);
+    showCircularProgressIndicator(context: context);
+    await authService.signUpUser(
+      context: context,
+      fullName: _fullName!,
+      number: _phoneNumber!,
+      email: _email!,
+      password: _password!,
+      businessType: _businessType!,
+      zipCode: _zipCode!,
+      city: _city!,
+      state: _state!,
+    );
   }
 
   void languageSelected(String lang) {

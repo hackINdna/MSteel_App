@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:local_auth/local_auth.dart';
-import 'package:m_steel/home.dart';
-import 'package:m_steel/login.dart';
+import 'package:m_steel/homePage/home.dart';
+import 'package:m_steel/authScreen/login.dart';
 import 'package:m_steel/util/general.dart';
 import 'package:m_steel/widgets/gradient_container.dart';
 import 'package:shared_preferences/shared_preferences.dart';

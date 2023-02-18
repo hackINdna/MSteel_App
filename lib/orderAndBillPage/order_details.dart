@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:m_steel/data_models/models.dart';
-import 'package:m_steel/my_bills.dart';
+import 'package:m_steel/orderAndBillPage/my_bills.dart';
 import 'package:m_steel/util/general.dart';
 import 'package:m_steel/util/language_constants.dart';
 import 'package:m_steel/widgets/basic_root_screen.dart';

@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:m_steel/add_card.dart';
+import 'package:m_steel/orderAndBillPage/add_card.dart';
 import 'package:m_steel/util/general.dart';
 import 'package:m_steel/widgets/basic_root_screen.dart';
 

@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:m_steel/data_models/models.dart';
-import 'package:m_steel/make_payment.dart';
+import 'package:m_steel/paymentPage/make_payment.dart';
 import 'package:m_steel/util/general.dart';
 import 'package:m_steel/util/language_constants.dart';
 import 'package:m_steel/widgets/subscription_plan_container.dart';

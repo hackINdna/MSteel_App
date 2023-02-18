@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:m_steel/biometric_auth.dart';
-import 'package:m_steel/enquire.dart';
-import 'package:m_steel/factory_rate.dart';
-import 'package:m_steel/state_rates.dart';
+import 'package:m_steel/authScreen/biometric_auth.dart';
+import 'package:m_steel/enquiryPage/enquire.dart';
+import 'package:m_steel/factoryRatePage/factory_rate.dart';
+import 'package:m_steel/factoryRatePage/state_rates.dart';
+import 'package:m_steel/providerClass/userProvider.dart';
 import 'package:m_steel/util/general.dart';
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
 import 'package:m_steel/util/language_constants.dart';
 import 'package:m_steel/util/non_general.dart';
 import 'package:marquee/marquee.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -20,6 +22,11 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    double screenWidht = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
+    var user = Provider.of<UserProvider>(context).user;
+    print(user.businessType);
     var mediaQuery = MediaQuery.of(context);
     return Scaffold(
         drawer: homeDrawer(mediaQuery, context),
@@ -81,35 +88,58 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             Expanded(
                 child: Padding(
-              padding: const EdgeInsets.only(
-                  left: 12, right: 12, top: 12, bottom: 6),
-              child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 11,
-                  mainAxisExtent: 98,
-                ),
-                itemCount: 2,
-                itemBuilder: (context, index) => Card(
-                  elevation: 3,
-                  child: InkWell(
-                    onTap: () {
-                      Navigator.of(context).pushNamed(index == 0
-                          ? FactoryRateScreen.routeName
-                          : StateRatesScreen.routeName);
-                    },
-                    child: Center(
+              padding: EdgeInsets.symmetric(
+                horizontal: screenWidht * 0.05,
+                vertical: screenHeight * 0.02,
+              ),
+              child: user.businessType == ""
+                  ? const Center(
                       child: Text(
-                        (index == 0) ? "Ex- Plant Rates" : "Ex- Depot Rates",
-                        style: const TextStyle(
+                        "No Data",
+                        style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
+                    )
+                  : ListView.builder(
+                      itemCount: 1,
+                      itemBuilder: (context, index) {
+                        return Material(
+                          elevation: 5,
+                          borderRadius: BorderRadius.circular(5),
+                          child: Container(
+                            width: screenWidht,
+                            height: screenHeight * 0.10,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.of(context).pushNamed(
+                                  user.businessType == "B2B"
+                                      ? FactoryRateScreen.routeName
+                                      : StateRatesScreen.routeName,
+                                );
+                              },
+                              child: Text(
+                                user.businessType == "B2B"
+                                    ? "Factory Rates"
+                                    : user.businessType == "B2C"
+                                        ? "Retail Rates"
+                                        : "No Data",
+                                style: const TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      },
                     ),
-                  ),
-                ),
-              ),
             )),
             // TextButton(
             //     onPressed: () =>

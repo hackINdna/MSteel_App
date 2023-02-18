@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:m_steel/biometric_auth.dart';
-import 'package:m_steel/forgot_password.dart';
-import 'package:m_steel/home.dart';
-import 'package:m_steel/signup.dart';
+import 'package:m_steel/authScreen/biometric_auth.dart';
+import 'package:m_steel/authScreen/forgot_password.dart';
+import 'package:m_steel/homePage/home.dart';
+import 'package:m_steel/authScreen/signup.dart';
 import 'package:m_steel/util/general.dart';
 import 'package:m_steel/widgets/gradient_container.dart';
 import 'package:m_steel/widgets/password_textformfield.dart';

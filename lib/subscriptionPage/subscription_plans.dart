@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:m_steel/data_models/sample_data.dart';
-import 'package:m_steel/make_payment.dart';
+import 'package:m_steel/paymentPage/make_payment.dart';
 import 'package:m_steel/util/general.dart';
 import 'package:m_steel/util/language_constants.dart';
 
-import 'widgets/subscription_dialog.dart';
+import '../widgets/subscription_dialog.dart';
 
 class SubscriptionScreen extends StatefulWidget {
   const SubscriptionScreen({super.key});

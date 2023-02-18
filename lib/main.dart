@@ -1,37 +1,42 @@
 import "package:flutter/material.dart";
 import 'package:flutter_windowmanager/flutter_windowmanager.dart';
-import 'package:m_steel/add_card.dart';
-import 'package:m_steel/biometric_auth.dart';
-import 'package:m_steel/enquire.dart';
-import 'package:m_steel/factory_rate.dart';
-import 'package:m_steel/forgot_password.dart';
-import 'package:m_steel/home.dart';
-import 'package:m_steel/login.dart';
-import 'package:m_steel/make_payment.dart';
-import 'package:m_steel/my_balance.dart';
-import 'package:m_steel/my_bills.dart';
-import 'package:m_steel/my_orders.dart';
-import 'package:m_steel/my_receipts.dart';
-import 'package:m_steel/my_tranactions.dart';
-import 'package:m_steel/order_details.dart';
-import 'package:m_steel/order_whatsapp.dart';
-import 'package:m_steel/otp_verification.dart';
-import 'package:m_steel/place_order.dart';
-import 'package:m_steel/reset_password.dart';
-import 'package:m_steel/signup.dart';
-import 'package:m_steel/splash_screen.dart';
-import 'package:m_steel/state_rates.dart';
-import 'package:m_steel/stock_statements.dart';
-import 'package:m_steel/subscription_plans.dart';
-import 'package:m_steel/update_profile.dart';
+import 'package:m_steel/orderAndBillPage/add_card.dart';
+import 'package:m_steel/authScreen/biometric_auth.dart';
+import 'package:m_steel/enquiryPage/enquire.dart';
+import 'package:m_steel/factoryRatePage/factory_rate.dart';
+import 'package:m_steel/authScreen/forgot_password.dart';
+import 'package:m_steel/homePage/home.dart';
+import 'package:m_steel/authScreen/login.dart';
+import 'package:m_steel/paymentPage/make_payment.dart';
+import 'package:m_steel/orderAndBillPage/my_balance.dart';
+import 'package:m_steel/orderAndBillPage/my_bills.dart';
+import 'package:m_steel/orderAndBillPage/my_orders.dart';
+import 'package:m_steel/orderAndBillPage/my_receipts.dart';
+import 'package:m_steel/orderAndBillPage/my_tranactions.dart';
+import 'package:m_steel/orderAndBillPage/order_details.dart';
+import 'package:m_steel/orderAndBillPage/order_whatsapp.dart';
+import 'package:m_steel/authScreen/otp_verification.dart';
+import 'package:m_steel/authScreen/reset_password.dart';
+import 'package:m_steel/providerClass/userProvider.dart';
+import 'package:m_steel/routes/generated_routes.dart';
+import 'package:m_steel/authScreen/signup.dart';
+import 'package:m_steel/splashScreen/splash_screen.dart';
+import 'package:m_steel/factoryRatePage/state_rates.dart';
+import 'package:m_steel/factoryRatePage/stock_statements.dart';
+import 'package:m_steel/subscriptionPage/subscription_plans.dart';
+import 'package:m_steel/profilePage/update_profile.dart';
 import 'package:m_steel/util/general.dart';
 import 'package:m_steel/util/language_constants.dart';
-import 'package:m_steel/welcome.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:m_steel/authScreen/welcome.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const TheApplication());
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(
+      create: (context) => UserProvider(),
+    ),
+  ], child: const TheApplication()));
 }
 
 class TheApplication extends StatefulWidget {
@@ -89,50 +94,8 @@ class _TheApplicationState extends State<TheApplication> {
         ),
         fontFamily: "DMSans",
       ),
-      routes: {
-        "/": (context) => const SplashScreen(),
-        SplashScreen.routeName: (context) => const SplashScreen(),
-        LoginScreen.routeName: (context) => const LoginScreen(),
-        SignupScreen.routeName: (context) => const SignupScreen(),
-        ForgotPasswordScreen.routeName: (context) =>
-            const ForgotPasswordScreen(),
-        ResetPasswordScreen.routeName: (context) => const ResetPasswordScreen(),
-        OtpVerificationScreen.routeName: (context) =>
-            const OtpVerificationScreen(),
-        BiometricAuthScreen.routeName: (context) => const BiometricAuthScreen(),
-        WelcomeScreen.routeName: (context) => const WelcomeScreen(),
-        HomeScreen.routeName: (context) => const HomeScreen(),
-        UpdateProfileScreen.routeName: (context) => const UpdateProfileScreen(),
-        MyOrdersScreen.routeName: (context) => const MyOrdersScreen(),
-        EnquireScreen.routeName: (context) => const EnquireScreen(),
-        MyBillsScreen.routeName: (context) => const MyBillsScreen(),
-        OrderDetailsScreen.routeName: (context) => const OrderDetailsScreen(),
-        MyTransactionsScreen.routeName: (context) =>
-            const MyTransactionsScreen(),
-        MyReceiptsScreen.routeName: (context) => const MyReceiptsScreen(),
-        FactoryRateScreen.routeName: (context) => const FactoryRateScreen(),
-        StateRatesScreen.routeName: (context) => const StateRatesScreen(),
-        //PlaceOrderScreen.routeName: (context) => const PlaceOrderScreen(),
-        MyBalanceScreen.routeName: (context) => const MyBalanceScreen(),
-        SubscriptionScreen.routeName: (context) => const SubscriptionScreen(),
-        StockStatementScreen.routeName: (context) =>
-            const StockStatementScreen(),
-        AddCardScreen.routeName: (context) => const AddCardScreen(),
-        MakePaymentScreen.routeName: (context) => const MakePaymentScreen(),
-        PlaceOrderWhatsappScreen.routeName: (context) =>
-            const PlaceOrderWhatsappScreen(),
-      },
+      onGenerateRoute: (settings) => generatedRoute(settings),
+      home: const SplashScreen(),
     );
   }
 }
-
-// class LocaleProvider with ChangeNotifier {
-//   Locale? _locale;
-//   Locale? get locale => _locale;
-
-//   void setLocale(Locale locale) {
-//     if (!AppLocalizations.supportedLocales.contains(locale)) return;
-//     _locale = locale;
-//     notifyListeners();
-//   }
-// }

@@ -41,6 +41,7 @@ dependencies:
   local_auth: ^2.1.2
   marquee: ^2.2.3
   pin_code_fields: ^7.4.0
+  provider: ^6.0.5
   shared_preferences: ^2.0.15
   syncfusion_flutter_maps: ^20.3.61
   url_launcher: ^6.1.7

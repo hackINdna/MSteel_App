@@ -1,6 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:m_steel/home.dart';
+import 'package:m_steel/homePage/home.dart';
 import 'package:m_steel/util/general.dart';
 // import 'package:m_steel/widgets/gradient_container.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -174,11 +174,13 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       child: ElevatedButton(
                         onPressed: _nextEnabled
                             ? () {
-                                prefs.setBool(LOGGED_IN, true).then((value) =>
-                                    Navigator.pushNamedAndRemoveUntil(
-                                        context,
-                                        HomeScreen.routeName,
-                                        (route) => false));
+                                Navigator.pushNamed(
+                                    context, HomeScreen.routeName);
+                                // prefs.setBool(LOGGED_IN, true).then((value) =>
+                                //     Navigator.pushNamedAndRemoveUntil(
+                                //         context,
+                                //         HomeScreen.routeName,
+                                //         (route) => false));
                               }
                             : null,
                         style: ElevatedButton.styleFrom(
