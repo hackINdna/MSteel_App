@@ -1,3 +1,94 @@
 {
-    "enquire":"விசாரணை"
+  "send": "அனுப்பு",
+  "ok":"சரி",
+  "cancel": "ரத்துசெய்",
+  "uploadPhoto": "புகைப்படத்தைப் பதிவேற்றவும்",
+  "contnue": "தொடரவும்",
+  "update":"புதுப்பிக்கவும்",
+  "myOrders": "என் கட்டளைகள்",
+  "myBills": "எனது பில்கள்",
+  "myTransactions": "எனது பரிவர்த்தனைகள்",
+  "myReceipts": "எனது ரசீதுகள்",
+  "changeLanguage": "மொழியை மாற்றவும்",
+  "stockStatements": "பங்கு அறிக்கைகள்",
+  "myBalance":"என் இருப்பு",
+  "subscriptionPlans":"சந்தா திட்டங்கள்",
+  "contactAdmin": "நிர்வாகியை தொடர்பு கொள்ளவும்",
+  "logout": "வெளியேறு",
+
+
+  "logoutMessage": "பயன்பாட்டிலிருந்து நிச்சயமாக வெளியேற விரும்புகிறீர்களா",
+
+  "emptyFieldError": "புலம் காலியாக இருக்க முடியாது",
+  "elaborationRequiredError": "இன்னும் கொஞ்சம் விரிவு தேவை",
+
+  
+  "enquire":"விசாரணை",
+  "enquireFieldHint": "இங்கே ஏதாவது எழுதுங்கள்",
+  "enquireSubmittedSuccessfullyTitle": "விசாரணை சமர்ப்பிக்கப்பட்டது",
+  "enquireSubmittedSuccessfullyDescription": "பதிவுசெய்யப்பட்ட மொபைல் எண்ணில் கூடிய விரைவில் நீங்கள் பதிலளிக்கப்படுவீர்கள்",
+  "enquireSubmittedFailedTitle": "விசாரணை சமர்ப்பிப்பு தோல்வியடைந்தது",
+  "enquireSubmittedFailedDescription": "விசாரணையைச் சமர்ப்பிக்க முடியவில்லை",
+  "@enquireSubmittedFailedDescription": {
+    "placeholders": {
+      "error":{}
+    }
+  },
+  "sendMessage":"செய்தி அனுப்ப",
+  "sendEmail":"மின்னஞ்சல் அனுப்பு",
+
+  "pending": "நிலுவையில் உள்ளது",
+  "completed": "நிறைவு",
+  "incompleted": "முழுமையடையவில்லை",
+  "approved": "அங்கீகரிக்கப்பட்டது",
+  "declined": "நிராகரிக்கப்பட்டது",
+  "shippingInProcess": "அனுப்புதல் செயல்பாட்டில் உள்ளது",
+  "quantity": "அளவு",
+  "bookingRate": "முன்பதிவு விகிதம்",
+  "order": "ஆர்டர்",
+
+  "orderStatements": "ஆர்டர் அறிக்கைகள்",
+  "newOrders": "புதிய ஆர்டர்கள்",
+  "previousOrders": "முந்தைய ஆர்டர்கள்",
+  "noOrdersToShow":"காட்ட ஆர்டர்கள் இல்லை",
+  "noTransactionsToShow":"காட்டுவதற்கு பரிவர்த்தனைகள் இல்லை",
+  "noReceiptsToShow":"காட்ட ரசீதுகள் இல்லை",
+
+  "bill":"ர சி து",
+  "balance":"இருப்பு",
+  "paid": "செலுத்தப்பட்டது",
+  "noBillsToShow": "காட்ட பில்கள் இல்லை",
+  "factoryRate":"தொழிற்சாலை விகிதம்",
+  "orderNow":"இப்பொழுதே ஆணை இடுங்கள்",
+  "placeOrder": "ஆர்டர் வைக்கவும்",
+
+  "netPrice": "நிகர விலை",
+  "orderQuantity":"ஆர்டர் அளவு",
+  "orderAmount": "ஆர்டர் தொகை",
+  "enterQuantityinMT": "MT இல் அளவை உள்ளிடவும்",
+  "congratulations": "வாழ்த்துகள்",
+  "congratulationsSuccessfullMessage":"உங்கள் ஆர்டர் வெற்றிகரமாக வைக்கப்பட்டுள்ளது, தயவுசெய்து ஒப்புதல் வரை காத்திருக்கவும் அல்லது எங்களை தொடர்பு கொள்ளவும்",
+  
+  "subscriptions": "சந்தாக்கள்",
+  "platinum":"வன்பொன்",
+  "getPlatinum":"பிளாட்டினம் கிடைக்கும்",
+  "gold":"தங்கம்",
+  "getGold": "தங்கம் கிடைக்கும்",
+  "days": "நாட்களில்",
+  "months": "மாதங்கள்",
+  "years": "ஆண்டுகள்",
+
+  "checkBalance":"இருப்பை சரிபார்க்கவும்",
+
+  "date":"தேதி",
+  "sectionPipe":"பிரிவு குழாய்",
+  "roundPipe":"சுற்று குழாய்",
+  "squarePipe":"சதுர குழாய்",
+  "swipeLeft":"இடது ஸ்வைப்",
+  "thickness":"தடிமன்",
+  "weightPerPes":"ஒரு துண்டு எடை",
+  "total":"மொத்தம்",
+  "searchHere":"இங்கே தேடவும்",
+
+  "profile":"சுயவிவரம்"
 }

@@ -1,3 +1,94 @@
 {
+  "send": "পাঠান",
+  "ok":"ঠিক আছে",
+  "cancel": "বাতিল",
+  "uploadPhoto": "ছবি আপলোড",
+  "contnue": "চালিয়ে যান",
+  "update":"হালনাগাদ",
+  "myOrders": "আমার আদেশ",
+  "myBills": "আমার বিল",
+  "myTransactions": "আমার লেনদেন",
+  "myReceipts": "আমার রসিদ",
+  "changeLanguage": "ভাষা পরিবর্তন করুন",
+  "stockStatements": "স্টক বিবৃতি",
+  "myBalance":"আমার ব্যালেন্স",
+  "subscriptionPlans":"সাবস্ক্রিপশন পরিকল্পনা",
+  "contactAdmin": "অ্যাডমিন যোগাযোগ",
+  "logout": "প্রস্থান",
+
+
+  "logoutMessage": "আপনি কি নিশ্চিত যে অ্যাপ্লিকেশন থেকে লগআউট করতে চান?",
+
+  "emptyFieldError": "ক্ষেত্র খালি হতে পারে না।",
+  "elaborationRequiredError": "একটু বেশি বিশদ বিবরণ প্রয়োজন।",
+
   
+  "enquire":"অনুসন্ধান",
+  "enquireFieldHint": "এখানে কিছু লিখুন",
+  "enquireSubmittedSuccessfullyTitle": "তদন্ত জমা দেওয়া হয়েছে!",
+  "enquireSubmittedSuccessfullyDescription": "নিবন্ধিত মোবাইল নম্বরে যত তাড়াতাড়ি সম্ভব আপনাকে প্রতিক্রিয়া জানানো হবে।",
+  "enquireSubmittedFailedTitle": "অনুসন্ধান জমা ব্যর্থ হয়েছে!",
+  "enquireSubmittedFailedDescription": "তদন্ত জমা দিতে অক্ষম",
+  "@enquireSubmittedFailedDescription": {
+    "placeholders": {
+      "error":{}
+    }
+  },
+  "sendMessage":"বার্তা পাঠান",
+  "sendEmail":"ইমেইল পাঠান",
+
+  "pending": "বিচারাধীন",
+  "completed": "সম্পন্ন",
+  "incompleted": "অসম্পূর্ণ",
+  "approved": "অনুমোদিত",
+  "declined": "অস্বীকার করেছে",
+  "shippingInProcess": "প্রক্রিয়াধীন শিপিং",
+  "quantity": "পরিমাণ",
+  "bookingRate": "বুকিং রেট",
+  "order": "অর্ডার",
+
+  "orderStatements": "আদেশ বিবৃতি",
+  "newOrders": "নতুন আদেশসমূহ",
+  "previousOrders": "পূর্ববর্তী আদেশ",
+  "noOrdersToShow":"দেখানোর জন্য কোন আদেশ নেই",
+  "noTransactionsToShow":"দেখানোর জন্য কোন লেনদেন নেই",
+  "noReceiptsToShow":"দেখানোর জন্য কোন রসিদ নেই",
+
+  "bill":"বিল",
+  "balance":"ভারসাম্য",
+  "paid": "পেড",
+  "noBillsToShow": "দেখানোর জন্য কোন বিল নেই",
+  "factoryRate":"কারখানার হার",
+  "orderNow":"এখনি আদেশ কর",
+  "placeOrder": "অর্ডার করুন",
+
+  "netPrice": "মোট মূল্য",
+  "orderQuantity":"অর্ডারের পরিমাণ",
+  "orderAmount": "অর্ডার মূল্য",
+  "enterQuantityinMT": "MT এ পরিমাণ লিখুন",
+  "congratulations": "অভিনন্দন",
+  "congratulationsSuccessfullMessage":"আপনার অর্ডার সফলভাবে স্থাপন করা হয়েছে অনুমোদন পর্যন্ত অপেক্ষা করুন বা আমাদের সাথে যোগাযোগ করুন",
+  
+  "subscriptions": "সদস্যতা",
+  "platinum":"প্লাটিনাম",
+  "getPlatinum":"প্লাটিনাম পান",
+  "gold":"সোনা",
+  "getGold": "সোনা পাওয়ার জন্য",
+  "days": "দিন",
+  "months": "মাস",
+  "years": "বছর",
+
+  "checkBalance":"ব্যালেন্স চেক করুন",
+
+  "date":"তারিখ",
+  "sectionPipe":"সেকশন পাইপ",
+  "roundPipe":"গোলাকার পাইপ",
+  "squarePipe":"বর্গাকার পাইপ",
+  "swipeLeft":"বাম সোয়াইপ",
+  "thickness":"পুরুত্ব",
+  "weightPerPes":"পেস প্রতি ওজন।",
+  "total":"মোট",
+  "searchHere":"এখানে অনুসন্ধান করুন",
+
+  "profile":"প্রোফাইল"
 }

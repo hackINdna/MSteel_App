@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:m_steel/auth/auth_service.dart';
 import 'package:m_steel/authScreen/otp_verification.dart';
+import 'package:m_steel/common/showCircularProgressIndicator.dart';
 import 'package:m_steel/util/general.dart';
 import 'package:m_steel/widgets/gradient_container.dart';
 
@@ -12,8 +14,8 @@ class ForgotPasswordScreen extends StatefulWidget {
 }
 
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
-  String? _phoneNumber;
-  final _phoneController = TextEditingController();
+  // String? _phoneNumber;
+  late TextEditingController _phoneController;
   bool _valid = false;
   String? _error;
   void _validate() {
@@ -29,6 +31,19 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
       _valid = false;
       _error = "Invalid Mobile Number.";
     }
+  }
+
+  AuthService authService = AuthService();
+
+  Future<void> sendNumberOTP() async {
+    await authService.loginWithOTP(
+        context: context, number: _phoneController.text);
+  }
+
+  @override
+  void initState() {
+    _phoneController = TextEditingController();
+    super.initState();
   }
 
   @override
@@ -146,15 +161,19 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   ),
                   const SizedBox(height: 30),
                   ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
                       setState(() {
                         _validate();
                       });
                       if (_valid) {
                         //send OtP
-                        Navigator.pushNamed(
-                            context, OtpVerificationScreen.routeName,
-                            arguments: (fromForgotPassword) ? 1234 : null);
+                        FocusScopeNode currentFocus = FocusScope.of(context);
+                        if (!currentFocus.hasPrimaryFocus &&
+                            currentFocus.focusedChild != null) {
+                          FocusManager.instance.primaryFocus?.unfocus();
+                        }
+                        showCircularProgressIndicator(context: context);
+                        await sendNumberOTP();
                       }
                     },
                     style: ButtonStyle(

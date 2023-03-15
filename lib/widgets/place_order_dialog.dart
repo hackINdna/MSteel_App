@@ -9,10 +9,12 @@ import 'box_text_widgets.dart';
 class PlaceOrderDialog extends StatefulWidget {
   const PlaceOrderDialog({
     Key? key,
-    required this.itemDetails,
+    required this.itemStock,
+    required this.itemData,
     required this.size,
   }) : super(key: key);
-  final ItemData itemDetails;
+  final dynamic itemStock;
+  final dynamic itemData;
   final String size;
 
   @override
@@ -44,11 +46,12 @@ class _PlaceOrderDialogState extends State<PlaceOrderDialog> {
   Future<void> placeOrder() async {
     var quant = int.tryParse(quantityController.text);
     if (quant != null && quant > 0 && quantityError == null) {
-      var item = widget.itemDetails;
+      var item = widget.itemData;
       var size = widget.size;
       Navigator.of(context)
           .popAndPushNamed(PlaceOrderWhatsappScreen.routeName, arguments: {
         "itemData": item,
+        "itemStock": widget.itemStock,
         "size": size,
         "quantity": quantityController.text.toString(),
       });
@@ -75,6 +78,11 @@ class _PlaceOrderDialogState extends State<PlaceOrderDialog> {
   @override
   Widget build(BuildContext context) {
     var dialogSize = MediaQuery.of(context).size;
+    var stockPrice = int.parse(widget.itemData["basic"]) +
+        int.parse(widget.itemData["loading"]) +
+        int.parse(widget.itemData["insurance"]) +
+        int.parse(widget.itemData["gst"]) +
+        int.parse(widget.itemData["tcs"]);
     return Center(
       child: Material(
         color: Colors.transparent,
@@ -116,13 +124,13 @@ class _PlaceOrderDialogState extends State<PlaceOrderDialog> {
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
                                 Text(
-                                  widget.itemDetails.categoryName,
+                                  widget.itemStock["stockName"],
                                   style: const TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.w600),
                                 ),
                                 Text(
-                                  "${widget.itemDetails.categorySubtitle}-${stringDateToFormattedString(widget.itemDetails.date)}",
+                                  "${widget.itemStock["stateName"]}-${widget.itemStock["stockDate"]}",
                                   style: const TextStyle(
                                       color: Colors.white,
                                       fontSize: 12.9,
@@ -132,7 +140,7 @@ class _PlaceOrderDialogState extends State<PlaceOrderDialog> {
                             ),
                           ),
                           Text(
-                            "INR ${widget.itemDetails.amount}",
+                            "INR $stockPrice",
                             style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 12,
@@ -152,7 +160,7 @@ class _PlaceOrderDialogState extends State<PlaceOrderDialog> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               OffBlackText("${transText(context).netPrice}:"),
-                              OffBlackText(widget.itemDetails.amount)
+                              OffBlackText(stockPrice.toString())
                             ],
                           ),
                           const SizedBox(height: 6),
@@ -174,7 +182,7 @@ class _PlaceOrderDialogState extends State<PlaceOrderDialog> {
                                   "${transText(context).orderAmount}:"),
                               OffBlackText((buyQuantity != null)
                                   ? (buyQuantity! *
-                                          int.parse(widget.itemDetails.amount))
+                                          int.parse(stockPrice.toString()))
                                       .toString()
                                   : ""),
                             ],

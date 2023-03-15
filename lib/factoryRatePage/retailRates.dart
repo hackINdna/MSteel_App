@@ -6,23 +6,21 @@ import 'package:m_steel/util/general.dart';
 import 'package:m_steel/widgets/basic_root_screen.dart';
 import 'package:m_steel/widgets/state_rate_box.dart';
 
-class StateRatesScreen extends StatefulWidget {
-  const StateRatesScreen({super.key, required this.stateName});
-  static const routeName = "/stateRates";
-  final String stateName;
+class RetailRates extends StatefulWidget {
+  const RetailRates({super.key});
+  static const routeName = "/retailRates";
   @override
-  State<StateRatesScreen> createState() => _StateRatesScreenState();
+  State<RetailRates> createState() => _RetailRatesState();
 }
 
-class _StateRatesScreenState extends State<StateRatesScreen> {
+class _RetailRatesState extends State<RetailRates> {
   var stateItems = getStateItems();
   AuthService authService = AuthService();
   bool isLoading = true;
   List<dynamic>? stockList;
 
   Future<void> getStock() async {
-    stockList = await authService.getStockList(
-        context: context, stateName: widget.stateName);
+    stockList = await authService.getRetailStockList(context: context);
     setState(() {});
   }
 

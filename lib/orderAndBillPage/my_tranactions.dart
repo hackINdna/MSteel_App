@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:m_steel/auth/auth_service.dart';
 import 'package:m_steel/data_models/sample_data.dart';
 import 'package:m_steel/util/general.dart';
 import 'package:m_steel/util/language_constants.dart';
@@ -14,27 +15,70 @@ class MyTransactionsScreen extends StatefulWidget {
 }
 
 class _MyTransactionsScreenState extends State<MyTransactionsScreen> {
-  var transactionList = getTransactionData();
+  // var transactionList = getTransactionData();
   DateTime? prevDate;
+
+  AuthService authService = AuthService();
+  List<dynamic>? transactionList;
+
+  void getAllTransactions() async {
+    transactionList = await authService.getAllTransactions(context: context);
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
+  @override
+  void initState() {
+    getAllTransactions();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return RootColumn(heading: transText(context).myTransactions, children: [
-      dividerHeading((transactionList.isNotEmpty)
-          ? stringDateToFormattedString(transactionList.first.date)
-          : "No Transactions to Show"),
-      const SizedBox(height: 20),
-      ListView.separated(
-        physics: const NeverScrollableScrollPhysics(),
-        shrinkWrap: true,
-        itemBuilder: (context, index) => transactionBoxBuilder(context, index),
-        separatorBuilder: (context, index) => dateSeperator(context, index),
-        itemCount: transactionList.length,
-      ),
-    ]);
+    return RootColumn(
+        heading: transText(context).myTransactions,
+        children: transactionList == null
+            ? [
+                const Center(
+                  child: CircularProgressIndicator(),
+                )
+              ]
+            : transactionList!.isEmpty
+                ? [
+                    const Center(
+                      child: Text(
+                        "No data found",
+                        style: TextStyle(
+                          fontSize: 40,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black38,
+                        ),
+                      ),
+                    ),
+                  ]
+                : [
+                    dividerHeading(
+                        transactionList!.first["paymentDate"].split("T")[0]),
+                    // dividerHeading((transactionList!.isNotEmpty)
+                    //     ? stringDateToFormattedString(
+                    //         transactionList.first.date)
+                    //     : "No Transactions to Show"),
+                    const SizedBox(height: 20),
+                    ListView.separated(
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) =>
+                          transactionBoxBuilder(context, index),
+                      separatorBuilder: (context, index) =>
+                          dateSeperator(context, index),
+                      itemCount: transactionList!.length,
+                    ),
+                  ]);
   }
 
   Widget dateSeperator(BuildContext context, int index) {
-    var date = stringToDate(transactionList[index + 1].date);
+    var date = stringToDate(transactionList![index + 1].date);
     return (prevDate != null && DateUtils.isSameDay(date, prevDate))
         ? const SizedBox(height: 15)
         : Padding(
@@ -44,14 +88,14 @@ class _MyTransactionsScreenState extends State<MyTransactionsScreen> {
   }
 
   Widget transactionBoxBuilder(BuildContext context, int index) {
-    var tran = transactionList[index];
+    var tran = transactionList![index];
     return TransactionWidget(
-      bankName: tran.bankName,
-      billNumber: tran.billNumber,
-      amount: tran.amount,
-      balance: tran.balance,
-      debit: tran.debit,
-      status: getStatusFromString(tran.status, context),
+      productName: tran["productName"].toString(),
+      quantity: tran["orderQuantity"].toString(),
+      amount: tran["totalOutstandingPayment"].toString(),
+      paid: tran["totalPaidAmount"].toString(),
+      debit: false,
+      status: getStatusFromString("completed", context),
     );
   }
 }

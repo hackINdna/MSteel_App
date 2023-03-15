@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:m_steel/auth/auth_service.dart';
+import 'package:m_steel/providerClass/userProvider.dart';
 import 'package:m_steel/util/general.dart';
 import 'package:m_steel/util/language_constants.dart';
 import 'package:m_steel/widgets/bank_list.dart';
 import 'package:m_steel/widgets/basic_root_screen.dart';
+import 'package:provider/provider.dart';
 
 class MyBalanceScreen extends StatefulWidget {
   const MyBalanceScreen({super.key});
@@ -17,8 +20,12 @@ class _MyBalanceScreenState extends State<MyBalanceScreen> {
     ["assets/images/bob_logo.png", "Bank of Baroda- 0000", "url"],
   ];
   bool _visible = false;
+
+  AuthService authService = AuthService();
+
   @override
   Widget build(BuildContext context) {
+    var user = Provider.of<UserProvider>(context).user;
     return RootColumn(
       heading: transText(context).myBalance,
       screenPadding: const EdgeInsets.symmetric(vertical: 20, horizontal: 0.8),
@@ -56,9 +63,9 @@ class _MyBalanceScreenState extends State<MyBalanceScreen> {
                   child: Text(transText(context).checkBalance,
                       style: const TextStyle(fontSize: 13.2, color: appBlueBg)),
                 )
-              : const Text(
-                  "INR 0.0",
-                  style: TextStyle(
+              : Text(
+                  "INR ${user.balanceAmount}",
+                  style: const TextStyle(
                     fontWeight: FontWeight.w500,
                     color: Colors.black87,
                   ),

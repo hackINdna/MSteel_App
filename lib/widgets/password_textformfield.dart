@@ -37,11 +37,15 @@ class _PasswordTextFormFieldState extends State<PasswordTextFormField> {
 
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
+
     return TextFormField(
       obscureText: _passwordVisible,
       enableSuggestions: false,
       autocorrect: false,
       controller: widget.controller,
+      style: TextStyle(fontSize: screenHeight * 0.02),
       decoration: InputDecoration(
         filled: true,
         enabledBorder: const OutlineInputBorder(
@@ -89,6 +93,7 @@ class _PasswordTextFormFieldState extends State<PasswordTextFormField> {
         suffixIcon: IconButton(
           icon: Icon(
             _passwordVisible ? Icons.visibility : Icons.visibility_off,
+            size: screenHeight * 0.03,
             color: Colors.grey,
           ),
           onPressed: () => _toggle(),

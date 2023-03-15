@@ -1,3 +1,94 @@
 {
-    
+  "send": "അയക്കുക",
+  "ok":"ശരി",
+  "cancel": "റദ്ദാക്കുക",
+  "uploadPhoto": "ഫോട്ടോ അപ്‌ലോഡ് ചെയ്യുക",
+  "contnue": "തുടരുക",
+  "update":"അപ്ഡേറ്റ് ചെയ്യുക",
+  "myOrders": "എന്റെ ഉത്തരവുകൾ",
+  "myBills": "എന്റെ ബില്ലുകൾ",
+  "myTransactions": "എന്റെ ഇടപാടുകൾ",
+  "myReceipts": "എന്റെ രസീതുകൾ",
+  "changeLanguage": "ഭാഷ മാറ്റുക",
+  "stockStatements": "സ്റ്റോക്ക് പ്രസ്താവനകൾ",
+  "myBalance":"എന്റെ ബാലൻസ്",
+  "subscriptionPlans":"സബ്സ്ക്രിപ്ഷൻ പ്ലാനുകൾ",
+  "contactAdmin": "അഡ്മിനുമായി ബന്ധപ്പെടുക",
+  "logout": "പുറത്തുകടക്കുക",
+
+
+  "logoutMessage": "ആപ്ലിക്കേഷനിൽ നിന്ന് ലോഗ്ഔട്ട് ചെയ്യണമെന്ന് തീർച്ചയാണോ?",
+
+  "emptyFieldError": "ഫീൽഡ് ശൂന്യമാക്കാൻ കഴിയില്ല",
+  "elaborationRequiredError": "കുറച്ചുകൂടി വിശദീകരണം ആവശ്യമാണ്",
+
+  
+  "enquire":"അന്വേഷണം",
+  "enquireFieldHint": "ഇവിടെ എന്തെങ്കിലും എഴുതൂ",
+  "enquireSubmittedSuccessfullyTitle": "അന്വേഷണം സമർപ്പിച്ചു!",
+  "enquireSubmittedSuccessfullyDescription": "രജിസ്റ്റർ ചെയ്ത മൊബൈൽ നമ്പറിൽ നിങ്ങൾക്ക് എത്രയും വേഗം മറുപടി നൽകും",
+  "enquireSubmittedFailedTitle": "അന്വേഷണം സമർപ്പിക്കൽ പരാജയപ്പെട്ടു!",
+  "enquireSubmittedFailedDescription": "അന്വേഷണം സമർപ്പിക്കാനായില്ല",
+  "@enquireSubmittedFailedDescription": {
+    "placeholders": {
+      "error":{}
+    }
+  },
+  "sendMessage":"സന്ദേശം അയയ്ക്കുക",
+  "sendEmail":"ഇമെയിൽ അയയ്ക്കുക",
+
+  "pending": "തീർപ്പാക്കാത്തത്",
+  "completed": "പൂർത്തിയാക്കി",
+  "incompleted": "പൂർത്തിയാകാത്തത്",
+  "approved": "അംഗീകരിച്ചു",
+  "declined": "നിരസിച്ചു",
+  "shippingInProcess": "ഷിപ്പിംഗ് പ്രക്രിയയിലാണ്",
+  "quantity": "അളവ്",
+  "bookingRate": "ബുക്കിംഗ് നിരക്ക്",
+  "order": "ഓർഡർ ചെയ്യുക",
+
+  "orderStatements": "ഓർഡർ പ്രസ്താവനകൾ",
+  "newOrders": "പുതിയ ഓർഡറുകൾ",
+  "previousOrders": "മുൻ ഓർഡറുകൾ",
+  "noOrdersToShow":"കാണിക്കാൻ ഉത്തരവുകളൊന്നുമില്ല",
+  "noTransactionsToShow":"കാണിക്കാൻ ഇടപാടുകളൊന്നുമില്ല",
+  "noReceiptsToShow":"കാണിക്കാൻ രസീതുകളൊന്നുമില്ല",
+
+  "bill":"ബിൽ",
+  "balance":"ബാലൻസ്",
+  "paid": "പണം നൽകി",
+  "noBillsToShow": "കാണിക്കാൻ ബില്ലുകളൊന്നുമില്ല",
+  "factoryRate":"ഫാക്ടറി നിരക്ക്",
+  "orderNow":"ഇപ്പൊള് ആജ്ഞാപിക്കുക",
+  "placeOrder": "ഓർഡർ നൽകുക",
+
+  "netPrice": "മൊത്തം വില",
+  "orderQuantity":"ഓർഡർ അളവ്",
+  "orderAmount": "ഓർഡർ തുക",
+  "enterQuantityinMT": "എംടിയിൽ അളവ് നൽകുക",
+  "congratulations": "അഭിനന്ദനങ്ങൾ",
+  "congratulationsSuccessfullMessage":"നിങ്ങളുടെ ഓർഡർ വിജയകരമായി സ്ഥാപിച്ചു, അംഗീകാരം വരെ കാത്തിരിക്കുക അല്ലെങ്കിൽ ഞങ്ങളെ ബന്ധപ്പെടുക",
+  
+  "subscriptions": "സബ്സ്ക്രിപ്ഷനുകൾ",
+  "platinum":"പ്ലാറ്റിനം",
+  "getPlatinum":"പ്ലാറ്റിനം നേടുക",
+  "gold":"സ്വർണ്ണം",
+  "getGold": "സ്വർണം നേടൂ",
+  "days": "ദിവസങ്ങളിൽ",
+  "months": "മാസങ്ങൾ",
+  "years": "വർഷങ്ങൾ",
+
+  "checkBalance":"ബാലൻസ് പരിശോധിക്കുക",
+
+  "date":"തീയതി",
+  "sectionPipe":"വിഭാഗം പൈപ്പ്",
+  "roundPipe":"വൃത്താകൃതിയിലുള്ള പൈപ്പ്",
+  "squarePipe":"ചതുര പൈപ്പ്",
+  "swipeLeft":"ഇടത്തേക്ക് സ്വൈപ്പ് ചെയ്യുക",
+  "thickness":"കനം",
+  "weightPerPes":"ഓരോ പെസിലും ഭാരം",
+  "total":"ആകെ",
+  "searchHere":"ഇവിടെ തിരയുക",
+
+  "profile":"പ്രൊഫൈൽ"
 }

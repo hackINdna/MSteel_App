@@ -1,3 +1,94 @@
 {
-    
+  "send": "పంపండి",
+  "ok":"అలాగే",
+  "cancel": "రద్దు చేయండి",
+  "uploadPhoto": "ఫోటోను అప్‌లోడ్ చేయండి",
+  "contnue": "కొనసాగించు",
+  "update":"నవీకరించు",
+  "myOrders": "నా ఆదేశాలు",
+  "myBills": "నా బిల్లులు",
+  "myTransactions": "నా లావాదేవీలు",
+  "myReceipts": "నా రసీదులు",
+  "changeLanguage": "భాష మార్చు",
+  "stockStatements": "స్టాక్ స్టేట్‌మెంట్‌లు",
+  "myBalance":"నా బ్యాలెన్స్",
+  "subscriptionPlans":"సబ్‌స్క్రిప్షన్ ప్లాన్‌లు",
+  "contactAdmin": "నిర్వాహకుడిని సంప్రదించండి",
+  "logout": "లాగ్అవుట్",
+
+
+  "logoutMessage": "మీరు ఖచ్చితంగా అప్లికేషన్ నుండి లాగ్ అవుట్ చేయాలనుకుంటున్నారా",
+
+  "emptyFieldError": "ఫీల్డ్ ఖాళీగా ఉండకూడదు",
+  "elaborationRequiredError": "మరికొంత వివరణ అవసరం",
+
+  
+  "enquire":"విచారణ",
+  "enquireFieldHint": "ఇక్కడ ఏదైనా రాయండి",
+  "enquireSubmittedSuccessfullyTitle": "విచారణ సమర్పించబడింది",
+  "enquireSubmittedSuccessfullyDescription": "మీరు రిజిస్టర్డ్ మొబైల్ నంబర్ ద్వారా వీలైనంత త్వరగా ప్రతిస్పందిస్తారు",
+  "enquireSubmittedFailedTitle": "విచారణ సమర్పణ విఫలమైంది",
+  "enquireSubmittedFailedDescription": "విచారణను సమర్పించడం సాధ్యం కాలేదు",
+  "@enquireSubmittedFailedDescription": {
+    "placeholders": {
+      "error":{}
+    }
+  },
+  "sendMessage":"సందేశము పంపుము",
+  "sendEmail":"ఈ మెయిల్ పంపించండి",
+
+  "pending": "పెండింగ్‌లో ఉంది",
+  "completed": "పూర్తయింది",
+  "incompleted": "అసంపూర్తి",
+  "approved": "ఆమోదించబడింది",
+  "declined": "తిరస్కరించబడింది",
+  "shippingInProcess": "షిప్పింగ్ ప్రక్రియలో ఉంది",
+  "quantity": "పరిమాణం",
+  "bookingRate": "బుకింగ్ రేటు",
+  "order": "ఆర్డర్ చేయండి",
+
+  "orderStatements": "ఆర్డర్ స్టేట్‌మెంట్‌లు",
+  "newOrders": "కొత్త ఆర్డర్లు",
+  "previousOrders": "మునుపటి ఆర్డర్‌లు",
+  "noOrdersToShow":"చూపించడానికి ఆదేశాలు లేవు",
+  "noTransactionsToShow":"చూపించడానికి లావాదేవీలు లేవు",
+  "noReceiptsToShow":"చూపించడానికి రసీదులు లేవు",
+
+  "bill":"బిల్లు",
+  "balance":"సంతులనం",
+  "paid": "చెల్లించారు",
+  "noBillsToShow": "చూపించడానికి బిల్లులు లేవు",
+  "factoryRate":"ఫ్యాక్టరీ రేటు",
+  "orderNow":"ఇప్పుడే ఆర్డర్ చెయ్యండి",
+  "placeOrder": "ఆర్డర్ ఉంచండి",
+
+  "netPrice": "నికర ధర",
+  "orderQuantity":"ఆర్డర్ పరిమాణం",
+  "orderAmount": "ఆర్డర్ మొత్తం",
+  "enterQuantityinMT": "MTలో పరిమాణాన్ని నమోదు చేయండి",
+  "congratulations": "అభినందనలు",
+  "congratulationsSuccessfullMessage":"మీ ఆర్డర్ విజయవంతంగా ఉంచబడింది, దయచేసి ఆమోదం పొందే వరకు వేచి ఉండండి లేదా మమ్మల్ని సంప్రదించండి",
+  
+  "subscriptions": "చందాలు",
+  "platinum":"ప్లాటినం",
+  "getPlatinum":"ప్లాటినం పొందండి",
+  "gold":"బంగారం",
+  "getGold": "బంగారం పొందండి",
+  "days": "రోజులు",
+  "months": "నెలల",
+  "years": "సంవత్సరాలు",
+
+  "checkBalance":"బ్యాలెన్స్ తనిఖీ చేయండి",
+
+  "date":"తేదీ",
+  "sectionPipe":"విభాగం పైప్",
+  "roundPipe":"రౌండ్ పైప్",
+  "squarePipe":"స్క్వేర్ పైప్",
+  "swipeLeft":"ఎడమ స్వైప్",
+  "thickness":"మందం",
+  "weightPerPes":"ఒక్కో ముక్కకు బరువు",
+  "total":"మొత్తం",
+  "searchHere":"ఇక్కడ వెతకండి",
+
+  "profile":"ప్రొఫైల్"
 }

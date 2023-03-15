@@ -10,8 +10,9 @@ import 'package:m_steel/widgets/gradient_container.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class OtpVerificationScreen extends StatefulWidget {
-  const OtpVerificationScreen({super.key});
+  const OtpVerificationScreen({super.key, required this.pageState});
   static const routeName = "/otpVerification";
+  final String pageState;
 
   @override
   State<OtpVerificationScreen> createState() => _OtpVerificationScreenState();
@@ -52,7 +53,8 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
   }
 
   Future<void> _otpVerification(String otp) async {
-    await authService.otpVerification(context: context, otp: otp);
+    await authService.otpVerification(
+        context: context, otp: otp, pageState: widget.pageState);
 
     // if (otp != "0000") {
     //   if (infoFromForgotPassword != null) {

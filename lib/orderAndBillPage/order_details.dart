@@ -16,8 +16,9 @@ class OrderDetailsScreen extends StatefulWidget {
 class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
   @override
   Widget build(BuildContext context) {
-    final OrderDetailsData orderDetails =
-        ModalRoute.of(context)!.settings.arguments as OrderDetailsData;
+    final dynamic orderDetails =
+        ModalRoute.of(context)!.settings.arguments as dynamic;
+    print(orderDetails["date"]);
     return RootColumn(heading: "Order Details", children: [
       Align(
         alignment: Alignment.topRight,
@@ -39,15 +40,16 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
           ),
         ),
       ),
-      dividerHeading(stringDateToFormattedString(orderDetails.date)),
+      dividerHeading(stringDateToFormattedString(orderDetails["date"])),
       const SizedBox(height: 24),
       OrderDetailsWidget(
-        orderNumber: orderDetails.orderNumber,
-        bookingRate: orderDetails.bookingRate,
-        quantity: orderDetails.quantity,
-        company: orderDetails.company,
-        balanceQuantity: orderDetails.balanceQuantity,
-        status: getStatusFromString(orderDetails.status, context),
+        orderNumber: orderDetails["orderNumber"].toString(),
+        bookingRate: orderDetails["orderAmount"].toString(),
+        quantity: orderDetails["orderQuantity"].toString(),
+        company: orderDetails["product"]["stock"]["stockName"],
+        balanceQuantity: "hi",
+        // balanceQuantity: orderDetails.balanceQuantity,
+        status: getStatusFromString(orderDetails["status"], context),
       ),
     ]);
   }

@@ -1,3 +1,94 @@
 {
-    
+  "send": "पाठवा",
+  "ok":"ठीक आहे",
+  "cancel": "रद्द करा",
+  "uploadPhoto": "फोटो अपलोड करा",
+  "contnue": "सुरू",
+  "update":"अपडेट करा",
+  "myOrders": "माझे आदेश",
+  "myBills": "माझी बिले",
+  "myTransactions": "माझे व्यवहार",
+  "myReceipts": "माझ्या पावत्या",
+  "changeLanguage": "भाषा बदला",
+  "stockStatements": "स्टॉक स्टेटमेंट",
+  "myBalance":"माझी शिल्लक",
+  "subscriptionPlans":"सदस्यता योजना",
+  "contactAdmin": "प्रशासकाशी संपर्क साधा",
+  "logout": "बाहेर पडणे",
+
+
+  "logoutMessage": "तुम्‍हाला खात्री आहे की अर्जातून लॉग आउट करायचे आहे?",
+
+  "emptyFieldError": "फील्ड रिक्त असू शकत नाही",
+  "elaborationRequiredError": "थोडे अधिक विस्तार आवश्यक आहे",
+
+  
+  "enquire":"चौकशी",
+  "enquireFieldHint": "इथे काहीतरी लिहा",
+  "enquireSubmittedSuccessfullyTitle": "चौकशी सादर",
+  "enquireSubmittedSuccessfullyDescription": "नोंदणीकृत मोबाईल क्रमांकावर तुम्हाला शक्य तितक्या लवकर प्रतिसाद दिला जाईल",
+  "enquireSubmittedFailedTitle": "चौकशी सबमिशन अयशस्वी",
+  "enquireSubmittedFailedDescription": "चौकशी सबमिट करण्यात अक्षम",
+  "@enquireSubmittedFailedDescription": {
+    "placeholders": {
+      "error":{}
+    }
+  },
+  "sendMessage":"संदेश पाठवा",
+  "sendEmail":"ई - मेल पाठवा",
+
+  "pending": "प्रलंबित",
+  "completed": "पूर्ण झाले",
+  "incompleted": "अपूर्ण",
+  "approved": "मंजूर",
+  "declined": "नकार दिला",
+  "shippingInProcess": "शिपिंग प्रक्रियेत",
+  "quantity": "प्रमाण",
+  "bookingRate": "बुकिंग दर",
+  "order": "ऑर्डर करा",
+
+  "orderStatements": "ऑर्डर स्टेटमेंट्स",
+  "newOrders": "नवीन ऑर्डर",
+  "previousOrders": "मागील ऑर्डर",
+  "noOrdersToShow":"दर्शविण्यासाठी कोणतेही आदेश नाहीत",
+  "noTransactionsToShow":"दर्शविण्यासाठी कोणतेही व्यवहार नाहीत",
+  "noReceiptsToShow":"दाखवण्यासाठी कोणत्याही पावत्या नाहीत",
+
+  "bill":"बिल",
+  "balance":"शिल्लक",
+  "paid": "पैसे दिले",
+  "noBillsToShow": "दर्शविण्यासाठी बिल नाही",
+  "factoryRate":"कारखाना दर",
+  "orderNow":"लगेच मागवणे",
+  "placeOrder": "मागणी नोंद करा",
+
+  "netPrice": "निव्वळ किंमत",
+  "orderQuantity":"ऑर्डर प्रमाण",
+  "orderAmount": "ऑर्डरची रक्कम",
+  "enterQuantityinMT": "MT मध्ये प्रमाण प्रविष्ट करा",
+  "congratulations": "अभिनंदन",
+  "congratulationsSuccessfullMessage":"तुमची ऑर्डर यशस्वीरित्या देण्यात आली आहे कृपया मंजूरी मिळेपर्यंत प्रतीक्षा करा किंवा आमच्याशी संपर्क साधा",
+  
+  "subscriptions": "सदस्यता",
+  "platinum":"प्लॅटिनम",
+  "getPlatinum":"प्लॅटिनम मिळवा",
+  "gold":"सोने",
+  "getGold": "सोने मिळवा",
+  "days": "दिवस",
+  "months": "महिने",
+  "years": "वर्षे",
+
+  "checkBalance":"शिल्लक तपासा",
+
+  "date":"तारीख",
+  "sectionPipe":"विभाग पाईप",
+  "roundPipe":"गोल पाईप",
+  "squarePipe":"चौरस पाईप",
+  "swipeLeft":"डावीकडे स्वाइप करा",
+  "thickness":"जाडी",
+  "weightPerPes":"प्रति पेस वजन",
+  "total":"एकूण",
+  "searchHere":"येथे शोधा",
+
+  "profile":"प्रोफाइल"
 }

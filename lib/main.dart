@@ -1,41 +1,26 @@
 import "package:flutter/material.dart";
+import 'package:flutter/services.dart';
 import 'package:flutter_windowmanager/flutter_windowmanager.dart';
-import 'package:m_steel/orderAndBillPage/add_card.dart';
-import 'package:m_steel/authScreen/biometric_auth.dart';
-import 'package:m_steel/enquiryPage/enquire.dart';
-import 'package:m_steel/factoryRatePage/factory_rate.dart';
-import 'package:m_steel/authScreen/forgot_password.dart';
-import 'package:m_steel/homePage/home.dart';
-import 'package:m_steel/authScreen/login.dart';
-import 'package:m_steel/paymentPage/make_payment.dart';
-import 'package:m_steel/orderAndBillPage/my_balance.dart';
-import 'package:m_steel/orderAndBillPage/my_bills.dart';
-import 'package:m_steel/orderAndBillPage/my_orders.dart';
-import 'package:m_steel/orderAndBillPage/my_receipts.dart';
-import 'package:m_steel/orderAndBillPage/my_tranactions.dart';
-import 'package:m_steel/orderAndBillPage/order_details.dart';
-import 'package:m_steel/orderAndBillPage/order_whatsapp.dart';
-import 'package:m_steel/authScreen/otp_verification.dart';
-import 'package:m_steel/authScreen/reset_password.dart';
+import 'package:m_steel/providerClass/stockProvider.dart';
 import 'package:m_steel/providerClass/userProvider.dart';
 import 'package:m_steel/routes/generated_routes.dart';
-import 'package:m_steel/authScreen/signup.dart';
 import 'package:m_steel/splashScreen/splash_screen.dart';
-import 'package:m_steel/factoryRatePage/state_rates.dart';
-import 'package:m_steel/factoryRatePage/stock_statements.dart';
-import 'package:m_steel/subscriptionPage/subscription_plans.dart';
-import 'package:m_steel/profilePage/update_profile.dart';
 import 'package:m_steel/util/general.dart';
 import 'package:m_steel/util/language_constants.dart';
-import 'package:m_steel/authScreen/welcome.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(
       create: (context) => UserProvider(),
     ),
+    ChangeNotifierProvider(
+      create: (context) => StockProvider(),
+    )
   ], child: const TheApplication()));
 }
 

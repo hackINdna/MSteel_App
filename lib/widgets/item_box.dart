@@ -47,6 +47,7 @@ class ItemWidget extends StatelessWidget {
             alignment: Alignment.bottomRight,
             child: SizedBox(
               height: 30.3,
+              width: screenSize.width * 0.25,
               child: OutlinedButton(
                 onPressed: onItemPressed,
                 style: OutlinedButton.styleFrom(
@@ -54,9 +55,11 @@ class ItemWidget extends StatelessWidget {
                   side: const BorderSide(color: appBlueBg),
                   padding: const EdgeInsets.symmetric(horizontal: 12),
                 ),
-                child: Text(
-                  transText(context).orderNow,
-                  style: const TextStyle(fontSize: 12),
+                child: FittedBox(
+                  child: Text(
+                    transText(context).orderNow,
+                    style: const TextStyle(fontSize: 12),
+                  ),
                 ),
               ),
             ),

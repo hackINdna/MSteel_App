@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:m_steel/factoryRatePage/retailRates.dart';
 import 'package:m_steel/orderAndBillPage/add_card.dart';
 import 'package:m_steel/authScreen/biometric_auth.dart';
 import 'package:m_steel/enquiryPage/enquire.dart';
@@ -60,7 +61,7 @@ Route<dynamic> generatedRoute(RouteSettings routeSettings) {
     case OtpVerificationScreen.routeName:
       return MaterialPageRoute(
         settings: routeSettings,
-        builder: (_) => const OtpVerificationScreen(),
+        builder: (_) => const OtpVerificationScreen(pageState: ""),
       );
 
     case BiometricAuthScreen.routeName:
@@ -132,7 +133,13 @@ Route<dynamic> generatedRoute(RouteSettings routeSettings) {
     case StateRatesScreen.routeName:
       return MaterialPageRoute(
         settings: routeSettings,
-        builder: (_) => const StateRatesScreen(),
+        builder: (_) => const StateRatesScreen(stateName: ""),
+      );
+
+    case RetailRates.routeName:
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (_) => const RetailRates(),
       );
 
     case MyBalanceScreen.routeName:
@@ -168,7 +175,7 @@ Route<dynamic> generatedRoute(RouteSettings routeSettings) {
     case PlaceOrderWhatsappScreen.routeName:
       return MaterialPageRoute(
         settings: routeSettings,
-        builder: (_) => const PlaceOrderWhatsappScreen(),
+        builder: (_) => PlaceOrderWhatsappScreen(),
       );
 
     default:

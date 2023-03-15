@@ -1,29 +1,111 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:m_steel/common/showCircularProgressIndicator.dart';
 import 'package:m_steel/util/general.dart';
 import 'package:m_steel/util/language_constants.dart';
 import 'package:m_steel/widgets/box_text_widgets.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart' as pw;
+import 'package:permission_handler/permission_handler.dart';
 
 class ReceiptWidget extends StatelessWidget {
   final String orderNumber,
-      billNumber,
+      // billNumber,
       company,
       quantity,
-      balanceQuantity,
-      bookingRate,
+      // balanceQuantity,
+      paidAmount,
       amount,
       billDownloadLink;
+  final dynamic content;
   final StatusContent status;
   const ReceiptWidget(
       {super.key,
       required this.orderNumber,
-      required this.billNumber,
+      // required this.billNumber,
       required this.company,
       required this.quantity,
-      required this.balanceQuantity,
-      required this.bookingRate,
+      // required this.balanceQuantity,
+      required this.content,
+      required this.paidAmount,
       required this.amount,
       required this.billDownloadLink,
       required this.status});
+
+  Future<bool> _requestPermission(Permission permission) async {
+    if (await permission.isGranted) {
+      return true;
+    } else {
+      var result = await permission.request();
+      if (result == PermissionStatus.granted) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  Future<void> generatePDF() async {
+    // Create a new PDF document.
+    final pdf = pw.Document();
+
+    // Add content to the PDF.
+    pdf.addPage(
+      pw.Page(
+        build: (context) => pw.Center(
+          child: pw.Column(
+            mainAxisAlignment: pw.MainAxisAlignment.center,
+            children: [
+              pw.Text('Date: ${content["paymentDate"]}'),
+              pw.Text('Order Number: ${content["orderNumber"]}'),
+              pw.Text('Name: ${content["fullName"]}'),
+              pw.Text('Phone number: ${content["number"]}'),
+              pw.Text('Product Name: ${content["productName"]}'),
+              pw.Text('Net Price: ${content["netPrice"]}'),
+              pw.Text('Order Quantity: ${content["orderQuantity"]}'),
+              pw.Text('Total Amount: ${content["totalOutstandingPayment"]}'),
+              pw.Text('Paid Amount: ${content["totalPaidAmount"]}'),
+            ],
+          ),
+        ),
+      ),
+    );
+
+    // Get the path to the Downloads folder.
+    if (await _requestPermission(Permission.storage)) {
+      var downloadsDirectory = await getExternalStorageDirectory();
+      // String newPath = "";
+      // print(downloadsDirectory);
+      // List<String> paths = downloadsDirectory!.path.split("/");
+      // for (int x = 1; x < paths.length; x++) {
+      //   String folder = paths[x];
+      //   if (folder != "Android") {
+      //     newPath += "/" + folder;
+      //   } else {
+      //     break;
+      //   }
+      // }
+      // newPath = "$newPath/MSteel";
+
+      // downloadsDirectory = Directory(newPath);
+      // bool hasExisted = await downloadsDirectory.exists();
+      // if (!hasExisted) {
+      //   downloadsDirectory.create();
+      // }
+      final downloadFilePath =
+          '${downloadsDirectory!.path}/my_pdf_file${DateTime.now()}.pdf';
+
+      // Save the PDF to the Downloads folder.
+      final file = File(downloadFilePath);
+      await file.writeAsBytes(await pdf.save());
+
+      // Show a message to the user that the PDF has been saved.
+      print('PDF saved to: $downloadFilePath');
+    } else {
+      print("no");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,13 +152,13 @@ class ReceiptWidget extends StatelessWidget {
                             fontWeight: FontWeight.w600,
                           ),
                         ),
-                        Text(
-                          "${transText(context).bill} #$billNumber",
-                          style: const TextStyle(
-                            fontSize: 11.1,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
+                        // Text(
+                        //   "${transText(context).bill} #$billNumber",
+                        //   style: const TextStyle(
+                        //     fontSize: 11.1,
+                        //     fontWeight: FontWeight.w600,
+                        //   ),
+                        // ),
                       ],
                     ),
                   ),
@@ -85,8 +167,15 @@ class ReceiptWidget extends StatelessWidget {
                     child: Material(
                       color: Colors.transparent,
                       child: IconButton(
-                        onPressed: () => showSnackBar(
-                            context, "Downloaded Receipt Successfully."),
+                        onPressed: () async {
+                          showCircularProgressIndicator(context: context);
+                          navigatorPop() => Navigator.pop(context);
+                          await generatePDF();
+                          navigatorPop();
+                          showSnackBar(context, "Receipt Downloaded");
+                        },
+                        // onPressed: () => showSnackBar(
+                        //     context, "Downloaded Receipt Successfully."),
                         icon: const Icon(Icons.download, color: appBlueBg),
                       ),
                     ),
@@ -109,16 +198,16 @@ class ReceiptWidget extends StatelessWidget {
                       width: screenSize.width * 0.21,
                       child: BoxGrayTextSmaller(
                           "${transText(context).quantity}: $quantity")),
-                  Container(
-                      alignment: Alignment.center,
-                      width: screenSize.width * 0.27,
-                      child:
-                          BoxGrayTextSmaller("Balance Qty: $balanceQuantity")),
+                  // Container(
+                  //     alignment: Alignment.center,
+                  //     width: screenSize.width * 0.27,
+                  //     child:
+                  //         BoxGrayTextSmaller("Balance Qty: $balanceQuantity")),
                   Container(
                     alignment: Alignment.topRight,
                     width: screenSize.width * 0.37,
                     child: BoxGrayTextSmaller(
-                        "${transText(context).bookingRate}: $bookingRate"),
+                        "${transText(context).paid}: $paidAmount"),
                   ),
                 ],
               ),

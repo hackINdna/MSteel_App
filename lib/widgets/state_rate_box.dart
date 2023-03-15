@@ -54,12 +54,14 @@ class StateRateWidget extends StatelessWidget {
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const SizedBox(height: 8),
               SmallerBoxText("INR $amount"),
               const SizedBox(height: 12),
               SizedBox(
                 height: 30.3,
+                width: screenSize.width * 0.25,
                 child: OutlinedButton(
                   onPressed: onCategoryPressed,
                   style: OutlinedButton.styleFrom(
@@ -67,9 +69,11 @@ class StateRateWidget extends StatelessWidget {
                     side: const BorderSide(color: appBlueBg),
                     padding: const EdgeInsets.symmetric(horizontal: 12),
                   ),
-                  child: Text(
-                    transText(context).orderNow,
-                    style: const TextStyle(fontSize: 12),
+                  child: FittedBox(
+                    child: Text(
+                      transText(context).orderNow,
+                      style: const TextStyle(fontSize: 12),
+                    ),
                   ),
                 ),
               ),

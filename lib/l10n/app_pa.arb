@@ -1,3 +1,94 @@
 {
-    
+  "send": "ਭੇਜੋ",
+  "ok":"ਠੀਕ ਹੈ",
+  "cancel": "ਰੱਦ ਕਰੋ",
+  "uploadPhoto": "ਫੋਟੋ ਅੱਪਲੋਡ ਕਰੋ",
+  "contnue": "ਜਾਰੀ ਰੱਖੋ",
+  "update":"ਅੱਪਡੇਟ ਕਰੋ",
+  "myOrders": "ਮੇਰੇ ਹੁਕਮ",
+  "myBills": "ਮੇਰੇ ਬਿੱਲ",
+  "myTransactions": "ਮੇਰੇ ਲੈਣ-ਦੇਣ",
+  "myReceipts": "ਮੇਰੀਆਂ ਰਸੀਦਾਂ",
+  "changeLanguage": "ਭਾਸ਼ਾ ਬਦਲੋ",
+  "stockStatements": "ਸਟਾਕ ਬਿਆਨ",
+  "myBalance":"ਮੇਰਾ ਸੰਤੁਲਨ",
+  "subscriptionPlans":"ਗਾਹਕੀ ਯੋਜਨਾਵਾਂ",
+  "contactAdmin": "ਪ੍ਰਬੰਧਕ ਸੰਪਰਕ",
+  "logout": "ਲਾੱਗ ਆਊਟ",
+
+
+  "logoutMessage": "ਕੀ ਤੁਸੀਂ ਯਕੀਨੀ ਤੌਰ ''ਤੇ ਐਪਲੀਕੇਸ਼ਨ ਤੋਂ ਲੌਗਆਉਟ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ",
+
+  "emptyFieldError": "ਫੀਲਡ ਖਾਲੀ ਨਹੀਂ ਹੋ ਸਕਦਾ।",
+  "elaborationRequiredError": "ਥੋੜਾ ਹੋਰ ਵਿਸਤਾਰ ਦੀ ਲੋੜ ਹੈ।",
+
+  
+  "enquire":"ਪੜਤਾਲ",
+  "enquireFieldHint": "ਇੱਥੇ ਕੁਝ ਲਿਖੋ",
+  "enquireSubmittedSuccessfullyTitle": "ਜਾਂਚ ਦਾਇਰ ਕੀਤੀ ਗਈ",
+  "enquireSubmittedSuccessfullyDescription": "ਤੁਹਾਨੂੰ ਰਜਿਸਟਰਡ ਮੋਬਾਈਲ ਨੰਬਰ ''ਤੇ ਜਿੰਨੀ ਜਲਦੀ ਹੋ ਸਕੇ ਜਵਾਬ ਦਿੱਤਾ ਜਾਵੇਗਾ।",
+  "enquireSubmittedFailedTitle": "ਪੁੱਛਗਿੱਛ ਸਪੁਰਦਗੀ ਅਸਫਲ ਰਹੀ",
+  "enquireSubmittedFailedDescription": "ਪੁੱਛਗਿੱਛ ਦਰਜ ਕਰਨ ਵਿੱਚ ਅਸਮਰੱਥ।",
+  "@enquireSubmittedFailedDescription": {
+    "placeholders": {
+      "error":{}
+    }
+  },
+  "sendMessage":"ਸੁਨੇਹਾ ਭੇਜੋ",
+  "sendEmail":"ਈਮੇਲ ਭੇਜੋ",
+
+  "pending": "ਬਕਾਇਆ",
+  "completed": "ਪੂਰਾ ਹੋਇਆ",
+  "incompleted": "ਅਧੂਰਾ",
+  "approved": "ਨੂੰ ਮਨਜ਼ੂਰੀ ਦਿੱਤੀ",
+  "declined": "ਅਸਵੀਕਾਰ ਕੀਤਾ",
+  "shippingInProcess": "ਸ਼ਿਪਿੰਗ ਪ੍ਰਕਿਰਿਆ ਵਿੱਚ ਹੈ",
+  "quantity": "ਮਾਤਰਾ",
+  "bookingRate": "ਬੁਕਿੰਗ ਦਰ",
+  "order": "ਆਰਡਰ",
+
+  "orderStatements": "ਆਰਡਰ ਸਟੇਟਮੈਂਟਸ",
+  "newOrders": "ਨਵੇਂ ਆਰਡਰ",
+  "previousOrders": "ਪਿਛਲੇ ਆਰਡਰ",
+  "noOrdersToShow":"ਦਿਖਾਉਣ ਲਈ ਕੋਈ ਆਰਡਰ ਨਹੀਂ",
+  "noTransactionsToShow":"ਦਿਖਾਉਣ ਲਈ ਕੋਈ ਲੈਣ-ਦੇਣ ਨਹੀਂ",
+  "noReceiptsToShow":"ਦਿਖਾਉਣ ਲਈ ਕੋਈ ਰਸੀਦਾਂ ਨਹੀਂ ਹਨ",
+
+  "bill":"ਬਿੱਲ",
+  "balance":"ਸੰਤੁਲਨ",
+  "paid": "ਦਾ ਭੁਗਤਾਨ",
+  "noBillsToShow": "ਦਿਖਾਉਣ ਲਈ ਕੋਈ ਬਿੱਲ ਨਹੀਂ ਹਨ",
+  "factoryRate":"ਫੈਕਟਰੀ ਦਰ",
+  "orderNow":"ਹੁਣੇ ਆਰਡਰ ਕਰੋ",
+  "placeOrder": "ਹੁਕਮ ਕਰੋ",
+
+  "netPrice": "ਸ਼ੁੱਧ ਕੀਮਤ",
+  "orderQuantity":"ਆਰਡਰ ਦੀ ਮਾਤਰਾ",
+  "orderAmount": "ਆਰਡਰ ਦੀ ਮਾਤਰਾ",
+  "enterQuantityinMT": "MT ਵਿੱਚ ਮਾਤਰਾ ਦਰਜ ਕਰੋ",
+  "congratulations": "ਵਧਾਈਆਂ",
+  "congratulationsSuccessfullMessage":"ਤੁਹਾਡਾ ਆਰਡਰ ਸਫਲਤਾਪੂਰਵਕ ਰੱਖਿਆ ਗਿਆ ਹੈ ਕਿਰਪਾ ਕਰਕੇ ਮਨਜ਼ੂਰੀ ਹੋਣ ਤੱਕ ਉਡੀਕ ਕਰੋ ਜਾਂ ਸਾਡੇ ਨਾਲ ਸੰਪਰਕ ਕਰੋ।",
+  
+  "subscriptions": "ਗਾਹਕੀਆਂ",
+  "platinum":"ਪਲੈਟੀਨਮ",
+  "getPlatinum":"ਪਲੈਟੀਨਮ ਪ੍ਰਾਪਤ ਕਰੋ",
+  "gold":"ਸੋਨਾ",
+  "getGold": "ਸੋਨਾ ਪ੍ਰਾਪਤ ਕਰੋ",
+  "days": "ਦਿਨ",
+  "months": "ਮਹੀਨੇ",
+  "years": "ਸਾਲ",
+
+  "checkBalance":"ਬਕਾਇਆ ਚੈੱਕ ਕਰੋ",
+
+  "date":"ਤਾਰੀਖ਼",
+  "sectionPipe":"ਸੈਕਸ਼ਨ ਪਾਈਪ",
+  "roundPipe":"ਗੋਲ ਪਾਈਪ",
+  "squarePipe":"ਵਰਗ ਪਾਈਪ",
+  "swipeLeft":"ਖੱਬੇ ਪਾਸੇ ਸਵਾਈਪ ਕਰੋ",
+  "thickness":"ਮੋਟਾਈ",
+  "weightPerPes":"ਪ੍ਰਤੀ ਟੁਕੜਾ ਭਾਰ",
+  "total":"ਕੁੱਲ",
+  "searchHere":"ਇੱਥੇ ਖੋਜ ਕਰੋ",
+
+  "profile":"ਪ੍ਰੋਫਾਈਲ"
 }

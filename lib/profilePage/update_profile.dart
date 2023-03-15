@@ -4,10 +4,15 @@ import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:m_steel/auth/auth_service.dart';
+import 'package:m_steel/common/showCircularProgressIndicator.dart';
 import 'package:m_steel/util/general.dart';
 import 'package:m_steel/util/language_constants.dart';
 import 'package:m_steel/widgets/basic_root_screen.dart';
 import 'package:m_steel/widgets/bottom_sheet_icon_button.dart';
+import 'package:provider/provider.dart';
+
+import '../providerClass/userProvider.dart';
 
 class UpdateProfileScreen extends StatefulWidget {
   const UpdateProfileScreen({super.key});
@@ -20,18 +25,20 @@ class UpdateProfileScreen extends StatefulWidget {
 class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
   File? image;
   bool _imageSelected = false;
-  final _cityController = TextEditingController();
-  final _stateController = TextEditingController();
-  final _nameController = TextEditingController();
-  final _phoneNumberController = TextEditingController();
-  final _emailController = TextEditingController();
-  final _addressController = TextEditingController();
-  final _zipCodeController = TextEditingController();
+  TextEditingController _cityController = TextEditingController();
+  TextEditingController _stateController = TextEditingController();
+  TextEditingController _nameController = TextEditingController();
+  TextEditingController _phoneNumberController = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _addressController = TextEditingController();
+  TextEditingController _zipCodeController = TextEditingController();
   String? _zipCodeErrorText,
       _nameErrorText,
       _emailErrorText,
       _addressErrorText,
       _phoneNumberErrorText;
+
+  String? _businessType;
 
   void _fillPreText() {
     _nameController.text = "Terrence Stracke";
@@ -116,16 +123,17 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
 
   void _submit() async {
     print("submit->");
-    if (!validate()) {
-      print("vlaidation faied");
+    if (validate()) {
+      showCircularProgressIndicator(context: context);
+      await updateProfile();
       return;
     }
     //submit form here
-    Navigator.of(context).pop();
-    await Future.delayed(const Duration(milliseconds: 260));
-    showSnackBar(context, "Profile has been updated");
-    print(
-        "New values:name = ${_nameController.text}\n phone=${_phoneNumberController.text}\nemail=${_emailController.text}\naddress=${_addressController.text},${_cityController.text},${_stateController.text},zip=${_zipCodeController.text}");
+    // Navigator.of(context).pop();
+    // await Future.delayed(const Duration(milliseconds: 260));
+    // showSnackBar(context, "Profile has been updated");
+    // print(
+    //     "New values:name = ${_nameController.text}\n phone=${_phoneNumberController.text}\nemail=${_emailController.text}\naddress=${_addressController.text},${_cityController.text},${_stateController.text},zip=${_zipCodeController.text}");
   }
 
   bool validate() {
@@ -156,14 +164,14 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
       _phoneNumberErrorText = null;
     }
     //address
-    if (_addressController.text.isNotEmpty) {
-      if (_addressController.text.length < 5) {
-        _addressErrorText = "Address length inappropriate";
-        valid = false;
-      } else {
-        _addressErrorText = null;
-      }
-    }
+    // if (_addressController.text.isNotEmpty) {
+    //   if (_addressController.text.length < 5) {
+    //     _addressErrorText = "Address length inappropriate";
+    //     valid = false;
+    //   } else {
+    //     _addressErrorText = null;
+    //   }
+    // }
     //zip
     if (_zipCodeController.text.length != 6) {
       valid = false;
@@ -176,10 +184,35 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
     return valid;
   }
 
+  AuthService authService = AuthService();
+  Future<void> updateProfile() async {
+    await authService.updateProfile(
+        context: context,
+        fullName: _nameController.text,
+        number: _phoneNumberController.text,
+        email: _emailController.text,
+        address: _addressController.text,
+        businessType: _businessType!,
+        zipCode: _zipCodeController.text,
+        city: _cityController.text,
+        state: _stateController.text,
+        profilePic: image!.path);
+  }
+
   @override
   void initState() {
     super.initState();
-    _fillPreText();
+    var uu = Provider.of<UserProvider>(context, listen: false).user;
+    // _fillPreText();
+    _nameController.text = uu.fullName;
+    _phoneNumberController.text = uu.number.substring(3, 13);
+    _emailController.text = uu.email;
+    _addressController.text = uu.address;
+    _zipCodeController.text = uu.zipCode;
+    _cityController.text = uu.city;
+    _stateController.text = uu.state;
+
+    _businessType = uu.businessType;
   }
 
   @override
@@ -196,6 +229,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var user = Provider.of<UserProvider>(context).user;
     var screenSize = MediaQuery.of(context).size;
     return RootColumn(
       screenPadding: const EdgeInsets.symmetric(vertical: 20, horizontal: 21),
@@ -222,10 +256,13 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                         width: 200,
                         fit: BoxFit.cover,
                       )
-                    : Image.asset(
-                        "assets/images/disp_dp.jpg",
-                        fit: BoxFit.cover,
-                      ),
+                    : user.profilePic == ""
+                        ? Icon(Icons.person,
+                            color: Colors.grey, size: screenSize.height * 0.10)
+                        : Image.network(
+                            user.profilePic,
+                            fit: BoxFit.cover,
+                          ),
               ),
               Positioned(
                   bottom: screenSize.width * 0.026,
@@ -310,6 +347,42 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
           ),
           controller: _addressController,
         ),
+        const SizedBox(height: 20),
+
+        // Business Type
+        Text(
+          "Business Type",
+          style: formFieldHeadingTextStyle(),
+        ),
+        const SizedBox(height: 10),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(5),
+            // border: (_businessTypeError)
+            //     ? Border.all(width: 2, color: Colors.red)
+            //     : null,
+          ),
+          child: DropdownButtonHideUnderline(
+            child: DropdownButton(
+              isExpanded: true,
+              hint: const Text("Business"),
+              value: _businessType,
+              items: businessTypeList
+                  .map((business) => DropdownMenuItem(
+                        value: business,
+                        child: Text(business),
+                      ))
+                  .toList(),
+              onChanged: (business) => setState(() {
+                _businessType = business;
+              }),
+              borderRadius: BorderRadius.circular(8),
+            ),
+          ),
+        ),
+
         const SizedBox(height: 20),
 
         //zip code

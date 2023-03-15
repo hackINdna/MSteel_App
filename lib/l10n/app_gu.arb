@@ -1,3 +1,94 @@
 {
-    
+  "send": "મોકલો",
+  "ok":"બરાબર",
+  "cancel": "રદ કરો",
+  "uploadPhoto": "અપલોડ કરો ફોટો",
+  "contnue": "ચાલુ રાખો",
+  "update":"અપડેટ કરો",
+  "myOrders": "મારા ઓર્ડર",
+  "myBills": "મારા બીલ",
+  "myTransactions": "મારા વ્યવહારો",
+  "myReceipts": "મારી રસીદો",
+  "changeLanguage": "ભાષા બદલો",
+  "stockStatements": "સ્ટોક સ્ટેટમેન્ટ",
+  "myBalance":"મારું બેલેન્સ",
+  "subscriptionPlans":"સબ્સ્ક્રિપ્શન યોજનાઓ",
+  "contactAdmin": "એડમિન સંપર્ક",
+  "logout": "લૉગ આઉટ",
+
+
+  "logoutMessage": "શું તમે ખરેખર એપ્લિકેશનમાંથી લોગઆઉટ કરવા માંગો છો?",
+
+  "emptyFieldError": "ફીલ્ડ ખાલી ન હોઈ શકે",
+  "elaborationRequiredError": "થોડી વધુ વિસ્તરણની જરૂર છે",
+
+  
+  "enquire":"તપાસ",
+  "enquireFieldHint": "અહીં કંઈક લખો",
+  "enquireSubmittedSuccessfullyTitle": "પૂછપરછ સબમિટ!",
+  "enquireSubmittedSuccessfullyDescription": "રજિસ્ટર્ડ મોબાઇલ નંબર પર તમને શક્ય તેટલી વહેલી તકે જવાબ આપવામાં આવશે",
+  "enquireSubmittedFailedTitle": "પૂછપરછ સબમિશન નિષ્ફળ થયું!",
+  "enquireSubmittedFailedDescription": "પૂછપરછ સબમિટ કરવામાં અસમર્થ ",
+  "@enquireSubmittedFailedDescription": {
+    "placeholders": {
+      "error":{}
+    }
+  },
+  "sendMessage":"સંદેશ મોકલો",
+  "sendEmail":"ઈ - મેલ મોકલો",
+
+  "pending": "બાકી છે",
+  "completed": "Completed",
+  "incompleted": "અપૂર્ણ",
+  "approved": "મંજૂર",
+  "declined": "નકારવું",
+  "shippingInProcess": "શિપિંગ પ્રક્રિયામાં છે",
+  "quantity": "જથ્થો",
+  "bookingRate": "બુકિંગ દર",
+  "order": "ઓર્ડર",
+
+  "orderStatements": "ઓર્ડર નિવેદનો",
+  "newOrders": "નવા ઓર્ડર્સ",
+  "previousOrders": "અગાઉના ઓર્ડર્સ",
+  "noOrdersToShow":"બતાવવા માટે કોઈ ઓર્ડર નથી",
+  "noTransactionsToShow":"બતાવવા માટે કોઈ વ્યવહારો નથી",
+  "noReceiptsToShow":"બતાવવા માટે કોઈ રસીદો નથી",
+
+  "bill":"બિલ",
+  "balance":"સંતુલન",
+  "paid": "ચૂકવેલ",
+  "noBillsToShow": "બતાવવા માટે કોઈ બિલ નથી",
+  "factoryRate":"ફેક્ટરી દર",
+  "orderNow":"હવે ઓર્ડર કરો",
+  "placeOrder": "ઓર્ડર કરો",
+
+  "netPrice": "ચોખ્ખી કિંમત",
+  "orderQuantity":"ઓર્ડર જથ્થો",
+  "orderAmount": "ઓર્ડરની રકમ",
+  "enterQuantityinMT": "MT માં જથ્થો દાખલ કરો",
+  "congratulations": "અભિનંદન",
+  "congratulationsSuccessfullMessage":"તમારો ઓર્ડર સફળતાપૂર્વક મૂકવામાં આવ્યો છે, કૃપા કરીને મંજૂરી મળે ત્યાં સુધી રાહ જુઓ અથવા અમારો સંપર્ક કરો",
+  
+  "subscriptions": "સબ્સ્ક્રિપ્શન્સ",
+  "platinum":"પ્લેટિનમ",
+  "getPlatinum":"પ્લેટિનમ મેળવો",
+  "gold":"સોનું",
+  "getGold": "સોનું મેળવો",
+  "days": "દિવસ",
+  "months": "મહિનાઓ",
+  "years": "વર્ષ",
+
+  "checkBalance":"બેલેન્સ તપાસો",
+
+  "date":"તારીખ",
+  "sectionPipe":"વિભાગ પાઇપ",
+  "roundPipe":"રાઉન્ડ પાઇપ",
+  "squarePipe":"ચોરસ પાઇપ",
+  "swipeLeft":"ડાબે સ્વાઇપ કરો",
+  "thickness":"જાડાઈ",
+  "weightPerPes":"પેસ દીઠ વજન",
+  "total":"કુલ",
+  "searchHere":"અહીં શોધો",
+
+  "profile":"પ્રોફાઇલ"
 }

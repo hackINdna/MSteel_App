@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:m_steel/auth/auth_service.dart';
 import 'package:m_steel/data_models/models.dart';
 import 'package:m_steel/factoryRatePage/state_rates.dart';
 import 'package:m_steel/util/general.dart';
@@ -15,6 +16,457 @@ class FactoryRateScreen extends StatefulWidget {
 }
 
 class _FactoryRateScreenState extends State<FactoryRateScreen> {
+  AuthService authService = AuthService();
+
+  List<String>? stateList;
+
+  void getStateData() async {
+    stateList = await authService.stateStockMap(context: context);
+    markersList = [];
+    tooltipList = [
+      "West Bengal\nEx-West Bengal",
+      "Andaman & Nicobar\nEx-Andaman & Nicobar",
+      // "Chandigarh\nEx-Chandigarh",
+      "DDDNH\nEx-Daman and Diu and Dadra and Nagar Haveli",
+      "Delhi\nEx-Delhi",
+      "Haryana\nEx-Haryana",
+      "Jharkhand\nEx-Jharkhand",
+      "Karnataka\nEx-Karnataka",
+      "Kerala\nEx-Kerala",
+      "Lakshadweep\nEx-Lakshadweep",
+      "Madhya Pradesh\nEx-Madhya Pradesh",
+      "Maharashtra\nEx-Maharashtra",
+      "Puducherry\nEx-Puducherry",
+      "Tamil Nadu\nEx-Tamil Nadu",
+      "Chhattisgarh\nEx-Chhattisgarh",
+      "Telangana\nEx-Telangana",
+      "Andhra Pradesh\nEx-Andhra Pradesh",
+      "Goa\nEx-Goa",
+      "Himachal Pradesh\nEx-Himachal Pradesh",
+      "Punjab\nEx-Punjab",
+      "Rajasthan\nEx-Rajasthan",
+      "Gujarat\nEx-Gujarat",
+      "Uttarakhand\nEx-Uttarakhand",
+      "Uttar Pradesh\nEx-Uttar Pradesh",
+      "Sikkim\nEx-Sikkim",
+      "Assam\nEx-Assam",
+      "Arunachal Pradesh\nEx-Arunachal Pradesh",
+      "Nagaland\nEx-Nagaland",
+      "Manipur\nEx-Manipur",
+      "Mizoram\nEx-Mizoram",
+      "Tripura\nEx-Tripura",
+      "Meghalaya\nEx-Meghalaya",
+      "Bihar\nEx-Bihar",
+      "Ladakh\nEx-Ladakh",
+      "Jammu and Kashmir\nEx-Jammu and Kashmir",
+      "Odisha\nEx-Odisha",
+    ];
+
+    for (var i = 0; i < stateList!.length; i++) {
+      if (stateList![i] == "West Bengal") {
+        markersList.add(
+          const MapMarker(
+            longitude: 87.68558819999998,
+            latitude: 22.996494800384152,
+            child: Icon(
+              Icons.location_on,
+              color: appBlueBg,
+            ),
+          ),
+        );
+      } else if (stateList![i] == "Andaman & Nicobar") {
+        markersList.add(
+          const MapMarker(
+            longitude: 92.57713289999998,
+            latitude: 10.2188343994493,
+            child: Icon(
+              Icons.location_on,
+              color: appBlueBg,
+            ),
+          ),
+        );
+      }
+      // else if (stateList![i] == "Chandigarh") {
+      //   markersList.add(
+      //     const MapMarker(
+      //       longitude: 76.78000565,
+      //       latitude: 30.71999697,
+      //       child: Icon(
+      //         Icons.location_on,
+      //         color: appBlueBg,
+      //       ),
+      //     ),
+      //   );
+      // }
+      else if (stateList![i] == "Daman and Diu and Dadra and Nagar Haveli") {
+        markersList.add(
+          const MapMarker(
+            longitude: 73.0166178,
+            latitude: 20.26657819,
+            child: Icon(
+              Icons.location_on,
+              color: appBlueBg,
+            ),
+          ),
+        );
+      } else if (stateList![i] == "Delhi") {
+        markersList.add(
+          const MapMarker(
+            longitude: 77.1716954,
+            latitude: 28.62739279987712,
+            child: Icon(
+              Icons.location_on,
+              color: appBlueBg,
+            ),
+          ),
+        );
+      } else if (stateList![i] == "Haryana") {
+        markersList.add(
+          const MapMarker(
+            longitude: 76,
+            latitude: 28.99999999983744,
+            child: Icon(
+              Icons.location_on,
+              color: appBlueBg,
+            ),
+          ),
+        );
+      } else if (stateList![i] == "Jharkhand") {
+        markersList.add(
+          const MapMarker(
+            longitude: 85.25573009999998,
+            latitude: 23.455980900363866,
+            child: Icon(
+              Icons.location_on,
+              color: appBlueBg,
+            ),
+          ),
+        );
+      } else if (stateList![i] == "Karnataka") {
+        markersList.add(
+          const MapMarker(
+            longitude: 75.7223521,
+            latitude: 14.520389599850693,
+            child: Icon(
+              Icons.location_on,
+              color: appBlueBg,
+            ),
+          ),
+        );
+      } else if (stateList![i] == "Kerala") {
+        markersList.add(
+          const MapMarker(
+            longitude: 76.5120396,
+            latitude: 10.352874399456772,
+            child: Icon(
+              Icons.location_on,
+              color: appBlueBg,
+            ),
+          ),
+        );
+      } else if (stateList![i] == "Lakshadweep") {
+        markersList.add(
+          const MapMarker(
+            longitude: 72.81710689999998,
+            latitude: 10.88327709949039,
+            child: Icon(
+              Icons.location_on,
+              color: appBlueBg,
+            ),
+          ),
+        );
+      } else if (stateList![i] == "Madhya Pradesh") {
+        markersList.add(
+          const MapMarker(
+            longitude: 77.53407189999999,
+            latitude: 23.814341900344257,
+            child: Icon(
+              Icons.location_on,
+              color: appBlueBg,
+            ),
+          ),
+        );
+      } else if (stateList![i] == "Maharashtra") {
+        markersList.add(
+          const MapMarker(
+            longitude: 75.6741579,
+            latitude: 18.90683560030784,
+            child: Icon(
+              Icons.location_on,
+              color: appBlueBg,
+            ),
+          ),
+        );
+      } else if (stateList![i] == "Puducherry") {
+        markersList.add(
+          const MapMarker(
+            longitude: 79.83000037,
+            latitude: 11.93499371,
+            child: Icon(
+              Icons.location_on,
+              color: appBlueBg,
+            ),
+          ),
+        );
+      } else if (stateList![i] == "Tamil Nadu") {
+        markersList.add(
+          const MapMarker(
+            longitude: 78.36653469999999,
+            latitude: 10.909433399492215,
+            child: Icon(
+              Icons.location_on,
+              color: appBlueBg,
+            ),
+          ),
+        );
+      } else if (stateList![i] == "Chhattisgarh") {
+        markersList.add(
+          const MapMarker(
+            longitude: 81.8406351,
+            latitude: 21.66373590041017,
+            child: Icon(
+              Icons.location_on,
+              color: appBlueBg,
+            ),
+          ),
+        );
+      } else if (stateList![i] == "Telangana") {
+        markersList.add(
+          const MapMarker(
+            longitude: 79.1151663,
+            latitude: 17.849591900220112,
+            child: Icon(
+              Icons.location_on,
+              color: appBlueBg,
+            ),
+          ),
+        );
+      } else if (stateList![i] == "Andhra Pradesh") {
+        markersList.add(
+          const MapMarker(
+            longitude: 80.18638089999999,
+            latitude: 15.924090500015737,
+            child: Icon(
+              Icons.location_on,
+              color: appBlueBg,
+            ),
+          ),
+        );
+      } else if (stateList![i] == "Goa") {
+        markersList.add(
+          const MapMarker(
+            longitude: 74.08551339999998,
+            latitude: 15.300454299942789,
+            child: Icon(
+              Icons.location_on,
+              color: appBlueBg,
+            ),
+          ),
+        );
+      } else if (stateList![i] == "Himachal Pradesh") {
+        markersList.add(
+          const MapMarker(
+            longitude: 77.18284619999999,
+            latitude: 31.929235199611334,
+            child: Icon(
+              Icons.location_on,
+              color: appBlueBg,
+            ),
+          ),
+        );
+      } else if (stateList![i] == "Punjab") {
+        markersList.add(
+          const MapMarker(
+            longitude: 75.50048410000001,
+            latitude: 30.929321099665902,
+            child: Icon(
+              Icons.location_on,
+              color: appBlueBg,
+            ),
+          ),
+        );
+      } else if (stateList![i] == "Rajasthan") {
+        markersList.add(
+          const MapMarker(
+            longitude: 73.7684549,
+            latitude: 26.81057770007866,
+            child: Icon(
+              Icons.location_on,
+              color: appBlueBg,
+            ),
+          ),
+        );
+      } else if (stateList![i] == "Gujarat") {
+        markersList.add(
+          const MapMarker(
+            longitude: 71.745261,
+            latitude: 22.385005100402285,
+            child: Icon(
+              Icons.location_on,
+              color: appBlueBg,
+            ),
+          ),
+        );
+      } else if (stateList![i] == "Uttarakhand") {
+        markersList.add(
+          const MapMarker(
+            longitude: 79.08969099999999,
+            latitude: 30.04173759973603,
+            child: Icon(
+              Icons.location_on,
+              color: appBlueBg,
+            ),
+          ),
+        );
+      } else if (stateList![i] == "Uttar Pradesh") {
+        markersList.add(
+          const MapMarker(
+            longitude: 80.859666,
+            latitude: 27.130334400043445,
+            child: Icon(
+              Icons.location_on,
+              color: appBlueBg,
+            ),
+          ),
+        );
+      } else if (stateList![i] == "Sikkim") {
+        markersList.add(
+          const MapMarker(
+            longitude: 88.6166475,
+            latitude: 27.3333303,
+            child: Icon(
+              Icons.location_on,
+              color: appBlueBg,
+            ),
+          ),
+        );
+      } else if (stateList![i] == "Assam") {
+        markersList.add(
+          const MapMarker(
+            longitude: 93.2551303,
+            latitude: 26.40738410012204,
+            child: Icon(
+              Icons.location_on,
+              color: appBlueBg,
+            ),
+          ),
+        );
+      } else if (stateList![i] == "Arunachal Pradesh") {
+        markersList.add(
+          const MapMarker(
+            longitude: 94.5921326,
+            latitude: 28.093770199935786,
+            child: Icon(
+              Icons.location_on,
+              color: appBlueBg,
+            ),
+          ),
+        );
+      } else if (stateList![i] == "Nagaland") {
+        markersList.add(
+          const MapMarker(
+            longitude: 94.5884911,
+            latitude: 26.16305560014758,
+            child: Icon(
+              Icons.location_on,
+              color: appBlueBg,
+            ),
+          ),
+        );
+      } else if (stateList![i] == "Manipur") {
+        markersList.add(
+          const MapMarker(
+            longitude: 93.92293859999998,
+            latitude: 24.720881800281017,
+            child: Icon(
+              Icons.location_on,
+              color: appBlueBg,
+            ),
+          ),
+        );
+      } else if (stateList![i] == "Mizoram") {
+        markersList.add(
+          const MapMarker(
+            longitude: 92.8687612,
+            latitude: 23.214616900375216,
+            child: Icon(
+              Icons.location_on,
+              color: appBlueBg,
+            ),
+          ),
+        );
+      } else if (stateList![i] == "Tripura") {
+        markersList.add(
+          const MapMarker(
+            longitude: 91.7025091,
+            latitude: 23.77508230034657,
+            child: Icon(
+              Icons.location_on,
+              color: appBlueBg,
+            ),
+          ),
+        );
+      } else if (stateList![i] == "Meghalaya") {
+        markersList.add(
+          const MapMarker(
+            longitude: 91.2999102,
+            latitude: 25.53794320020953,
+            child: Icon(
+              Icons.location_on,
+              color: appBlueBg,
+            ),
+          ),
+        );
+      } else if (stateList![i] == "Bihar") {
+        markersList.add(
+          const MapMarker(
+            longitude: 85.906508,
+            latitude: 25.64408450019941,
+            child: Icon(
+              Icons.location_on,
+              color: appBlueBg,
+            ),
+          ),
+        );
+      } else if (stateList![i] == "Ladakh") {
+        markersList.add(
+          const MapMarker(
+            longitude: 77.65685759999998,
+            latitude: 33.94564069960001,
+            child: Icon(
+              Icons.location_on,
+              color: appBlueBg,
+            ),
+          ),
+        );
+      } else if (stateList![i] == "Jammu and Kashmir") {
+        markersList.add(
+          const MapMarker(
+            longitude: 75.1629584,
+            latitude: 33.66492969959299,
+            child: Icon(
+              Icons.location_on,
+              color: appBlueBg,
+            ),
+          ),
+        );
+      } else if (stateList![i] == "Odisha") {
+        markersList.add(
+          const MapMarker(
+            longitude: 84.6897321,
+            latitude: 20.543124100393143,
+            child: Icon(
+              Icons.location_on,
+              color: appBlueBg,
+            ),
+          ),
+        );
+      }
+    }
+
+    setState(() {});
+  }
+
   // final List<MapModel> _stateData = [
   //   MapModel(name: "AndamanandNicobar", disp: "Andaman & Nicobar"),
   //   MapModel(name: "AndhraPradesh", disp: "Andhra Pradesh"),
@@ -56,7 +508,7 @@ class _FactoryRateScreenState extends State<FactoryRateScreen> {
   final List<MapModel> _stateData = [
     MapModel(name: "West Bengal", disp: "West Bengal"),
     MapModel(name: "Andaman & Nicobar", disp: "Andaman & Nicobar"),
-    MapModel(name: "Chandigarh", disp: "Chandigarh"),
+    // MapModel(name: "Chandigarh", disp: "Chandigarh"),
     MapModel(
         name: "Daman and Diu and Dadra and Nagar Haveli",
         disp: "Daman and Diu and Dadra and Nagar Haveli"),
@@ -69,9 +521,9 @@ class _FactoryRateScreenState extends State<FactoryRateScreen> {
     MapModel(name: "Madhya Pradesh", disp: "Madhya Pradesh"),
     MapModel(name: "Maharashtra", disp: "Maharashtra"),
     MapModel(name: "Puducherry", disp: "Puducherry"),
-    MapModel(name: "Tamilnadu", disp: "Tamilnadu"),
-    MapModel(name: "Chhattishgarh", disp: "Chhattishgarh"),
-    MapModel(name: "Telengana", disp: "Telengana"),
+    MapModel(name: "Tamil Nadu", disp: "Tamil Nadu"),
+    MapModel(name: "Chhattisgarh", disp: "Chhattisgarh"),
+    MapModel(name: "Telangana", disp: "Telangana"),
     MapModel(name: "Andhra Pradesh", disp: "Andhra Pradesh"),
     MapModel(name: "Goa", disp: "Goa"),
     MapModel(name: "Himachal Pradesh", disp: "Himachal Pradesh"),
@@ -95,6 +547,7 @@ class _FactoryRateScreenState extends State<FactoryRateScreen> {
   ];
   late MapShapeSource _shapeSource;
   int _selectedStateIndex = -1;
+  dynamic stateName = {};
   double _labelSize = 10.0;
   void _selectState(int index) {
     setState(() {
@@ -102,13 +555,17 @@ class _FactoryRateScreenState extends State<FactoryRateScreen> {
     });
   }
 
-  void waitAndNavigate(BuildContext context, int stateIndex) async {
-    await Future.delayed(const Duration(milliseconds: 161));
-    Navigator.of(context).pushNamed(
-      StateRatesScreen.routeName,
-      arguments: stateIndex,
-    );
-    print("sending index = $stateIndex");
+  void waitAndNavigate(BuildContext context, String stateName) async {
+    // await Future.delayed(const Duration(milliseconds: 161));
+    // Navigator.of(context).pushNamed(
+    //   StateRatesScreen.routeName,
+    //   arguments: stateIndex,
+    // );
+    Navigator.push(context, MaterialPageRoute(
+      builder: (context) {
+        return StateRatesScreen(stateName: stateName);
+      },
+    ));
   }
 
   // var textBG = Paint()
@@ -154,10 +611,11 @@ class _FactoryRateScreenState extends State<FactoryRateScreen> {
     "Karnataka\n Ex-Karnataka",
     "Odisha\nEx- Odisha"
   ];
-  var _mapShapeLayerCont = MapShapeLayerController();
+  final _mapShapeLayerCont = MapShapeLayerController();
   @override
   void initState() {
     super.initState();
+    getStateData();
     _shapeSource = MapShapeSource.asset(
       // "assets/map_data/IND_1.json",
       "assets/map_data/India_State_Boundary.json",
@@ -176,6 +634,7 @@ class _FactoryRateScreenState extends State<FactoryRateScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print(markersList);
     return RootColumn(
         heading: transText(context).factoryRate,
         screenPadding: const EdgeInsets.symmetric(vertical: 20),
@@ -183,52 +642,57 @@ class _FactoryRateScreenState extends State<FactoryRateScreen> {
           Container(
             height: MediaQuery.of(context).size.height * 0.68,
             alignment: Alignment.center,
-            child: SfMaps(
-              layers: [
-                MapShapeLayer(
-                  loadingBuilder: (context) =>
-                      const CircularProgressIndicator(),
-                  // showDataLabels: true,
-                  onWillZoom: (zoomDetails) {
-                    var zoom = zoomDetails.newZoomLevel ?? 0;
-                    setState(() {
-                      _labelSize = 9 + zoom;
-                    });
-                    return true;
-                  },
-                  source: _shapeSource,
-                  selectedIndex: _selectedStateIndex,
-                  selectionSettings:
-                      MapSelectionSettings(color: Colors.blue[300]),
-                  onSelectionChanged: (value) {
-                    _selectState(value);
-                    waitAndNavigate(context, value);
-                  },
-                  initialMarkersCount: markersList.length,
-                  controller: _mapShapeLayerCont,
-                  markerBuilder: (context, index) => markersList[index],
-                  markerTooltipBuilder: (context, index) => Padding(
-                    padding: const EdgeInsets.all(3.0),
-                    child: Text(
-                      tooltipList[index],
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(color: Colors.white, fontSize: 12),
-                    ),
+            child: stateList == null
+                ? const Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : SfMaps(
+                    layers: [
+                      MapShapeLayer(
+                        loadingBuilder: (context) =>
+                            const CircularProgressIndicator(),
+                        showDataLabels: true,
+                        onWillZoom: (zoomDetails) {
+                          var zoom = zoomDetails.newZoomLevel ?? 0;
+                          setState(() {
+                            _labelSize = 9 + zoom;
+                          });
+                          return true;
+                        },
+                        source: _shapeSource,
+                        selectedIndex: _selectedStateIndex,
+                        selectionSettings:
+                            MapSelectionSettings(color: Colors.blue[300]),
+                        onSelectionChanged: (value) {
+                          _selectState(value);
+                          waitAndNavigate(context, _stateData[value].name);
+                        },
+                        initialMarkersCount: markersList.length,
+                        controller: _mapShapeLayerCont,
+                        markerBuilder: (context, index) => markersList[index],
+                        markerTooltipBuilder: (context, index) => Padding(
+                          padding: const EdgeInsets.all(3.0),
+                          child: Text(
+                            tooltipList[index],
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                                color: Colors.white, fontSize: 12),
+                          ),
+                        ),
+                        tooltipSettings: MapTooltipSettings(
+                            color: Colors.blue[300], hideDelay: 5),
+                        dataLabelSettings: MapDataLabelSettings(
+                            textStyle: TextStyle(
+                          color: Colors.black,
+                          fontSize: _labelSize,
+                        )),
+                        zoomPanBehavior: MapZoomPanBehavior(
+                            enableDoubleTapZooming: true,
+                            enablePinching: true,
+                            enablePanning: true),
+                      )
+                    ],
                   ),
-                  tooltipSettings:
-                      MapTooltipSettings(color: Colors.blue[300], hideDelay: 5),
-                  dataLabelSettings: MapDataLabelSettings(
-                      textStyle: TextStyle(
-                    color: Colors.black,
-                    fontSize: _labelSize,
-                  )),
-                  zoomPanBehavior: MapZoomPanBehavior(
-                      enableDoubleTapZooming: true,
-                      enablePinching: true,
-                      enablePanning: true),
-                )
-              ],
-            ),
           )
         ]);
   }

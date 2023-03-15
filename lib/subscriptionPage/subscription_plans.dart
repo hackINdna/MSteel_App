@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:m_steel/auth/auth_service.dart';
+import 'package:m_steel/common/showCircularProgressIndicator.dart';
 import 'package:m_steel/data_models/sample_data.dart';
 import 'package:m_steel/paymentPage/make_payment.dart';
+import 'package:m_steel/providerClass/userProvider.dart';
 import 'package:m_steel/util/general.dart';
 import 'package:m_steel/util/language_constants.dart';
+import 'package:provider/provider.dart';
 
 import '../widgets/subscription_dialog.dart';
 
@@ -17,8 +21,15 @@ class SubscriptionScreen extends StatefulWidget {
 
 class _SubscriptionScreenState extends State<SubscriptionScreen> {
   var subscriptionData = getSubscriptionData();
+  AuthService authService = AuthService();
+
+  Future<void> subscribeUser() async {
+    await authService.subscribeUser(context: context);
+  }
+
   @override
   Widget build(BuildContext context) {
+    var user = Provider.of<UserProvider>(context).user;
     var screenSize = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
@@ -71,19 +82,37 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                         style: TextStyle(
                             fontWeight: FontWeight.w500, fontSize: 17),
                       ),
-                      SizedBox(
+                      Container(
                         height: 30,
                         width: 60,
-                        child: ElevatedButton(
-                          onPressed: () => Navigator.of(context).pushNamed(
-                              MakePaymentScreen.routeName,
-                              arguments: 100),
-                          style: ElevatedButton.styleFrom(
-                              foregroundColor: Colors.white,
-                              backgroundColor: appBlueBg2,
-                              textStyle: const TextStyle(fontSize: 13.2)),
-                          child: const Text("Pay"),
-                        ),
+                        alignment: Alignment.center,
+                        child: user.subscribed
+                            ? const Text(
+                                "Paid",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w700,
+                                  color: Colors.black38,
+                                ),
+                              )
+                            : ElevatedButton(
+                                onPressed: () async {
+                                  navigatorPop() => Navigator.pop(context);
+                                  showCircularProgressIndicator(
+                                      context: context);
+                                  await subscribeUser();
+                                  navigatorPop();
+                                  setState(() {});
+                                },
+                                // onPressed: () => Navigator.of(context).pushNamed(
+                                //     MakePaymentScreen.routeName,
+                                //     arguments: 100),
+                                style: ElevatedButton.styleFrom(
+                                    foregroundColor: Colors.white,
+                                    backgroundColor: appBlueBg2,
+                                    textStyle: const TextStyle(fontSize: 13.2)),
+                                child: const Text("Pay"),
+                              ),
                       )
                     ],
                   ),

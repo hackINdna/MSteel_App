@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:m_steel/util/general.dart';
 import 'package:m_steel/util/language_constants.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ContactAdminDialog extends StatelessWidget {
   const ContactAdminDialog({super.key});
@@ -29,7 +30,14 @@ class ContactAdminDialog extends StatelessWidget {
                   visualDensity: const VisualDensity(vertical: -4),
                   iconColor: appBlueBg2,
                   textColor: appBlueBg2,
-                  onTap: () {},
+                  onTap: () async {
+                    const phoneNumber = 'sms:+919024350276';
+                    if (await canLaunchUrl(Uri.parse(phoneNumber))) {
+                      await launchUrl(Uri.parse(phoneNumber));
+                    } else {
+                      showSnackBar(context, 'Could not open Message');
+                    }
+                  },
                   title: Text(
                     transText(context).sendMessage,
                     style: const TextStyle(fontWeight: FontWeight.w600),
@@ -48,7 +56,20 @@ class ContactAdminDialog extends StatelessWidget {
                   visualDensity: const VisualDensity(vertical: -4),
                   iconColor: appBlueBg2,
                   textColor: appBlueBg2,
-                  onTap: () {},
+                  onTap: () async {
+                    final Uri params = Uri(
+                      scheme: 'mailto',
+                      path: 'rajadeyraj@gmail.com',
+                    );
+
+                    final String uri = params.toString();
+
+                    if (await canLaunchUrl(params)) {
+                      await launchUrl(params);
+                    } else {
+                      showSnackBar(context, "Could not open Email");
+                    }
+                  },
                   title: Text(
                     transText(context).sendEmail,
                     style: const TextStyle(fontWeight: FontWeight.w600),
@@ -67,7 +88,16 @@ class ContactAdminDialog extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     IconButton(
-                        onPressed: () {},
+                        onPressed: () async {
+                          var link = "https://wa.me/9024350276";
+                          // var link = "https://api.whatsapp.com/send?phone=919024350276";
+                          if (await canLaunchUrl(Uri.parse(link))) {
+                            await launchUrl(Uri.parse(link),
+                                mode: LaunchMode.externalApplication);
+                          } else {
+                            showSnackBar(context, "Cannot Launch Whatsapp");
+                          }
+                        },
                         icon: SvgPicture.asset(
                           "assets/icons/ic_whatsapp.svg",
                         )),

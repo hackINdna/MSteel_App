@@ -1,2 +1,94 @@
 {
+  "send": "পঠোৱা",
+  "ok":"ঠিক আছে",
+  "cancel": "বাতিল কৰক",
+  "uploadPhoto": "ফটো আপলোড কৰক",
+  "contnue": "অব্যাহত ৰাখক",
+  "update":"নবীকৰণ",
+  "myOrders": "মোৰ অৰ্ডাৰ",
+  "myBills": "মোৰ বিলবোৰ",
+  "myTransactions": "মোৰ লেনদেনবোৰ",
+  "myReceipts": "মোৰ ৰচিদবোৰ",
+  "changeLanguage": "ভাষা সলনি কৰক",
+  "stockStatements": "ষ্টক ষ্টেটমেন্ট",
+  "myBalance":"মোৰ ভাৰসাম্য",
+  "subscriptionPlans":"চাবস্ক্ৰিপচন পৰিকল্পনা",
+  "contactAdmin": "এডমিন যোগাযোগ",
+  "logout": "লগআউট কৰক",
+
+
+  "logoutMessage": "আপুনি নিশ্চিতভাৱে এপ্লিকেচনৰ পৰা লগআউট কৰিব বিচাৰেনে?",
+
+  "emptyFieldError": "ফিল্ড খালী হ ব নোৱাৰে।",
+  "elaborationRequiredError": "অলপ বেছি বিশদভাৱে কোৱাৰ প্ৰয়োজন।",
+
+  
+  "enquire":"অনুসন্ধান",
+  "enquireFieldHint": "ইয়াত কিবা এটা লিখা",
+  "enquireSubmittedSuccessfullyTitle": "অনুসন্ধান জমা দিয়া হৈছে!",
+  "enquireSubmittedSuccessfullyDescription": "পঞ্জীয়নভুক্ত মোবাইল নম্বৰৰ জৰিয়তে অতি সোনকালে আপোনাক উত্তৰ দিয়া হ ব।",
+  "enquireSubmittedFailedTitle": "সোধা-পোছা জমা দিয়া ব্যৰ্থ!",
+  "enquireSubmittedFailedDescription": "অনুসন্ধান জমা দিব পৰা নাই",
+  "@enquireSubmittedFailedDescription": {
+    "placeholders": {
+      "error":{}
+    }
+  },
+  "sendMessage":"বাৰ্তা প্ৰেৰণ কৰক",
+  "sendEmail":"ইমেইল প্ৰেৰণ কৰক",
+
+  "pending": "বাকী থকা",
+  "completed": "সম্পূৰ্ণ হ’ল",
+  "incompleted": "অসম্পূৰ্ণ",
+  "approved": "অনুমোদিত",
+  "declined": "অস্বীকাৰ কৰিলে",
+  "shippingInProcess": "প্ৰক্ৰিয়াত শিপিং",
+  "quantity": "পৰিমাণ",
+  "bookingRate": "বুকিং ৰেট",
+  "order": "ক্ৰম",
+
+  "orderStatements": "অৰ্ডাৰ ষ্টেটমেন্ট",
+  "newOrders": "নতুন অৰ্ডাৰ",
+  "previousOrders": "পূৰ্বৰ অৰ্ডাৰসমূহ",
+  "noOrdersToShow":"দেখুৱাবলৈ কোনো অৰ্ডাৰ নাই",
+  "noTransactionsToShow":"দেখুৱাবলৈ কোনো লেনদেন নাই",
+  "noReceiptsToShow":"দেখুৱাবলৈ কোনো ৰচিদ নাই",
+
+  "bill":"বিল",
+  "balance":"ভাৰসাম্যতা বজাই ৰখা",
+  "paid": "পৰিশোধিত",
+  "noBillsToShow": "দেখুৱাবলৈ কোনো বিল নাই",
+  "factoryRate":"কাৰখানাৰ হাৰ",
+  "orderNow":"এতিয়াই অৰ্ডাৰ কৰক",
+  "placeOrder": "অৰ্ডাৰ ৰাখক",
+
+  "netPrice": "নিকা মূল্য",
+  "orderQuantity":"অৰ্ডাৰৰ পৰিমাণ",
+  "orderAmount": "অৰ্ডাৰৰ মূল্য",
+  "enterQuantityinMT": "MT ত পৰিমাণ লিখক",
+  "congratulations": "অভিনন্দন",
+  "congratulationsSuccessfullMessage":"আপোনাৰ অৰ্ডাৰ সফলতাৰে কৰা হৈছে অনুগ্ৰহ কৰি অনুমোদন নোহোৱালৈকে অপেক্ষা কৰক বা আমাৰ সৈতে যোগাযোগ কৰক।",
+  
+  "subscriptions": "চাবস্ক্ৰিপচন",
+  "platinum":"প্লেটিনাম",
+  "getPlatinum":"প্লেটিনাম পাওক",
+  "gold":"সোণ",
+  "getGold": "সোণ পাওক",
+  "days": "দিন",
+  "months": "মাহ",
+  "years": "বছৰবোৰ",
+
+  "checkBalance":"বেলেন্স পৰীক্ষা কৰক",
+
+  "date":"তাৰিখ",
+  "sectionPipe":"ছেকচন পাইপ",
+  "roundPipe":"ঘূৰণীয়া পাইপ",
+  "squarePipe":"বৰ্গক্ষেত্ৰৰ পাইপ",
+  "swipeLeft":"বাওঁফালে চুইপ কৰক",
+  "thickness":"ডাঠতা",
+  "weightPerPes":"ওজন প্ৰতি পেছ।",
+  "total":"মুঠ",
+  "searchHere":"ইয়াত সন্ধান কৰক",
+
+  "profile":"ৰূপৰেখা"
 }

@@ -1,22 +1,66 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:m_steel/common/showCircularProgressIndicator.dart';
 import 'package:m_steel/util/general.dart';
 import 'package:m_steel/util/language_constants.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart' as pw;
 
 import 'box_text_widgets.dart';
 
 class BillWidget extends StatelessWidget {
-  final String billNumber, amount, billDownloadLink;
+  final String quantity, amount, billDownloadLink;
   final StatusContent status;
+  final dynamic content;
 
   const BillWidget({
     super.key,
-    required this.billNumber,
+    required this.quantity,
     required this.amount,
     required this.billDownloadLink,
+    required this.content,
     required this.status,
   });
   bool downloadBill(String url) {
     return true;
+  }
+
+  Future<void> generatePDF() async {
+    // Create a new PDF document.
+    final pdf = pw.Document();
+
+    // Add content to the PDF.
+    pdf.addPage(
+      pw.Page(
+        build: (context) => pw.Center(
+          child: pw.Column(
+            mainAxisAlignment: pw.MainAxisAlignment.center,
+            children: [
+              pw.Text('Date: ${content["billDate"]}'),
+              pw.Text('Order Number: ${content["orderNumber"]}'),
+              pw.Text('Name: ${content["fullName"]}'),
+              pw.Text('Product Name: ${content["productName"]}'),
+              pw.Text('Order Quantity: ${content["orderQuantity"]}'),
+              pw.Text('Total Amount: ${content["totalAmount"]}'),
+            ],
+          ),
+        ),
+      ),
+    );
+
+    // Get the path to the Downloads folder.
+    final downloadsDirectory = await getExternalStorageDirectory();
+    final downloadFilePath =
+        '${downloadsDirectory!.path}/my_pdf_file${DateTime.now()}.pdf';
+
+    // Save the PDF to the Downloads folder.
+    final file = File(downloadFilePath);
+    await file.writeAsBytes(await pdf.save());
+
+    // Show a message to the user that the PDF has been saved.
+    print('PDF saved to: $downloadFilePath');
   }
 
   @override
@@ -49,7 +93,7 @@ class BillWidget extends StatelessWidget {
             children: [
               const BoxHeadingText("MSteel"),
               Text(
-                "${transText(context).bill} #$billNumber",
+                "${transText(context).quantity}: $quantity",
                 style: const TextStyle(
                   fontSize: 11.1,
                   fontWeight: FontWeight.w600,
@@ -67,11 +111,16 @@ class BillWidget extends StatelessWidget {
                       color: Colors.transparent,
                       child: IconButton(
                         padding: EdgeInsets.zero,
-                        onPressed: () {
-                          downloadBill(billDownloadLink)
-                              ? showSnackBar(
-                                  context, "Bill Downloaded Successfully.")
-                              : showSnackBar(context, "Bill Download Failed.");
+                        onPressed: () async {
+                          showCircularProgressIndicator(context: context);
+                          navigatorPop() => Navigator.pop(context);
+                          await generatePDF();
+                          navigatorPop();
+                          showSnackBar(context, "Bill Downloaded");
+                          // downloadBill(billDownloadLink)
+                          //     ? showSnackBar(
+                          //         context, "Bill Downloaded Successfully.")
+                          //     : showSnackBar(context, "Bill Download Failed.");
                         },
                         icon: const Icon(
                           Icons.download,

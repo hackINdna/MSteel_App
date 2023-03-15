@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:local_auth/local_auth.dart';
+import 'package:m_steel/auth/auth_service.dart';
+import 'package:m_steel/common/showCircularProgressIndicator.dart';
 import 'package:m_steel/homePage/home.dart';
 import 'package:m_steel/authScreen/login.dart';
 import 'package:m_steel/util/general.dart';
@@ -21,11 +23,14 @@ class BiometricAuthScreen extends StatefulWidget {
 class _BiometricAuthScreenState extends State<BiometricAuthScreen> {
   late SharedPreferences preferences;
   bool? _biometricSupport;
-  bool _loggedIn = false;
+  String _loggedIn = "";
   LocalAuthentication auth = LocalAuthentication();
   List<BiometricType>? _availableBiometrics;
   String _message = "Proceed with Authentication.";
   bool _showSkip = false;
+
+  AuthService authService = AuthService();
+
   @override
   void initState() {
     super.initState();
@@ -40,11 +45,12 @@ class _BiometricAuthScreenState extends State<BiometricAuthScreen> {
     } else {
       _biometricSupport = preferences.getBool(BIOMETRIC_SUPPORT);
     }
-    if (preferences.getBool(LOGGED_IN) == null) {
-      _loggedIn = await preferences.setBool(LOGGED_IN, false);
-    } else {
-      _loggedIn = preferences.getBool(LOGGED_IN) ?? false;
-    }
+    // if (preferences.getString(LOGGED_IN) == null ||
+    //     preferences.getString(LOGGED_IN) == "") {
+    //   await preferences.setString(LOGGED_IN, "");
+    // } else {
+    //   preferences.getString(LOGGED_IN);
+    // }
     _availableBiometrics = await _getAvailableBiometrics();
     setState(() {});
     if (_biometricSupport != true) {
@@ -61,10 +67,10 @@ class _BiometricAuthScreenState extends State<BiometricAuthScreen> {
             AndroidAuthMessages(
                 //cancelButton: "Skip",
                 )
-          ]).then((value) {
+          ]).then((value) async {
         if (value) {
-          Navigator.of(context)
-              .pushNamedAndRemoveUntil(HomeScreen.routeName, (route) => false);
+          showCircularProgressIndicator(context: context);
+          await authService.getUserData(context: context);
         } else {
           showDialog(
               context: context,
@@ -150,9 +156,8 @@ class _BiometricAuthScreenState extends State<BiometricAuthScreen> {
   }
 
   void clearPrefAndLogInNav() async {
-    await preferences.setBool(LOGGED_IN, false).then((value) =>
-        Navigator.of(context)
-            .pushNamedAndRemoveUntil(LoginScreen.routeName, (route) => false));
+    await preferences.clear().then((value) => Navigator.of(context)
+        .pushNamedAndRemoveUntil(LoginScreen.routeName, (route) => false));
   }
 
   @override

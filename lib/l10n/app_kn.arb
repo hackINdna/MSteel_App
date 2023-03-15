@@ -1,3 +1,94 @@
 {
-    
+  "send": "ಕಳುಹಿಸು",
+  "ok":"ಸರಿ",
+  "cancel": "ರದ್ದುಮಾಡು",
+  "uploadPhoto": "ಫೋಟೋ ಅಪ್ಲೋಡ್ ಮಾಡಿ",
+  "contnue": "ಮುಂದುವರಿಸಿ",
+  "update":"ನವೀಕರಿಸಿ",
+  "myOrders": "ನನ್ನ ಆಜ್ಞೆಗಳು",
+  "myBills": "ನನ್ನ ಬಿಲ್ಲುಗಳು",
+  "myTransactions": "ನನ್ನ ವಹಿವಾಟುಗಳು",
+  "myReceipts": "ನನ್ನ ರಸೀದಿಗಳು",
+  "changeLanguage": "ಭಾಷೆ ಬದಲಾಯಿಸಿ",
+  "stockStatements": "ಸ್ಟಾಕ್ ಹೇಳಿಕೆಗಳು",
+  "myBalance":"ನನ್ನ ಸಮತೋಲನ",
+  "subscriptionPlans":"ಚಂದಾದಾರಿಕೆ ಯೋಜನೆಗಳು",
+  "contactAdmin": "ನಿರ್ವಾಹಕರನ್ನು ಸಂಪರ್ಕಿಸಿ",
+  "logout": "ಲಾಗ್ ಔಟ್",
+
+
+  "logoutMessage": "ಅಪ್ಲಿಕೇಶನ್‌ನಿಂದ ಲಾಗ್‌ಔಟ್ ಮಾಡಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?",
+
+  "emptyFieldError": "ಕ್ಷೇತ್ರವು ಖಾಲಿಯಾಗಿರಬಾರದು",
+  "elaborationRequiredError": "ಸ್ವಲ್ಪ ಹೆಚ್ಚು ವಿವರಣೆ ಅಗತ್ಯವಿದೆ",
+
+  
+  "enquire":"ವಿಚಾರಣೆ",
+  "enquireFieldHint": "ಇಲ್ಲಿ ಏನಾದರೂ ಬರೆಯಿರಿ",
+  "enquireSubmittedSuccessfullyTitle": "ವಿಚಾರಣೆಯನ್ನು ಸಲ್ಲಿಸಲಾಗಿದೆ!",
+  "enquireSubmittedSuccessfullyDescription": "ನೋಂದಾಯಿತ ಮೊಬೈಲ್ ಸಂಖ್ಯೆಯ ಮೂಲಕ ನಿಮಗೆ ಸಾಧ್ಯವಾದಷ್ಟು ಬೇಗ ಪ್ರತಿಕ್ರಿಯಿಸಲಾಗುವುದು",
+  "enquireSubmittedFailedTitle": "ವಿಚಾರಣೆ ಸಲ್ಲಿಕೆ ವಿಫಲವಾಗಿದೆ!",
+  "enquireSubmittedFailedDescription": "ವಿಚಾರಣೆಯನ್ನು ಸಲ್ಲಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ",
+  "@enquireSubmittedFailedDescription": {
+    "placeholders": {
+      "error":{}
+    }
+  },
+  "sendMessage":"ಸಂದೇಶ ಕಳುಹಿಸಿ",
+  "sendEmail":"ಇಮೇಲ್ ಕಳುಹಿಸಿ",
+
+  "pending": "ಬಾಕಿಯಿದೆ",
+  "completed": "ಪೂರ್ಣಗೊಂಡಿದೆ",
+  "incompleted": "ಅಪೂರ್ಣ",
+  "approved": "ಅನುಮೋದಿಸಲಾಗಿದೆ",
+  "declined": "ನಿರಾಕರಿಸಲಾಗಿದೆ",
+  "shippingInProcess": "ಶಿಪ್ಪಿಂಗ್ ಪ್ರಕ್ರಿಯೆಯಲ್ಲಿದೆ",
+  "quantity": "ಪ್ರಮಾಣ",
+  "bookingRate": "ಬುಕಿಂಗ್ ದರ",
+  "order": "ಆದೇಶ",
+
+  "orderStatements": "ಆದೇಶ ಹೇಳಿಕೆಗಳು",
+  "newOrders": "ಹೊಸ ಆದೇಶಗಳು",
+  "previousOrders": "ಹಿಂದಿನ ಆದೇಶಗಳು",
+  "noOrdersToShow":"ತೋರಿಸಲು ಯಾವುದೇ ಆದೇಶಗಳಿಲ್ಲ",
+  "noTransactionsToShow":"ತೋರಿಸಲು ಯಾವುದೇ ವಹಿವಾಟುಗಳಿಲ್ಲ",
+  "noReceiptsToShow":"ತೋರಿಸಲು ಯಾವುದೇ ರಸೀದಿಗಳಿಲ್ಲ",
+
+  "bill":"ಬಿಲ್",
+  "balance":"ಸಮತೋಲನ",
+  "paid": "ಪಾವತಿಸಲಾಗಿದೆ",
+  "noBillsToShow": "ತೋರಿಸಲು ಯಾವುದೇ ಬಿಲ್‌ಗಳಿಲ್ಲ",
+  "factoryRate":"ಕಾರ್ಖಾನೆ ದರ",
+  "orderNow":"ಈಗ ಆದೇಶಿಸು",
+  "placeOrder": "ಆದೇಶವನ್ನು ಇರಿಸಿ",
+
+  "netPrice": "ನಿವ್ವಳ ಬೆಲೆ",
+  "orderQuantity":"ಆದೇಶದ ಪ್ರಮಾಣ",
+  "orderAmount": "ಆದೇಶದ ಮೊತ್ತ",
+  "enterQuantityinMT": "MT ಯಲ್ಲಿ ಪ್ರಮಾಣವನ್ನು ನಮೂದಿಸಿ",
+  "congratulations": "ಅಭಿನಂದನೆಗಳು",
+  "congratulationsSuccessfullMessage":"ನಿಮ್ಮ ಆರ್ಡರ್ ಅನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಇರಿಸಲಾಗಿದೆ ದಯವಿಟ್ಟು ಅನುಮೋದನೆ ತನಕ ನಿರೀಕ್ಷಿಸಿ ಅಥವಾ ನಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸಿ",
+  
+  "subscriptions": "ಚಂದಾದಾರಿಕೆಗಳು",
+  "platinum":"ಪ್ಲಾಟಿನಮ್",
+  "getPlatinum":"ಪ್ಲಾಟಿನಂ ಪಡೆಯಿರಿ",
+  "gold":"ಚಿನ್ನ",
+  "getGold": "ಚಿನ್ನ ಪಡೆಯಿರಿ",
+  "days": "ದಿನಗಳು",
+  "months": "ತಿಂಗಳುಗಳು",
+  "years": "ವರ್ಷಗಳು",
+
+  "checkBalance":"ಬ್ಯಾಲೆನ್ಸ್ ಪರಿಶೀಲಿಸಿ",
+
+  "date":"ದಿನಾಂಕ",
+  "sectionPipe":"ವಿಭಾಗ ಪೈಪ್",
+  "roundPipe":"ರೌಂಡ್ ಪೈಪ್",
+  "squarePipe":"ಚದರ ಪೈಪ್",
+  "swipeLeft":"Swipe left",
+  "thickness":"ದಪ್ಪ",
+  "weightPerPes":"ಪ್ರತಿ ಪೆಸ್ ತೂಕ",
+  "total":"ಒಟ್ಟು",
+  "searchHere":"ಇಲ್ಲಿ ಹುಡುಕಿ",
+
+  "profile":"ಪ್ರೊಫೈಲ್"
 }

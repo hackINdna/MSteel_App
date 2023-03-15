@@ -30,8 +30,6 @@ class _SignupScreenState extends State<SignupScreen> {
   String? _fullName,
       _phoneNumber,
       _email,
-      _password,
-      _confirmPassword,
       _language,
       _zipCode,
       _city,
@@ -64,7 +62,6 @@ class _SignupScreenState extends State<SignupScreen> {
       fullName: _fullName!,
       number: _phoneNumber!,
       email: _email!,
-      password: _password!,
       businessType: _businessType!,
       zipCode: _zipCode!,
       city: _city!,
@@ -252,51 +249,51 @@ class _SignupScreenState extends State<SignupScreen> {
                           },
                         ),
                         //password
-                        const SizedBox(height: 15),
-                        Text(
-                          "Password",
-                          style: formFieldHeadingTextStyle(),
-                        ),
-                        const SizedBox(height: 10),
-                        PasswordTextFormField(
-                          hintText: "Enter Password",
-                          onSaved: (String? pass) {
-                            _password = pass;
-                          },
-                          onChanged: (pass) {
-                            _password = pass;
-                          },
-                        ),
-                        //confirm password
-                        const SizedBox(
-                          height: 25,
-                        ),
-                        Text(
-                          "Confirm Password",
-                          style: formFieldHeadingTextStyle(),
-                        ),
-                        const SizedBox(height: 10),
-                        PasswordTextFormField(
-                          hintText: "Re-Enter Password",
-                          onSaved: (String? pass) {
-                            _confirmPassword = pass;
-                          },
-                          validator: (confPass) {
-                            if (confPass != null &&
-                                confPass.length > 5 &&
-                                confPass == _password) {
-                              return null;
-                            } else if (confPass != null &&
-                                confPass.length > 5 &&
-                                confPass != _password) {
-                              return "Password does not match.";
-                            } else {
-                              return "Minimum password length is 6";
-                            }
-                          },
-                        ),
-                        //language dropdown
                         const SizedBox(height: 25),
+                        // Text(
+                        //   "Password",
+                        //   style: formFieldHeadingTextStyle(),
+                        // ),
+                        // const SizedBox(height: 10),
+                        // PasswordTextFormField(
+                        //   hintText: "Enter Password",
+                        //   onSaved: (String? pass) {
+                        //     _password = pass;
+                        //   },
+                        //   onChanged: (pass) {
+                        //     _password = pass;
+                        //   },
+                        // ),
+                        //confirm password
+                        // const SizedBox(
+                        //   height: 25,
+                        // ),
+                        // Text(
+                        //   "Confirm Password",
+                        //   style: formFieldHeadingTextStyle(),
+                        // ),
+                        // const SizedBox(height: 10),
+                        // PasswordTextFormField(
+                        //   hintText: "Re-Enter Password",
+                        //   onSaved: (String? pass) {
+                        //     _confirmPassword = pass;
+                        //   },
+                        //   validator: (confPass) {
+                        //     if (confPass != null &&
+                        //         confPass.length > 5 &&
+                        //         confPass == _password) {
+                        //       return null;
+                        //     } else if (confPass != null &&
+                        //         confPass.length > 5 &&
+                        //         confPass != _password) {
+                        //       return "Password does not match.";
+                        //     } else {
+                        //       return "Minimum password length is 6";
+                        //     }
+                        //   },
+                        // ),
+                        //language dropdown
+                        // const SizedBox(height: 25),
                         Text(
                           "Choose Language",
                           style: formFieldHeadingTextStyle(),

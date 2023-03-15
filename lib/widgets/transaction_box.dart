@@ -5,15 +5,15 @@ import 'package:m_steel/util/language_constants.dart';
 import 'box_text_widgets.dart';
 
 class TransactionWidget extends StatelessWidget {
-  final String bankName, billNumber, amount, balance;
+  final String productName, quantity, amount, paid;
   final StatusContent status;
   final bool debit;
   const TransactionWidget({
     super.key,
-    required this.bankName,
-    required this.billNumber,
+    required this.productName,
+    required this.quantity,
     required this.amount,
-    required this.balance,
+    required this.paid,
     required this.debit,
     required this.status,
   });
@@ -49,7 +49,7 @@ class TransactionWidget extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  BoxHeadingText(bankName),
+                  BoxHeadingText(productName),
                   RichText(
                     text: TextSpan(
                       style: const TextStyle(
@@ -58,8 +58,8 @@ class TransactionWidget extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                       ),
                       children: [
-                        TextSpan(
-                          text: debit ? "Dr " : "Cr ",
+                        const TextSpan(
+                          text: "Payment ",
                         ),
                         TextSpan(
                             text: amount,
@@ -76,8 +76,8 @@ class TransactionWidget extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  BoxGrayText("${transText(context).bill} #$billNumber"),
-                  BoxGrayText("${transText(context).balance} INR $balance"),
+                  BoxGrayText("${transText(context).quantity}: $quantity"),
+                  BoxGrayText("${transText(context).paid} INR $paid"),
                 ],
               ),
               const SizedBox(height: 3.5),

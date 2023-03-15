@@ -11,8 +11,11 @@ void httpErrorHandel({
 }) async {
   if (res.statusCode == 200) {
     onSuccess();
+  } else if (res.statusCode == 403) {
+    showSnackBar(context, jsonDecode(res.body)['msg']);
+    Navigator.pop(context);
   } else if (res.statusCode == 400 || res.statusCode == 401) {
-    showSnackBar(context, jsonDecode(res.body)["msg"]);
+    showSnackBar(context, jsonDecode(res.body)["error"]);
     Navigator.pop(context);
   } else if (res.statusCode == 500 || res.statusCode == 501) {
     showSnackBar(context, jsonDecode(res.body)["error"]);
