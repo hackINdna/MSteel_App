@@ -7,6 +7,7 @@ import 'package:m_steel/util/language_constants.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
+import 'package:permission_handler/permission_handler.dart';
 
 import 'box_text_widgets.dart';
 
@@ -51,16 +52,21 @@ class BillWidget extends StatelessWidget {
     );
 
     // Get the path to the Downloads folder.
-    final downloadsDirectory = await getExternalStorageDirectory();
-    final downloadFilePath =
-        '${downloadsDirectory!.path}/my_pdf_file${DateTime.now()}.pdf';
+    // final downloadsDirectory = await getExternalStorageDirectory();
+    var date = DateTime.now().millisecondsSinceEpoch;
+    final PermissionStatus permissionStatus =
+        await Permission.storage.request();
+    if (permissionStatus == PermissionStatus.granted) {
+      final downloadFilePath =
+          '/storage/emulated/0/Download/msteel-bill-pdf$date.pdf';
 
-    // Save the PDF to the Downloads folder.
-    final file = File(downloadFilePath);
-    await file.writeAsBytes(await pdf.save());
+      // Save the PDF to the Downloads folder.
+      final file = File(downloadFilePath);
+      await file.writeAsBytes(await pdf.save());
 
-    // Show a message to the user that the PDF has been saved.
-    print('PDF saved to: $downloadFilePath');
+      // Show a message to the user that the PDF has been saved.
+      print('PDF saved to: $downloadFilePath');
+    }
   }
 
   @override

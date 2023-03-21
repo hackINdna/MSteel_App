@@ -20,6 +20,8 @@ class UserProvider extends ChangeNotifier {
     orders: [],
     receipts: [],
     transactions: [],
+    advertisements: [],
+    stock: [],
   );
 
   UserModel get user => _user;

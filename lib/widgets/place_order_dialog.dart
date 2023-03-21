@@ -47,7 +47,9 @@ class _PlaceOrderDialogState extends State<PlaceOrderDialog> {
     var quant = int.tryParse(quantityController.text);
     if (quant != null && quant > 0 && quantityError == null) {
       var item = widget.itemData;
+      print("item => $item");
       var size = widget.size;
+      print("size => $size");
       Navigator.of(context)
           .popAndPushNamed(PlaceOrderWhatsappScreen.routeName, arguments: {
         "itemData": item,
@@ -63,7 +65,6 @@ class _PlaceOrderDialogState extends State<PlaceOrderDialog> {
 
       //perform order process
       // Navigator.of(context).pushNamed(MakePaymentScreen.routeName);
-
     } else {
       setState(() {
         quantityError = "Enter a valid quantity.";
@@ -78,11 +79,15 @@ class _PlaceOrderDialogState extends State<PlaceOrderDialog> {
   @override
   Widget build(BuildContext context) {
     var dialogSize = MediaQuery.of(context).size;
-    var stockPrice = int.parse(widget.itemData["basic"]) +
-        int.parse(widget.itemData["loading"]) +
-        int.parse(widget.itemData["insurance"]) +
-        int.parse(widget.itemData["gst"]) +
-        int.parse(widget.itemData["tcs"]);
+    print("item stock => ${widget.itemStock}");
+    print("item Data => ${widget.itemData}");
+    var stockPrice =
+        widget.itemStock["basic"] + double.parse(widget.itemData["amount"]);
+    // widget.itemStock["loading"] +
+    // widget.itemStock["insurance"] +
+    // widget.itemStock["gst"] +
+    // widget.itemStock["tcs"];
+
     return Center(
       child: Material(
         color: Colors.transparent,
@@ -167,6 +172,50 @@ class _PlaceOrderDialogState extends State<PlaceOrderDialog> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
+                              OffBlackText("Loading:"),
+                              OffBlackText(
+                                  widget.itemStock["loading"].toString()),
+                              // OffBlackText("${transText(context).netPrice}:"),
+                              // OffBlackText(stockPrice.toString())
+                            ],
+                          ),
+                          const SizedBox(height: 6),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              OffBlackText("GST(${widget.itemStock["gst"]}%):"),
+                              OffBlackText(
+                                  ((stockPrice * widget.itemStock["gst"]) / 100)
+                                      .toString()),
+                              // OffBlackText("${transText(context).netPrice}:"),
+                              // OffBlackText(stockPrice.toString())
+                            ],
+                          ),
+                          const SizedBox(height: 6),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              OffBlackText("TCS:"),
+                              OffBlackText(widget.itemStock["tcs"].toString()),
+                              // OffBlackText("${transText(context).netPrice}:"),
+                              // OffBlackText(stockPrice.toString())
+                            ],
+                          ),
+                          const SizedBox(height: 6),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              OffBlackText("Insurance:"),
+                              OffBlackText(
+                                  widget.itemStock["insurance"].toString()),
+                              // OffBlackText("${transText(context).netPrice}:"),
+                              // OffBlackText(stockPrice.toString())
+                            ],
+                          ),
+                          const SizedBox(height: 6),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
                               OffBlackText(
                                   "${transText(context).orderQuantity}:"),
                               OffBlackText((buyQuantity != null)
@@ -181,8 +230,14 @@ class _PlaceOrderDialogState extends State<PlaceOrderDialog> {
                               OffBlackText(
                                   "${transText(context).orderAmount}:"),
                               OffBlackText((buyQuantity != null)
-                                  ? (buyQuantity! *
-                                          int.parse(stockPrice.toString()))
+                                  ? ((buyQuantity! *
+                                              double.parse(
+                                                  stockPrice.toString())) +
+                                          (((buyQuantity! *
+                                                      double.parse(stockPrice
+                                                          .toString())) *
+                                                  widget.itemStock["gst"]) /
+                                              100))
                                       .toString()
                                   : ""),
                             ],

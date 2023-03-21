@@ -26,24 +26,28 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print("stock => $itemDetails");
     return RootColumn(heading: null, children: [
       ListView.separated(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           itemBuilder: (context, index) => itemBoxBuilder(context, index),
           separatorBuilder: (context, index) => const SizedBox(height: 12),
-          itemCount: 1),
+          itemCount: itemDetails["sizes"].length),
     ]);
   }
 
   Widget itemBoxBuilder(BuildContext context, int index) {
-    var item = itemDetails["stockData"];
-    var price = (int.parse(item["basic"]) +
-        int.parse(item["loading"]) +
-        int.parse(item["insurance"]) +
-        ((int.parse(item["basic"]) * int.parse(item["gst"])) / 100) +
-        int.parse(item["tcs"]));
-    var size = item["thickness"];
+    var item = itemDetails["sizes"][index];
+    var price = itemDetails["basic"] + double.parse(item["amount"]);
+
+    print("price -> $price");
+    // var price = (int.parse(item["basic"]) +
+    //     int.parse(item["loading"]) +
+    //     int.parse(item["insurance"]) +
+    //     ((int.parse(item["basic"]) * int.parse(item["gst"])) / 100) +
+    //     int.parse(item["tcs"]));
+    var size = item["size"];
     return ItemWidget(
       item: "${size}mm",
       suffix: "TP",
@@ -55,7 +59,7 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
   }
 
   void onClick(int index) async {
-    var item = itemDetails["stockData"];
+    var item = itemDetails["sizes"][index];
     await showDialog(
         barrierDismissible: false,
         context: context,
@@ -63,7 +67,7 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
           return PlaceOrderDialog(
             itemStock: itemDetails,
             itemData: item,
-            size: item["thickness"],
+            size: item["size"],
           );
         });
   }

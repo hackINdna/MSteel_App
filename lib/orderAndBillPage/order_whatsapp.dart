@@ -25,11 +25,13 @@ class PlaceOrderWhatsappScreen extends StatelessWidget {
     var item = args['itemData'] as dynamic;
     var itemStock = args['itemStock'] as dynamic;
 
-    var stockPrice = double.parse(item["basic"]) +
-        double.parse(item["loading"]) +
-        double.parse(item["insurance"]) +
-        double.parse(item["gst"]) +
-        double.parse(item["tcs"]);
+    var stockPrice = itemStock["basic"] + double.parse(item["amount"]);
+    print(stockPrice);
+    // var stockPrice = double.parse(item["basic"]) +
+    //     double.parse(item["loading"]) +
+    //     double.parse(item["insurance"]) +
+    //     double.parse(item["gst"]) +
+    //     double.parse(item["tcs"]);
     var size = args['size'] as String;
     var quantity = args['quantity'] as String;
 
@@ -47,9 +49,18 @@ class PlaceOrderWhatsappScreen extends StatelessWidget {
         const SizedBox(height: 9),
         rowItem("Price: ", stockPrice),
         const SizedBox(height: 9),
+        rowItem("Loading: ", itemStock["insurance"]),
+        const SizedBox(height: 9),
+        rowItem("GST(${itemStock["gst"]}%): ",
+            ((stockPrice * int.parse(quantity)) * itemStock["gst"]) / 100),
+        const SizedBox(height: 9),
+        rowItem("TCS: ", itemStock["tcs"]),
+        const SizedBox(height: 9),
+        rowItem("Insurance: ", itemStock["insurance"]),
+        const SizedBox(height: 9),
         rowItem(
           "Amount Payable: ",
-          "INR ${stockPrice * int.parse(quantity)}",
+          "INR ${(stockPrice * int.parse(quantity)) + (((stockPrice * int.parse(quantity)) * itemStock["gst"]) / 100)}",
         ),
         SizedBox(height: screenSize.height * 0.052), //0.45 for bottom
         ElevatedButton.icon(
@@ -59,13 +70,13 @@ class PlaceOrderWhatsappScreen extends StatelessWidget {
             onPressed: user.subscribed
                 ? () async {
                     String text =
-                        "Hello _Admin_,\nI am intrested in buying:\n*Item:* ${itemStock["stockName"]} - ${itemStock["stateName"]} (TP),\n*Size:* ${size}mm,\n *Amount:* INR $stockPrice,\n*Quantity:* $quantity";
+                        "Hello _Admin_,\nI am intrested in buying:\n*Item:* ${itemStock["stockName"]} - ${itemStock["stateName"]} (TP),\n*Size:* ${size}mm,\n*Loading:* ${itemStock["insurance"]},\n*GST(${itemStock["gst"]}%):* ${((stockPrice * int.parse(quantity)) * itemStock["gst"]) / 100},\n*TCS:* ${itemStock["tcs"]},\n*Insurance:* ${itemStock["insurance"]},\n*Quantity:* $quantity\n*Amount:* INR ${(stockPrice * int.parse(quantity)) + (((stockPrice * int.parse(quantity)) * itemStock["gst"]) / 100)},\n";
                     // var link = WhatsAppUnilink(
                     //   phoneNumber: "+919460089701",
                     //   text: text,
                     // );
 
-                    var link = "https://wa.me/9024350276?text=$text";
+                    var link = "https://wa.me/9425501751?text=$text";
                     // var link = "https://api.whatsapp.com/send?phone=919024350276";
                     if (await canLaunchUrl(Uri.parse(link))) {
                       navigatorPush() => Navigator.pushNamedAndRemoveUntil(

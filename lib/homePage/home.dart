@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:m_steel/enquiryPage/enquire.dart';
 import 'package:m_steel/factoryRatePage/factory_rate.dart';
 import 'package:m_steel/factoryRatePage/retailRates.dart';
-import 'package:m_steel/factoryRatePage/state_rates.dart';
 import 'package:m_steel/providerClass/userProvider.dart';
 import 'package:m_steel/util/general.dart';
 import 'package:m_steel/util/language_constants.dart';
@@ -41,10 +40,10 @@ class _HomeScreenState extends State<HomeScreen> {
     _timer1 = Timer.periodic(const Duration(seconds: 3), (timer) {
       if (_pageController3.page!.round() == uu.stock!.length - 1) {
         _pageController3.animateToPage(0,
-            duration: const Duration(milliseconds: 300), curve: Curves.ease);
+            duration: const Duration(seconds: 3), curve: Curves.ease);
       } else {
         _pageController3.nextPage(
-            duration: const Duration(milliseconds: 300), curve: Curves.ease);
+            duration: const Duration(seconds: 3), curve: Curves.ease);
       }
     });
 
@@ -158,7 +157,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   itemBuilder: (context, index) {
                     return Marquee(
                       text:
-                          "${user.stock![index]["stateName"]}-${user.stock![index]["stockName"]} - INR ${user.stock![index]["stockPrice"]}",
+                          "${user.stock![index]["stateName"]}-${user.stock![index]["stockName"]} - INR ${user.stock![index]["basic"]}",
                       crossAxisAlignment: CrossAxisAlignment.start,
                       style: const TextStyle(
                           fontSize: 13.4, fontWeight: FontWeight.bold),

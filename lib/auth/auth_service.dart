@@ -86,11 +86,12 @@ class AuthService {
           headers: <String, String>{
             "Content-Type": "application/json; charset=UTF-8",
           });
+      print("after res");
 
       httpErrorHandel(
           context: context,
           res: res,
-          onSuccess: () async {
+          onSuccess: () {
             user.setUser(res.body);
 
             // await prefs.setString(
@@ -100,6 +101,7 @@ class AuthService {
           });
     } catch (e) {
       showSnackBar(context, e.toString());
+      Navigator.pop(context);
     }
   }
 
@@ -492,7 +494,7 @@ class AuthService {
   }
 
   // Get My Bills
-  Future<List<dynamic>> getAllBills({
+  Future<List<List<dynamic>>> getAllBills({
     required BuildContext context,
   }) async {
     try {
@@ -501,6 +503,7 @@ class AuthService {
       var token = prefs.getString("x-auth-token");
 
       List<dynamic>? billList = [];
+      List<dynamic>? pdfBill = [];
 
       if (token == null || token.isEmpty) {
         await prefs.setString("x-auth-token", "");
@@ -513,13 +516,27 @@ class AuthService {
             "x-auth-token": token!
           });
 
-      if (res.statusCode == 200) {
+      http.Response pdfBills = await http.get(
+          Uri.parse("$url/user/get/uploadedBills"),
+          headers: <String, String>{
+            "Content-Type": "application/json; charset=UTF-8",
+            "x-auth-token": token
+          });
+
+      print(jsonDecode(res.body)["billPdf"]);
+      if (res.statusCode == 200 && pdfBills.statusCode == 200) {
         // user.setUser(res.body);
         for (var i = 0; i < jsonDecode(res.body)["bills"].length; i++) {
           var billData = jsonDecode(res.body)["bills"][i];
           billList.add(billData);
         }
-        return billList;
+        for (var i = 0; i < jsonDecode(pdfBills.body)["billPdf"].length; i++) {
+          var pdf = jsonDecode(pdfBills.body)["billPdf"][i];
+          pdfBill.add(pdf);
+        }
+        print("pdf");
+        print(pdfBill);
+        return [billList, pdfBill];
       } else {
         return [];
       }
@@ -691,10 +708,9 @@ class AuthService {
   }
 
   // Get all Stocks
-  Future<List<Map<String, String>>> getAllStock(
-      {required BuildContext context}) async {
+  Future<List<dynamic>> getAllStock({required BuildContext context}) async {
     try {
-      List<Map<String, String>> newlist = [];
+      List<dynamic> newlist = [];
       var prefs = await SharedPreferences.getInstance();
       var token = prefs.getString("x-auth-token");
 
@@ -703,16 +719,20 @@ class AuthService {
         token = prefs.getString("x-auth-token");
       }
 
-      http.Response res = await http.get(Uri.parse("$url/user/getAllStocks"),
+      http.Response res = await http.get(
+          Uri.parse("$url/user/get/stockStatement"),
           headers: <String, String>{
             "Content-Type": "application/json; charset=UTF-8",
             "x-auth-token": token!
           });
 
       if (res.statusCode == 200) {
-        for (var i = 0; i < jsonDecode(res.body).length; i++) {
-          Map<String, String> element =
-              jsonDecode(res.body)[i] as Map<String, String>;
+        print("length => ${jsonDecode(res.body)["allStockStatements"].length}");
+        print("stock statement => ${jsonDecode(res.body)}");
+        for (var i = 0;
+            i < jsonDecode(res.body)["allStockStatements"].length;
+            i++) {
+          var element = jsonDecode(res.body)["allStockStatements"][i];
           newlist.add(element);
         }
         return newlist;

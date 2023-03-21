@@ -73,7 +73,7 @@ class _StateRatesScreenState extends State<StateRatesScreen> {
       categoryName: item["stockName"],
       categorySubtitle: "Ex-${item['stateName']}",
       date: DateTime.parse(item['stockDate']).toString(),
-      amount: item["stockPrice"].toString(),
+      amount: item["basic"].toString(),
       onCategoryPressed: () {
         // Navigator.pushNamed(context, PlaceOrderScreen.routeName,
         //     arguments: item);
