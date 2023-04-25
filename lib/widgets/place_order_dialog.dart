@@ -78,11 +78,22 @@ class _PlaceOrderDialogState extends State<PlaceOrderDialog> {
   );
   @override
   Widget build(BuildContext context) {
+    var allPriceAdd = widget.itemStock["basic"] +
+        widget.itemStock["loading"] +
+        widget.itemStock["insurance"] +
+        widget.itemStock["tcs"];
     var dialogSize = MediaQuery.of(context).size;
     print("item stock => ${widget.itemStock}");
     print("item Data => ${widget.itemData}");
-    var stockPrice =
-        widget.itemStock["basic"] + double.parse(widget.itemData["amount"]);
+    print("amount => ${widget.itemData["amount"]}");
+    var stockPrice = ((allPriceAdd + double.parse(widget.itemData["amount"])) +
+        ((allPriceAdd + double.parse(widget.itemData["amount"])) *
+                (widget.itemStock["gst"] / 100))
+            .round());
+    var netPrice = allPriceAdd + double.parse(widget.itemData["amount"]);
+    var gstPrice = ((allPriceAdd + double.parse(widget.itemData["amount"])) *
+            (widget.itemStock["gst"] / 100))
+        .round();
     // widget.itemStock["loading"] +
     // widget.itemStock["insurance"] +
     // widget.itemStock["gst"] +
@@ -165,7 +176,7 @@ class _PlaceOrderDialogState extends State<PlaceOrderDialog> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               OffBlackText("${transText(context).netPrice}:"),
-                              OffBlackText(stockPrice.toString())
+                              OffBlackText(netPrice.toString())
                             ],
                           ),
                           const SizedBox(height: 6),
@@ -184,9 +195,7 @@ class _PlaceOrderDialogState extends State<PlaceOrderDialog> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               OffBlackText("GST(${widget.itemStock["gst"]}%):"),
-                              OffBlackText(
-                                  ((stockPrice * widget.itemStock["gst"]) / 100)
-                                      .toString()),
+                              OffBlackText(gstPrice.toString()),
                               // OffBlackText("${transText(context).netPrice}:"),
                               // OffBlackText(stockPrice.toString())
                             ],
@@ -230,15 +239,7 @@ class _PlaceOrderDialogState extends State<PlaceOrderDialog> {
                               OffBlackText(
                                   "${transText(context).orderAmount}:"),
                               OffBlackText((buyQuantity != null)
-                                  ? ((buyQuantity! *
-                                              double.parse(
-                                                  stockPrice.toString())) +
-                                          (((buyQuantity! *
-                                                      double.parse(stockPrice
-                                                          .toString())) *
-                                                  widget.itemStock["gst"]) /
-                                              100))
-                                      .toString()
+                                  ? ((buyQuantity! * stockPrice)).toString()
                                   : ""),
                             ],
                           ),
@@ -280,8 +281,8 @@ class _PlaceOrderDialogState extends State<PlaceOrderDialog> {
                               children: [
                                 OutlinedButton(
                                     style: OutlinedButton.styleFrom(
-                                        side:
-                                            const BorderSide(color: appBlueBg)),
+                                      side: const BorderSide(color: appBlueBg),
+                                    ),
                                     onPressed: () =>
                                         Navigator.of(context).pop(),
                                     child: Text(
@@ -289,13 +290,14 @@ class _PlaceOrderDialogState extends State<PlaceOrderDialog> {
                                       style: const TextStyle(fontSize: 12),
                                     )),
                                 ElevatedButton(
-                                    onPressed: placeOrder,
-                                    style: ElevatedButton.styleFrom(
-                                        backgroundColor: appBlueBg2),
-                                    child: Text(
-                                      transText(context).placeOrder,
-                                      style: const TextStyle(fontSize: 12.9),
-                                    ))
+                                  onPressed: placeOrder,
+                                  style: ElevatedButton.styleFrom(
+                                      backgroundColor: appBlueBg2),
+                                  child: Text(
+                                    transText(context).placeOrder,
+                                    style: const TextStyle(fontSize: 12.9),
+                                  ),
+                                ),
                               ],
                             ),
                           )

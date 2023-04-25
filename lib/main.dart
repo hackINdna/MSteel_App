@@ -66,6 +66,7 @@ class _TheApplicationState extends State<TheApplication> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: "MSteel",
       debugShowCheckedModeBanner: false,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,

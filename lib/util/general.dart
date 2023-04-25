@@ -140,7 +140,7 @@ const themeColors = <Color>[
 ];
 
 //info
-const contactNumber = "+91 0000 00 0000";
+const contactNumber = "+91 9425501751";
 String phoneNumber() => contactNumber.trim().replaceAll(" ", "").substring(3);
 
 const List<String> businessTypeList = ["B2B", "B2C"];

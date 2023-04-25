@@ -51,6 +51,7 @@ class _MyBillsScreenState extends State<MyBillsScreen> {
   Future<void> downloadBillPDF(String imgurl) async {
     try {
       var date = DateTime.now().millisecondsSinceEpoch;
+      navigatorPop() => Navigator.pop(context);
 
       String savePath = "/storage/emulated/0/Download/msteel-bill-$date.pdf";
 
@@ -61,9 +62,8 @@ class _MyBillsScreenState extends State<MyBillsScreen> {
           //you can build progressbar feature too
         }
       });
-      print("Image is saved to download folder.");
       showSnackBar(context, "PDF Downloaded");
-      Navigator.pop(context);
+      navigatorPop();
     } on DioError catch (e) {
       print(e.message);
       showSnackBar(context, "Unable to Download! Try Again");

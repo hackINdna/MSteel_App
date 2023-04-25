@@ -3,7 +3,6 @@ import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:m_steel/data_models/models.dart';
 import 'package:m_steel/widgets/basic_root_screen.dart';
-import 'package:m_steel/widgets/congratulations_dialog.dart';
 import 'package:m_steel/widgets/item_box.dart';
 import 'package:m_steel/widgets/place_order_dialog.dart';
 
@@ -38,10 +37,18 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
   }
 
   Widget itemBoxBuilder(BuildContext context, int index) {
+    var allPriceAdd = itemDetails["basic"] +
+        itemDetails["loading"] +
+        itemDetails["insurance"] +
+        itemDetails["tcs"];
+    print("Itemdetails => $itemDetails");
     var item = itemDetails["sizes"][index];
-    var price = itemDetails["basic"] + double.parse(item["amount"]);
+    var price = ((allPriceAdd + double.parse(item["amount"])) +
+        ((allPriceAdd + double.parse(item["amount"])) *
+                (itemDetails["gst"] / 100))
+            .round());
 
-    print("price -> $price");
+    // print("price -> $price");
     // var price = (int.parse(item["basic"]) +
     //     int.parse(item["loading"]) +
     //     int.parse(item["insurance"]) +

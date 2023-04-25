@@ -20,50 +20,16 @@ class _FactoryRateScreenState extends State<FactoryRateScreen> {
 
   List<String>? stateList;
 
+  List<String> tooltipList = List.generate(36, (index) => "");
+  List<MapMarker> markersList = [];
+
   void getStateData() async {
     stateList = await authService.stateStockMap(context: context);
-    markersList = [];
-    tooltipList = [
-      "West Bengal\nEx-West Bengal",
-      "Andaman & Nicobar\nEx-Andaman & Nicobar",
-      // "Chandigarh\nEx-Chandigarh",
-      "DDDNH\nEx-Daman and Diu and Dadra and Nagar Haveli",
-      "Delhi\nEx-Delhi",
-      "Haryana\nEx-Haryana",
-      "Jharkhand\nEx-Jharkhand",
-      "Karnataka\nEx-Karnataka",
-      "Kerala\nEx-Kerala",
-      "Lakshadweep\nEx-Lakshadweep",
-      "Madhya Pradesh\nEx-Madhya Pradesh",
-      "Maharashtra\nEx-Maharashtra",
-      "Puducherry\nEx-Puducherry",
-      "Tamil Nadu\nEx-Tamil Nadu",
-      "Chhattisgarh\nEx-Chhattisgarh",
-      "Telangana\nEx-Telangana",
-      "Andhra Pradesh\nEx-Andhra Pradesh",
-      "Goa\nEx-Goa",
-      "Himachal Pradesh\nEx-Himachal Pradesh",
-      "Punjab\nEx-Punjab",
-      "Rajasthan\nEx-Rajasthan",
-      "Gujarat\nEx-Gujarat",
-      "Uttarakhand\nEx-Uttarakhand",
-      "Uttar Pradesh\nEx-Uttar Pradesh",
-      "Sikkim\nEx-Sikkim",
-      "Assam\nEx-Assam",
-      "Arunachal Pradesh\nEx-Arunachal Pradesh",
-      "Nagaland\nEx-Nagaland",
-      "Manipur\nEx-Manipur",
-      "Mizoram\nEx-Mizoram",
-      "Tripura\nEx-Tripura",
-      "Meghalaya\nEx-Meghalaya",
-      "Bihar\nEx-Bihar",
-      "Ladakh\nEx-Ladakh",
-      "Jammu and Kashmir\nEx-Jammu and Kashmir",
-      "Odisha\nEx-Odisha",
-    ];
+    print(stateList);
 
     for (var i = 0; i < stateList!.length; i++) {
       if (stateList![i] == "West Bengal") {
+        tooltipList[i] = "West Bengal\nEx-West Bengal";
         markersList.add(
           const MapMarker(
             longitude: 87.68558819999998,
@@ -75,6 +41,7 @@ class _FactoryRateScreenState extends State<FactoryRateScreen> {
           ),
         );
       } else if (stateList![i] == "Andaman & Nicobar") {
+        tooltipList[i] = "Andaman & Nicobar\nEx-Andaman & Nicobar";
         markersList.add(
           const MapMarker(
             longitude: 92.57713289999998,
@@ -99,6 +66,7 @@ class _FactoryRateScreenState extends State<FactoryRateScreen> {
       //   );
       // }
       else if (stateList![i] == "Daman and Diu and Dadra and Nagar Haveli") {
+        tooltipList[i] = "DDDNH\nEx-Daman and Diu and Dadra and Nagar Haveli";
         markersList.add(
           const MapMarker(
             longitude: 73.0166178,
@@ -110,6 +78,7 @@ class _FactoryRateScreenState extends State<FactoryRateScreen> {
           ),
         );
       } else if (stateList![i] == "Delhi") {
+        tooltipList[i] = "Delhi\nEx-Delhi";
         markersList.add(
           const MapMarker(
             longitude: 77.1716954,
@@ -121,6 +90,7 @@ class _FactoryRateScreenState extends State<FactoryRateScreen> {
           ),
         );
       } else if (stateList![i] == "Haryana") {
+        tooltipList[i] = "Haryana\nEx-Haryana";
         markersList.add(
           const MapMarker(
             longitude: 76,
@@ -132,6 +102,7 @@ class _FactoryRateScreenState extends State<FactoryRateScreen> {
           ),
         );
       } else if (stateList![i] == "Jharkhand") {
+        tooltipList[i] = "Jharkhand\nEx-Jharkhand";
         markersList.add(
           const MapMarker(
             longitude: 85.25573009999998,
@@ -143,6 +114,7 @@ class _FactoryRateScreenState extends State<FactoryRateScreen> {
           ),
         );
       } else if (stateList![i] == "Karnataka") {
+        tooltipList[i] = "Karnataka\nEx-Karnataka";
         markersList.add(
           const MapMarker(
             longitude: 75.7223521,
@@ -154,6 +126,7 @@ class _FactoryRateScreenState extends State<FactoryRateScreen> {
           ),
         );
       } else if (stateList![i] == "Kerala") {
+        tooltipList[i] = "Karnataka\nEx-Karnataka";
         markersList.add(
           const MapMarker(
             longitude: 76.5120396,
@@ -165,6 +138,7 @@ class _FactoryRateScreenState extends State<FactoryRateScreen> {
           ),
         );
       } else if (stateList![i] == "Lakshadweep") {
+        tooltipList[i] = "Lakshadweep\nEx-Lakshadweep";
         markersList.add(
           const MapMarker(
             longitude: 72.81710689999998,
@@ -176,6 +150,7 @@ class _FactoryRateScreenState extends State<FactoryRateScreen> {
           ),
         );
       } else if (stateList![i] == "Madhya Pradesh") {
+        tooltipList[i] = "Madhya Pradesh\nEx-Madhya Pradesh";
         markersList.add(
           const MapMarker(
             longitude: 77.53407189999999,
@@ -187,6 +162,7 @@ class _FactoryRateScreenState extends State<FactoryRateScreen> {
           ),
         );
       } else if (stateList![i] == "Maharashtra") {
+        tooltipList[i] = "Maharashtra\nEx-Maharashtra";
         markersList.add(
           const MapMarker(
             longitude: 75.6741579,
@@ -198,6 +174,7 @@ class _FactoryRateScreenState extends State<FactoryRateScreen> {
           ),
         );
       } else if (stateList![i] == "Puducherry") {
+        tooltipList[i] = "Puducherry\nEx-Puducherry";
         markersList.add(
           const MapMarker(
             longitude: 79.83000037,
@@ -209,6 +186,7 @@ class _FactoryRateScreenState extends State<FactoryRateScreen> {
           ),
         );
       } else if (stateList![i] == "Tamil Nadu") {
+        tooltipList[i] = "Tamil Nadu\nEx-Tamil Nadu";
         markersList.add(
           const MapMarker(
             longitude: 78.36653469999999,
@@ -220,6 +198,7 @@ class _FactoryRateScreenState extends State<FactoryRateScreen> {
           ),
         );
       } else if (stateList![i] == "Chhattisgarh") {
+        tooltipList[i] = "Chhattisgarh\nEx-Chhattisgarh";
         markersList.add(
           const MapMarker(
             longitude: 81.8406351,
@@ -231,6 +210,7 @@ class _FactoryRateScreenState extends State<FactoryRateScreen> {
           ),
         );
       } else if (stateList![i] == "Telangana") {
+        tooltipList[i] = "Telangana\nEx-Telangana";
         markersList.add(
           const MapMarker(
             longitude: 79.1151663,
@@ -242,6 +222,7 @@ class _FactoryRateScreenState extends State<FactoryRateScreen> {
           ),
         );
       } else if (stateList![i] == "Andhra Pradesh") {
+        tooltipList[i] = "Andhra Pradesh\nEx-Andhra Pradesh";
         markersList.add(
           const MapMarker(
             longitude: 80.18638089999999,
@@ -253,6 +234,7 @@ class _FactoryRateScreenState extends State<FactoryRateScreen> {
           ),
         );
       } else if (stateList![i] == "Goa") {
+        tooltipList[i] = "Goa\nEx-Goa";
         markersList.add(
           const MapMarker(
             longitude: 74.08551339999998,
@@ -264,6 +246,7 @@ class _FactoryRateScreenState extends State<FactoryRateScreen> {
           ),
         );
       } else if (stateList![i] == "Himachal Pradesh") {
+        tooltipList[i] = "Himachal Pradesh\nEx-Himachal Pradesh";
         markersList.add(
           const MapMarker(
             longitude: 77.18284619999999,
@@ -275,6 +258,7 @@ class _FactoryRateScreenState extends State<FactoryRateScreen> {
           ),
         );
       } else if (stateList![i] == "Punjab") {
+        tooltipList[i] = "Punjab\nEx-Punjab";
         markersList.add(
           const MapMarker(
             longitude: 75.50048410000001,
@@ -286,6 +270,7 @@ class _FactoryRateScreenState extends State<FactoryRateScreen> {
           ),
         );
       } else if (stateList![i] == "Rajasthan") {
+        tooltipList[i] = "Rajasthan\nEx-Rajasthan";
         markersList.add(
           const MapMarker(
             longitude: 73.7684549,
@@ -297,6 +282,7 @@ class _FactoryRateScreenState extends State<FactoryRateScreen> {
           ),
         );
       } else if (stateList![i] == "Gujarat") {
+        tooltipList[i] = "Gujarat\nEx-Gujarat";
         markersList.add(
           const MapMarker(
             longitude: 71.745261,
@@ -308,6 +294,7 @@ class _FactoryRateScreenState extends State<FactoryRateScreen> {
           ),
         );
       } else if (stateList![i] == "Uttarakhand") {
+        tooltipList[i] = "Uttarakhand\nEx-Uttarakhand";
         markersList.add(
           const MapMarker(
             longitude: 79.08969099999999,
@@ -319,6 +306,7 @@ class _FactoryRateScreenState extends State<FactoryRateScreen> {
           ),
         );
       } else if (stateList![i] == "Uttar Pradesh") {
+        tooltipList[i] = "Uttar Pradesh\nEx-Uttar Pradesh";
         markersList.add(
           const MapMarker(
             longitude: 80.859666,
@@ -330,6 +318,7 @@ class _FactoryRateScreenState extends State<FactoryRateScreen> {
           ),
         );
       } else if (stateList![i] == "Sikkim") {
+        tooltipList[i] = "Sikkim\nEx-Sikkim";
         markersList.add(
           const MapMarker(
             longitude: 88.6166475,
@@ -341,6 +330,7 @@ class _FactoryRateScreenState extends State<FactoryRateScreen> {
           ),
         );
       } else if (stateList![i] == "Assam") {
+        tooltipList[i] = "Assam\nEx-Assam";
         markersList.add(
           const MapMarker(
             longitude: 93.2551303,
@@ -352,6 +342,7 @@ class _FactoryRateScreenState extends State<FactoryRateScreen> {
           ),
         );
       } else if (stateList![i] == "Arunachal Pradesh") {
+        tooltipList[i] = "Arunachal Pradesh\nEx-Arunachal Pradesh";
         markersList.add(
           const MapMarker(
             longitude: 94.5921326,
@@ -363,6 +354,7 @@ class _FactoryRateScreenState extends State<FactoryRateScreen> {
           ),
         );
       } else if (stateList![i] == "Nagaland") {
+        tooltipList[i] = "Nagaland\nEx-Nagaland";
         markersList.add(
           const MapMarker(
             longitude: 94.5884911,
@@ -374,6 +366,7 @@ class _FactoryRateScreenState extends State<FactoryRateScreen> {
           ),
         );
       } else if (stateList![i] == "Manipur") {
+        tooltipList[i] = "Manipur\nEx-Manipur";
         markersList.add(
           const MapMarker(
             longitude: 93.92293859999998,
@@ -385,6 +378,7 @@ class _FactoryRateScreenState extends State<FactoryRateScreen> {
           ),
         );
       } else if (stateList![i] == "Mizoram") {
+        tooltipList[i] = "Mizoram\nEx-Mizoram";
         markersList.add(
           const MapMarker(
             longitude: 92.8687612,
@@ -396,6 +390,7 @@ class _FactoryRateScreenState extends State<FactoryRateScreen> {
           ),
         );
       } else if (stateList![i] == "Tripura") {
+        tooltipList[i] = "Tripura\nEx-Tripura";
         markersList.add(
           const MapMarker(
             longitude: 91.7025091,
@@ -407,6 +402,7 @@ class _FactoryRateScreenState extends State<FactoryRateScreen> {
           ),
         );
       } else if (stateList![i] == "Meghalaya") {
+        tooltipList[i] = "Meghalaya\nEx-Meghalaya";
         markersList.add(
           const MapMarker(
             longitude: 91.2999102,
@@ -418,6 +414,7 @@ class _FactoryRateScreenState extends State<FactoryRateScreen> {
           ),
         );
       } else if (stateList![i] == "Bihar") {
+        tooltipList[i] = "Bihar\nEx-Bihar";
         markersList.add(
           const MapMarker(
             longitude: 85.906508,
@@ -429,6 +426,7 @@ class _FactoryRateScreenState extends State<FactoryRateScreen> {
           ),
         );
       } else if (stateList![i] == "Ladakh") {
+        tooltipList[i] = "Ladakh\nEx-Ladakh";
         markersList.add(
           const MapMarker(
             longitude: 77.65685759999998,
@@ -440,6 +438,7 @@ class _FactoryRateScreenState extends State<FactoryRateScreen> {
           ),
         );
       } else if (stateList![i] == "Jammu and Kashmir") {
+        tooltipList[i] = "Jammu and Kashmir\nEx-Jammu and Kashmir";
         markersList.add(
           const MapMarker(
             longitude: 75.1629584,
@@ -451,6 +450,7 @@ class _FactoryRateScreenState extends State<FactoryRateScreen> {
           ),
         );
       } else if (stateList![i] == "Odisha") {
+        tooltipList[i] = "Odisha\nEx-Odisha";
         markersList.add(
           const MapMarker(
             longitude: 84.6897321,
@@ -574,43 +574,40 @@ class _FactoryRateScreenState extends State<FactoryRateScreen> {
   //   ..strokeJoin = StrokeJoin.round
   //   ..strokeCap = StrokeCap.round
   //   ..style = PaintingStyle.fill;
-  var markersList = [
-    const MapMarker(
-      latitude: 27.0238,
-      longitude: 74.2179,
-      child: Icon(
-        Icons.location_on,
-        color: appBlueBg,
-      ),
-    ),
-    const MapMarker(
-        latitude: 22.9734,
-        longitude: 78.6569,
-        child: Icon(
-          Icons.location_on,
-          color: appBlueBg,
-        )),
-    const MapMarker(
-        latitude: 15.3173,
-        longitude: 75.7139,
-        child: Icon(
-          Icons.location_on,
-          color: appBlueBg,
-        )),
-    const MapMarker(
-        latitude: 20.2376,
-        longitude: 84.2700,
-        child: Icon(
-          Icons.location_on,
-          color: appBlueBg,
-        )),
-  ];
-  var tooltipList = [
-    "Rajasthan\nEx-Rajasthan",
-    "Madhya Pradesh\n Ex-MP",
-    "Karnataka\n Ex-Karnataka",
-    "Odisha\nEx- Odisha"
-  ];
+  // var markersList = [
+  //   const MapMarker(
+  //     latitude: 27.0238,
+  //     longitude: 74.2179,
+  //     child: Icon(
+  //       Icons.location_on,
+  //       color: appBlueBg,
+  //     ),
+  //   ),
+  //   const MapMarker(
+  //       latitude: 22.9734,
+  //       longitude: 78.6569,
+  //       child: Icon(
+  //         Icons.location_on,
+  //         color: appBlueBg,
+  //       )),
+  //   const MapMarker(
+  //       latitude: 15.3173,
+  //       longitude: 75.7139,
+  //       child: Icon(
+  //         Icons.location_on,
+  //         color: appBlueBg,
+  //       )),
+  //   const MapMarker(
+  //       latitude: 20.2376,
+  //       longitude: 84.2700,
+  //       child: Icon(
+  //         Icons.location_on,
+  //         color: appBlueBg,
+  //       )),
+  // ];
+  // var tooltipList = [
+
+  // ];
   final _mapShapeLayerCont = MapShapeLayerController();
   @override
   void initState() {

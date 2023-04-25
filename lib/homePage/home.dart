@@ -12,6 +12,8 @@ import 'package:marquee/marquee.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../data_models/notification_app.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
   static const routeName = "/home";
@@ -25,51 +27,54 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   late PageController _pageController1;
   late PageController _pageController2;
-  late PageController _pageController3;
 
   late Timer _timer;
   late Timer _timer1;
 
+  // final stocksData = [
+  //   'AAPL: \$143.16',
+  //   'GOOG: \$2,057.24',
+  //   'AMZN: \$3,222.90',
+  //   'TSLA: \$739.78',
+  // ];
+
+  NotificationService notificationService = NotificationService();
+
   @override
   void initState() {
     var uu = Provider.of<UserProvider>(context, listen: false).user;
-    _pageController1 = PageController(initialPage: 0);
-    _pageController2 = PageController(initialPage: 0);
-    _pageController3 = PageController(initialPage: 0);
+    if (mounted) {
+      _pageController1 = PageController(initialPage: 0);
+      _pageController2 = PageController(initialPage: 0);
 
-    _timer1 = Timer.periodic(const Duration(seconds: 3), (timer) {
-      if (_pageController3.page!.round() == uu.stock!.length - 1) {
-        _pageController3.animateToPage(0,
-            duration: const Duration(seconds: 3), curve: Curves.ease);
-      } else {
-        _pageController3.nextPage(
-            duration: const Duration(seconds: 3), curve: Curves.ease);
-      }
-    });
+      _timer = Timer.periodic(const Duration(seconds: 3), (Timer timer) {
+        if (_pageController1.page!.round() == uu.advertisements!.length - 1 &&
+            _pageController2.page!.round() == uu.advertisements!.length - 1) {
+          _pageController1.animateToPage(0,
+              duration: const Duration(milliseconds: 300), curve: Curves.ease);
+          _pageController2.animateToPage(0,
+              duration: const Duration(milliseconds: 300), curve: Curves.ease);
+        } else {
+          _pageController1.nextPage(
+              duration: const Duration(milliseconds: 300), curve: Curves.ease);
+          _pageController2.nextPage(
+              duration: const Duration(milliseconds: 300), curve: Curves.ease);
+        }
+      });
 
-    _timer = Timer.periodic(const Duration(seconds: 3), (Timer timer) {
-      if (_pageController1.page!.round() == uu.advertisements!.length - 1 &&
-          _pageController2.page!.round() == uu.advertisements!.length - 1) {
-        _pageController1.animateToPage(0,
-            duration: const Duration(milliseconds: 300), curve: Curves.ease);
-        _pageController2.animateToPage(0,
-            duration: const Duration(milliseconds: 300), curve: Curves.ease);
-      } else {
-        _pageController1.nextPage(
-            duration: const Duration(milliseconds: 300), curve: Curves.ease);
-        _pageController2.nextPage(
-            duration: const Duration(milliseconds: 300), curve: Curves.ease);
-      }
-    });
+      notificationService.initNotification();
+    }
     super.initState();
   }
 
   @override
   void dispose() {
-    _timer.cancel();
-    _timer1.cancel();
-    _pageController1.dispose();
-    _pageController2.dispose();
+    if (mounted) {
+      _timer.cancel();
+      _timer1.cancel();
+      _pageController1.dispose();
+      _pageController2.dispose();
+    }
     super.dispose();
   }
 
@@ -78,8 +83,47 @@ class _HomeScreenState extends State<HomeScreen> {
     double screenWidht = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 
+    // final stocksMarquee = Marquee(
+    //   text: stocksData.join('   |   '),
+    //   style: TextStyle(fontSize: 16.0),
+    //   blankSpace: 80.0,
+    //   velocity: 40.0,
+    //   pauseAfterRound: Duration(seconds: 1),
+    // );
+
     var user = Provider.of<UserProvider>(context).user;
     var mediaQuery = MediaQuery.of(context);
+
+    var stockList = [];
+    print("here is stock length -> ${user.stock!.length}");
+    if (user.stock!.length > 0) {
+      for (var i = 0; i < user.stock!.length; i++) {
+        var stockname = user.stock![i]["stockName"];
+        var statename = user.stock![i]["stateName"];
+        var basic = user.stock![i]["basic"];
+        var previousBasic = user.stock![i]["previousBasic"];
+        var gap = basic - previousBasic;
+        var uni = gap == 0
+            ? ""
+            : gap < 0
+                ? "\u{2193}"
+                : "\u{2191}";
+
+        String data =
+            "$statename - $stockname - \u{20B9}$basic($uni ${(gap * 100 / basic).toStringAsFixed(2)}%)";
+        stockList.add(data);
+      }
+    }
+    var marqueeText = user.stock!.length > 0
+        ? stockList.join("   |   ")
+        : "No Stock Uploaded";
+
+    // var gap = (user.stock![0]["basic"] - user.stock![0]["previousBasic"]);
+    // print("percentage");
+    // print((gap * 100 / user.stock![0]["basic"]).toStringAsFixed(2));
+    // print(user.stock![0]["basic"]);
+    // print(user.stock![0]["previousBasic"]);
+    // print(user.stock![0]["basic"] > user.stock![0]["previousBasic"]);
     return Scaffold(
         drawer: homeDrawer(mediaQuery, context),
         appBar: AppBar(
@@ -151,25 +195,19 @@ class _HomeScreenState extends State<HomeScreen> {
               // color: Colors.amber,
               height: mediaQuery.size.height * 0.044,
               width: screenWidht,
-              child: PageView.builder(
-                  controller: _pageController3,
-                  itemCount: user.stock!.length,
-                  itemBuilder: (context, index) {
-                    return Marquee(
-                      text:
-                          "${user.stock![index]["stateName"]}-${user.stock![index]["stockName"]} - INR ${user.stock![index]["basic"]}",
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      style: const TextStyle(
-                          fontSize: 13.4, fontWeight: FontWeight.bold),
-                      scrollAxis: Axis.horizontal,
-                      blankSpace: 20.0,
-                      velocity: 50.0,
-                      pauseAfterRound: const Duration(seconds: 1),
-                      showFadingOnlyWhenScrolling: true,
-                      fadingEdgeStartFraction: 0.1,
-                      fadingEdgeEndFraction: 0.1,
-                    );
-                  }),
+              child: Marquee(
+                text: marqueeText,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                style: const TextStyle(
+                    fontSize: 13.4, fontWeight: FontWeight.bold),
+                scrollAxis: Axis.horizontal,
+                blankSpace: 20.0,
+                velocity: 50.0,
+                pauseAfterRound: const Duration(seconds: 1),
+                showFadingOnlyWhenScrolling: true,
+                fadingEdgeStartFraction: 0.1,
+                fadingEdgeEndFraction: 0.1,
+              ),
               // child: Marquee(
               //         text:
               //             "${user.stock![index]["stateName"]}-${user.stock![index]["stockName"]} - INR ${user.stock![index]["stockPrice"]}",
@@ -240,6 +278,21 @@ class _HomeScreenState extends State<HomeScreen> {
                       },
                     ),
             )),
+            // InkWell(
+            //   onTap: () {
+            //     notificationService.showNotification(
+            //       title: "Sample Text",
+            //       body:
+            //           "as;kldjfasd;lkfjasd;lfjsadf;lksadjfas;lkdfjas;lkfjasl;kfdjdasklfjasl;fkjasf;lkasjdf;lkasdjf;asldkjfas;lkfdjsa;lfkjdas;lfkjadsfl;kajs",
+            //     );
+            //   },
+            //   child: Container(
+            //     width: 100,
+            //     height: 50,
+            //     color: Colors.red,
+            //     child: Text("Press me"),
+            //   ),
+            // ),
             // TextButton(
             //     onPressed: () =>
             //         Navigator.pushNamed(context, BiometricAuthScreen.routeName),

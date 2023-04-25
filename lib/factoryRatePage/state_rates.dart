@@ -69,6 +69,7 @@ class _StateRatesScreenState extends State<StateRatesScreen> {
 
   categoryBoxBuilder(BuildContext context, int index) {
     var item = stockList![index];
+
     return StateRateWidget(
       categoryName: item["stockName"],
       categorySubtitle: "Ex-${item['stateName']}",

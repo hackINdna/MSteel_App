@@ -90,7 +90,9 @@ class BillWidget extends StatelessWidget {
         decoration: const BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(3.5), topRight: Radius.circular(3.5)),
+            topLeft: Radius.circular(3.5),
+            topRight: Radius.circular(3.5),
+          ),
         ),
         child: Padding(
           padding: const EdgeInsets.only(top: 8, left: 8, right: 8, bottom: 6),
